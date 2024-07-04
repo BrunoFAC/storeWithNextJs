@@ -11,13 +11,17 @@ import {
   alpha,
 } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useMarketStore } from "@/src/store/market.store";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export const HeaderProfile: React.FC = () => {
+  const cart = useMarketStore((store) => store.cart);
+  const cartLength = cart.length;
   const [anchorUser, setAnchorUser] = React.useState<null | HTMLElement>(null);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorUser(event.currentTarget);
   };
+
   const handleCloseUserMenu = () => {
     setAnchorUser(null);
   };
@@ -40,8 +44,12 @@ export const HeaderProfile: React.FC = () => {
             width: "min-content",
           }}
         >
-          <Typography fontSize={16}>0</Typography>
-          <ShoppingCartOutlinedIcon />
+          <Box style={{ display: "flex", flexDirection: "row" }}>
+            <ShoppingCartOutlinedIcon />
+            {cartLength > 0 ? (
+              <Typography fontSize={10}>{cartLength}</Typography>
+            ) : null}
+          </Box>
         </IconButton>
       </Tooltip>
       <Tooltip TransitionComponent={Zoom} title="Settings">
