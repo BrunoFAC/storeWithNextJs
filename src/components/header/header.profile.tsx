@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, IconButton, Typography, Menu, Avatar, Tooltip, MenuItem, Zoom, alpha } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useMarketStore } from '../../store/market.store';
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Logout'];
 
 export const HeaderProfile: React.FC = () => {
     const cart = useMarketStore((store) => store.cart);
