@@ -1,8 +1,13 @@
-import { ColorSchemeScript } from "@mantine/core";
+import { ColorSchemeScript, createTheme } from "@mantine/core";
 import { Html, Head, Main, NextScript } from "next/document";
 import { ThemeProvider } from "@mui/material/styles";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import theme from "./theme";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "sans-serif",
+  },
+});
 
 export default function Document() {
   return (
