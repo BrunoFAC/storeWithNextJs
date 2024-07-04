@@ -1,6 +1,11 @@
-import { NextPage } from "next";
+import { NextPage } from 'next';
+import { Sections } from '../components/sections/sections';
 
 const Index: NextPage = () => {
-  return <div>Initial Page</div>;
+    return (
+        <div>
+            <Sections />
+        </div>
+    );
 };
 export default Index;

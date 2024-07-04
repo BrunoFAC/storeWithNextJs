@@ -65,14 +65,14 @@ export const HeaderXS: React.FC<HeaderXSProps> = ({
                     ))}
                 </Menu>
             </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
+            <Box onClick={() => goTo('')} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
                 <Image src={Images.Head} alt="" width={35} height={35} />
             </Box>
             <Typography
                 variant="h5"
                 noWrap
                 component="a"
-                href="#app-bar-with-responsive-menu"
+                onClick={() => goTo('')}
                 sx={{
                     mr: 2,
                     display: { xs: 'flex', md: 'none' },

@@ -4,7 +4,7 @@ import { useScrollTrigger } from '@mui/material';
 import { useRouter } from 'next/router';
 import { HeaderViews } from './header.views';
 
-const pages = ['clothes', 'eletronics', 'jewelery'];
+const pages = ['clothes', 'eletronics', 'jewelry'];
 
 export const Header: React.FC = () => {
     const [anchorNav, setAnchorNav] = React.useState<null | HTMLElement>(null);
@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
 
     return (
         <Slide appear={false} direction="down" in={!scrolled}>
-            <AppBar position="sticky" elevation={scrolled ? 4 : 0}>
+            <AppBar position="sticky" elevation={scrolled ? 1 : 0}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <HeaderViews.HeaderMD pages={pages} goTo={goTo} handleCloseNavMenu={handleCloseNavMenu} />
