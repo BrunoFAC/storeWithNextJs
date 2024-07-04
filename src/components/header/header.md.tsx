@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import Image from "next/image";
-import { Images } from "@/public/images";
+import { Images } from "../../../public/images";
 
 interface HeaderMDProps {
   pages: string[];

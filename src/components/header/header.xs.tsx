@@ -2,7 +2,7 @@ import * as React from "react";
 import { Box, IconButton, Typography, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
-import { Images } from "@/public/images";
+import { Images } from "../../../public/images";
 interface HeaderXSProps {
   pages: string[];
   anchorNav: HTMLElement | null;
@@ -59,14 +59,14 @@ export const HeaderXS: React.FC<HeaderXSProps> = ({
               }}
             >
               <Typography variant="h6" noWrap textAlign="center">
-                {page} xd
+                {page}
               </Typography>
             </MenuItem>
           ))}
         </Menu>
       </Box>
       <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
-        <Image src={Images.Head} alt="" width={45} height={45} />
+        <Image src={Images.Head} alt="" width={35} height={35} />
       </Box>
       <Typography
         variant="h5"
@@ -78,8 +78,8 @@ export const HeaderXS: React.FC<HeaderXSProps> = ({
           display: { xs: "flex", md: "none" },
           flexGrow: 1,
           fontFamily: "monospace",
-          fontWeight: 700,
-          letterSpacing: ".2rem",
+          fontWeight: 600,
+          letterSpacing: ".1rem",
           color: "inherit",
           textDecoration: "none",
         }}

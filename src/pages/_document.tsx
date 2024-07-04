@@ -3,12 +3,6 @@ import { Html, Head, Main, NextScript } from "next/document";
 import { ThemeProvider } from "@mui/material/styles";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
-const theme = createTheme({
-  typography: {
-    fontFamily: "sans-serif",
-  },
-});
-
 export default function Document() {
   return (
     <Html>
@@ -17,10 +11,8 @@ export default function Document() {
       </Head>
       <body style={{ margin: 0 }}>
         <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <Main />
-            <NextScript />
-          </ThemeProvider>
+          <Main />
+          <NextScript />
         </AppRouterCacheProvider>
       </body>
     </Html>
