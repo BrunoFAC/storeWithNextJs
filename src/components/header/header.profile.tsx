@@ -42,16 +42,12 @@ export const HeaderProfile: React.FC = () => {
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }} title="Settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>
-                    <Avatar
-                        alt="Bruno"
-                        src="/static/images/avatar/2.jpg"
-                        style={{ fontSize: '1rem', width: '30px', height: '30px' }}
-                    />
+                    <Avatar alt="Bruno" src="." style={{ fontSize: '1rem', width: '30px', height: '30px' }} />
                 </IconButton>
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} title="Settings" sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
-                    <Avatar alt="Bruno" src="/static/images/avatar/2.jpg" />
+                    <Avatar alt="Bruno" src="." />
                 </IconButton>
             </Tooltip>
             <Menu

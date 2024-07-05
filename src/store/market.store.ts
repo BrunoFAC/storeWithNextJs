@@ -21,7 +21,6 @@ const storeIdentifier = 'market-store';
 const initialData: MarketState = {
     cart: [],
 };
-// const isDevtoolsActive = process.env.REACT_APP_DEVTOOLS_STORE === "true";
 
 const actions = (set: any): MarketActions => {
     const setCart = (cart: CartProps[]) => {
