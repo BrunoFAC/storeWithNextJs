@@ -17,6 +17,7 @@ export const SectionsMD: FC<Sections> = ({ sections }) => {
                 justifyContent: 'center',
                 height: '600px',
                 gap: '10px',
+                margin: '90px 0px',
             }}
             sx={{
                 display: { lg: 'none', md: 'flex', xs: 'none' },

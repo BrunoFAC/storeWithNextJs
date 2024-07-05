@@ -16,6 +16,7 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                 justifyContent: 'center',
                 gap: '50px',
                 flexDirection: 'column',
+                margin: '90px 0px',
             }}
             sx={{
                 display: { lg: 'none', md: 'none', xs: 'flex' },

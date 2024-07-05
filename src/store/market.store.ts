@@ -1,54 +1,54 @@
-import { create, StateCreator } from "zustand";
+import { create, StateCreator } from 'zustand';
 
 export interface CartProps {
-  id?: number;
-  name?: string;
-  age?: number;
+    id?: number;
+    name?: string;
+    age?: number;
 }
 export interface MarketState {
-  cart: CartProps[];
+    cart: CartProps[];
 }
 
 interface MarketActions {
-  setCart(cart: CartProps[]): void;
-  resetStore(): void;
+    setCart(cart: CartProps[]): void;
+    resetStore(): void;
 }
 
 export interface MarketStore extends MarketState, MarketActions {}
 
-const storeIdentifier = "market-store";
+const storeIdentifier = 'market-store';
 
 const initialData: MarketState = {
-  cart: [],
+    cart: [],
 };
 // const isDevtoolsActive = process.env.REACT_APP_DEVTOOLS_STORE === "true";
 
 const actions = (set: any): MarketActions => {
-  const setCart = (cart: CartProps[]) => {
-    set(
-      (state: MarketState) => {
-        state.cart = cart;
-      },
-      false, // if this is false - it will be a synchronous update - what it means is if this state changes, it will render the associated state
-      // if is true, its the opposite, will be async - will only render when the provided page is rendered;
-      `${storeIdentifier}/set-cart`
-    );
-  };
-  const resetStore = () => {
-    set(() => {
-      return { ...initialData };
-    });
-  };
+    const setCart = (cart: CartProps[]) => {
+        set(
+            (state: MarketState) => {
+                state.cart = cart;
+            },
+            false, // if this is false - it will be a synchronous update - what it means is if this state changes, it will render the associated state
+            // if is true, its the opposite, will be async - will only render when the provided page is rendered;
+            `${storeIdentifier}/set-cart`
+        );
+    };
+    const resetStore = () => {
+        set(() => {
+            return { ...initialData };
+        });
+    };
 
-  return {
-    setCart,
-    resetStore,
-  };
+    return {
+        setCart,
+        resetStore,
+    };
 };
 
 const storeData: StateCreator<MarketStore> = (set) => ({
-  ...initialData,
-  ...actions(set),
+    ...initialData,
+    ...actions(set),
 });
 
 export const useMarketStore = create<MarketStore>(storeData);

@@ -43,10 +43,9 @@ export const Sections: FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                marginBottom: 200,
             }}
         >
-            {!scrolled && (
+            <Slide appear={true} direction="down" in={scrolled}>
                 <Typography
                     style={{
                         fontWeight: 'bold',
@@ -59,30 +58,34 @@ export const Sections: FC = () => {
                         fontSize: '30px',
                         color: 'white',
                         height: '50px',
-                    }}
-                >
-                    {resources.title}
-                </Typography>
-            )}
-            <Slide appear={false} direction="down" in={scrolled}>
-                <Typography
-                    style={{
-                        fontWeight: 'bold',
-                        textTransform: 'uppercase',
-                        backgroundColor: '#1876D2',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'end',
-                        width: '250%',
-                        fontSize: '30px',
-                        color: 'white',
-                        height: '50px',
-                        ...(scrolled && { position: 'fixed', top: 0, zIndex: 1 }),
+                        marginTop: '0px',
+                        position: 'fixed',
+                        top: 0,
+                        zIndex: 1,
                     }}
                 >
                     {resources.title}
                 </Typography>
             </Slide>
+            <Typography
+                style={{
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                    backgroundColor: '#1876D2',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'end',
+                    width: '250%',
+                    fontSize: '30px',
+                    color: 'white',
+                    height: '50px',
+                    position: 'sticky',
+                    top: 0,
+                    zIndex: 1,
+                }}
+            >
+                {resources.title}
+            </Typography>
             <SectionsViews.SectionsLG sections={sections} />
             <SectionsViews.SectionsMD sections={sections} />
             <SectionsViews.SectionsXS sections={sections} />
