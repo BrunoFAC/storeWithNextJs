@@ -9,6 +9,8 @@ export const SectionsLG: FC<Sections> = ({ sections }) => {
     const goTo = (link: string) => {
         router.push(`/${link}`);
     };
+    const resources = { visit: 'Visit' };
+
     return (
         <Box
             sx={{
@@ -80,7 +82,7 @@ export const SectionsLG: FC<Sections> = ({ sections }) => {
                     >
                         <Typography variant="h5">{e.label}</Typography>
                         <Button variant="contained" onClick={() => goTo(e.redirect)}>
-                            Visit
+                            {resources.visit}
                         </Button>
                     </Box>
                 </Box>

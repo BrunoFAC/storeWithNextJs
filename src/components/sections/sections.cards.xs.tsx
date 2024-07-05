@@ -10,6 +10,8 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
         router.push(`/${link}`);
     };
 
+    const resources = { visit: 'Visit' };
+
     return (
         <Box
             style={{
@@ -80,7 +82,7 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                     >
                         <Typography variant="h5">{e.label}</Typography>
                         <Button variant="contained" onClick={() => goTo(e.redirect)}>
-                            Visit
+                            {resources.visit}
                         </Button>
                     </Box>
                 </Box>
