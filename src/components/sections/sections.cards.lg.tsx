@@ -21,7 +21,6 @@ export const SectionsLG: FC<Sections> = ({ sections }) => {
                 display: { lg: 'flex', md: 'none', xs: 'none' },
             }}
             style={{
-                margin: '90px 0px',
                 width: '100%',
                 justifyContent: 'center',
                 height: '600px',

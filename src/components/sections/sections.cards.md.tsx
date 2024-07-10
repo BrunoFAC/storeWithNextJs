@@ -18,12 +18,10 @@ export const SectionsMD: FC<Sections> = ({ sections }) => {
     return (
         <Box
             style={{
-                marginTop: 90,
                 width: '100%',
                 justifyContent: 'center',
                 height: '600px',
                 gap: '10px',
-                margin: '90px 0px',
             }}
             sx={{
                 display: { lg: 'none', md: 'flex', xs: 'none' },

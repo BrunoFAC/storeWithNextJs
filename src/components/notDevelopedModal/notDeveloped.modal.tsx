@@ -33,7 +33,15 @@ export const AlertDialogSlide: React.FC = () => {
             onClose={handleClose}
             aria-describedby="alert-dialog-slide-description"
         >
-            <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
+            <DialogContent
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '16px',
+                    textAlign: 'center',
+                    alignItems: 'center',
+                }}
+            >
                 <ConstructionIcon
                     sx={{
                         bgcolor: '#1876D2',

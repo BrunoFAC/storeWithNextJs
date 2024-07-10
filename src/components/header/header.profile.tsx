@@ -19,43 +19,61 @@ export const HeaderProfile: React.FC = () => {
     };
     return (
         <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row' }}>
-            <Tooltip TransitionComponent={Zoom} title="Cart">
-                <IconButton
-                    sx={() => ({
-                        p: 0,
-                        color: 'white',
-                        borderRadius: 0,
-                        mr: 0.75,
-                        '&:hover': {
-                            bgcolor: 'transparent',
-                        },
-                    })}
-                    style={{
-                        padding: 4,
-                        width: 'min-content',
-                    }}
-                >
-                    <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'start' }}>
-                        <Box
+            <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <Tooltip TransitionComponent={Zoom} title="Cart">
+                    <Box
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'start',
+                        }}
+                    >
+                        <IconButton
+                            sx={() => ({
+                                p: 0,
+                                color: 'white',
+                                borderRadius: 0,
+                                mr: 0.75,
+                                '&:hover': {
+                                    bgcolor: 'transparent',
+                                },
+                            })}
                             style={{
-                                marginRight: 4,
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'start',
+                                padding: 4,
+                                width: 'min-content',
                             }}
                         >
                             <FavoriteBorderIcon onClick={handleClickOpen} />
                             {favoritesLength > 0 ? (
                                 <Typography fontSize={9}>{favoritesLength > 99 ? '99+' : favoritesLength}</Typography>
                             ) : null}
-                        </Box>
+                        </IconButton>
+                    </Box>
+                </Tooltip>
+
+                <Tooltip TransitionComponent={Zoom} title="Cart">
+                    <IconButton
+                        sx={() => ({
+                            p: 0,
+                            color: 'white',
+                            borderRadius: 0,
+                            mr: 0.75,
+                            '&:hover': {
+                                bgcolor: 'transparent',
+                            },
+                        })}
+                        style={{
+                            padding: 4,
+                            width: 'min-content',
+                        }}
+                    >
                         <ShoppingCartOutlinedIcon onClick={handleClickOpen} />
                         {cartLength > 0 ? (
                             <Typography fontSize={9}>{cartLength > 99 ? '99+' : cartLength}</Typography>
                         ) : null}
-                    </Box>
-                </IconButton>
-            </Tooltip>
+                    </IconButton>
+                </Tooltip>
+            </Box>
             <Tooltip TransitionComponent={Zoom} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }} title="Settings">
                 <IconButton onClick={handleClickOpen} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>
                     <Avatar alt="Bruno" src="." style={{ fontSize: '1rem', width: '30px', height: '30px' }} />

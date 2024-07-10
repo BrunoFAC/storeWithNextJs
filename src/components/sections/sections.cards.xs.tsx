@@ -21,7 +21,6 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                 justifyContent: 'center',
                 gap: '50px',
                 flexDirection: 'column',
-                margin: '90px 0px',
                 width: '100%',
             }}
             sx={{
@@ -32,7 +31,7 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                 <Box
                     key={index}
                     sx={{
-                        flex: '0 0 250px',
+                        flex: '0 0 320px',
                         borderRadius: '0.5rem',
                         transition: '0.5s ease-in-out',
                         cursor: 'pointer',
@@ -45,16 +44,16 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                         backgroundImage: e.image,
                     }}
                     onMouseEnter={(e) => {
-                        e.currentTarget.style.flex = '0 0 380px';
+                        e.currentTarget.style.flex = '0 0 450px';
                         e.currentTarget.style.boxShadow = '1px 3px 15px #1876D2';
                         e.currentTarget.style.transform = 'translateY(-30px)';
                         const content = e.currentTarget.querySelector('.content') as HTMLElement;
                         content.style.opacity = '1';
-                        content.style.transform = 'translateY(-7%)';
+                        content.style.transform = 'translateY(-6%)';
                         content.style.visibility = 'visible';
                     }}
                     onMouseLeave={(e) => {
-                        e.currentTarget.style.flex = '0 0 250px';
+                        e.currentTarget.style.flex = '0 0 320px';
                         e.currentTarget.style.boxShadow = '1px 5px 15px #1876D2';
                         e.currentTarget.style.transform = 'translateY(0)';
                         const content = e.currentTarget.querySelector('.content') as HTMLElement;
