@@ -2,40 +2,37 @@ import { FC } from 'react';
 import { Box, Slide, Typography, useScrollTrigger } from '@mui/material';
 import { Images } from '../../../public/images';
 import { SectionsViews } from './sections.views';
+import { SectionsCards } from './sections.types';
 
 const images = [
     {
         label: "Men's Section",
-        imgPath: Images.Man.src,
+        image: Images.Man.src,
         redirect: 'clothes',
+        gender: 'man',
     },
     {
         label: "Women's Section",
-        imgPath: Images.Woman.src,
+        image: Images.Woman.src,
         redirect: 'clothes',
+        gender: 'woman',
     },
     {
-        label: 'Jewelry Section',
-        imgPath: Images.Jewelry.src,
-        redirect: 'jewelry',
+        label: 'Jewelery Section',
+        image: Images.Jewelery.src,
+        redirect: 'jewelery',
+        gender: '',
     },
     {
         label: 'Electronics Section',
-        imgPath: Images.Eletronic.src,
+        image: Images.Eletronic.src,
         redirect: 'eletronics',
+        gender: '',
     },
 ];
 
 export const Sections: FC = () => {
-    const sections = images.map((e) => {
-        return { image: `url('${e.imgPath}')`, label: e.label, redirect: e.redirect };
-    });
-
-    const resources = {
-        title: 'Sections',
-    };
-
-    const scrolled = useScrollTrigger();
+    const sections = images.map((e) => ({ ...e, image: `url('${e.image}')` })) as SectionsCards[];
 
     return (
         <Box
@@ -45,47 +42,6 @@ export const Sections: FC = () => {
                 alignItems: 'center',
             }}
         >
-            <Slide appear={true} direction="down" in={scrolled}>
-                <Typography
-                    style={{
-                        fontWeight: 'bold',
-                        textTransform: 'uppercase',
-                        backgroundColor: '#1876D2',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'end',
-                        width: '250%',
-                        fontSize: '30px',
-                        color: 'white',
-                        height: '50px',
-                        marginTop: '0px',
-                        position: 'fixed',
-                        top: 0,
-                        zIndex: 1,
-                    }}
-                >
-                    {resources.title}
-                </Typography>
-            </Slide>
-            <Typography
-                style={{
-                    fontWeight: 'bold',
-                    textTransform: 'uppercase',
-                    backgroundColor: '#1876D2',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'end',
-                    width: '250%',
-                    fontSize: '30px',
-                    color: 'white',
-                    height: '50px',
-                    position: 'sticky',
-                    top: 0,
-                    zIndex: 1,
-                }}
-            >
-                {resources.title}
-            </Typography>
             <SectionsViews.SectionsLG sections={sections} />
             <SectionsViews.SectionsMD sections={sections} />
             <SectionsViews.SectionsXS sections={sections} />

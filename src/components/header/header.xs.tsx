@@ -1,75 +1,22 @@
 import * as React from 'react';
-import { Box, IconButton, Typography, Menu, MenuItem } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import { Images } from '../../../public/images';
+import { DrawerHeaderXS } from './header.xs.lateralMenu';
 interface HeaderXSProps {
-    pages: string[];
-    anchorNav: HTMLElement | null;
     goTo: (link: string) => void;
-    handleCloseNavMenu: () => void;
-    handleOpenNavMenu: (event: React.MouseEvent<HTMLElement>) => void;
 }
-export const HeaderXS: React.FC<HeaderXSProps> = ({
-    anchorNav,
-    goTo,
-    handleCloseNavMenu,
-    pages,
-    handleOpenNavMenu,
-}) => {
+export const HeaderXS: React.FC<HeaderXSProps> = ({ goTo }) => {
     const resources = { store: 'STORE' };
 
     return (
-        <>
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
-                    color="inherit"
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorNav}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                    }}
-                    open={Boolean(anchorNav)}
-                    onClose={handleCloseNavMenu}
-                    sx={{
-                        display: { xs: 'block', md: 'none' },
-                    }}
-                >
-                    {pages.map((page) => (
-                        <MenuItem
-                            key={page}
-                            onClick={() => {
-                                handleCloseNavMenu();
-                                goTo(page);
-                            }}
-                        >
-                            <Typography variant="h6" noWrap textAlign="center">
-                                {page}
-                            </Typography>
-                        </MenuItem>
-                    ))}
-                </Menu>
-            </Box>
+        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, position: 'static', alignItems: 'center' }}>
+            <DrawerHeaderXS />
             <Box onClick={() => goTo('')} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
                 <Image src={Images.Head} alt="" width={35} height={35} />
             </Box>
+
             <Typography
-                variant="h5"
                 noWrap
                 component="a"
                 onClick={() => goTo('')}
@@ -79,6 +26,7 @@ export const HeaderXS: React.FC<HeaderXSProps> = ({
                     flexGrow: 1,
                     fontFamily: 'monospace',
                     fontWeight: 600,
+                    fontSize: '.9rem',
                     letterSpacing: '.1rem',
                     color: 'inherit',
                     textDecoration: 'none',
@@ -86,6 +34,6 @@ export const HeaderXS: React.FC<HeaderXSProps> = ({
             >
                 {resources.store}
             </Typography>
-        </>
+        </Box>
     );
 };

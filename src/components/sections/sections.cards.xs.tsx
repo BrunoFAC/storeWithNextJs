@@ -2,14 +2,17 @@ import { FC } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { Sections } from './sections.types';
+import { Gender, useMarketStore } from '../../store';
 
 export const SectionsXS: FC<Sections> = ({ sections }) => {
     const router = useRouter();
 
-    const goTo = (link: string) => {
+    const setGender = useMarketStore((store) => store.setGender);
+
+    const goTo = (link: string, filter?: Gender) => {
+        setGender(filter);
         router.push(`/${link}`);
     };
-
     const resources = { visit: 'Visit' };
 
     return (
@@ -19,6 +22,7 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                 gap: '50px',
                 flexDirection: 'column',
                 margin: '90px 0px',
+                width: '100%',
             }}
             sx={{
                 display: { lg: 'none', md: 'none', xs: 'flex' },
@@ -35,7 +39,8 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                         boxShadow: '1px 5px 15px #1876D2',
                         position: 'relative',
                         overflow: 'hidden',
-                        backgroundSize: 'cover',
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundImage: e.image,
                     }}
@@ -81,7 +86,7 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                         }}
                     >
                         <Typography variant="h5">{e.label}</Typography>
-                        <Button variant="contained" onClick={() => goTo(e.redirect)}>
+                        <Button variant="contained" onClick={() => goTo(e.redirect, e?.gender)}>
                             {resources.visit}
                         </Button>
                     </Box>

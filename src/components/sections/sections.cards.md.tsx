@@ -2,11 +2,14 @@ import { FC } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { Sections } from './sections.types';
+import { Gender, useMarketStore } from '../../store';
 
 export const SectionsMD: FC<Sections> = ({ sections }) => {
     const router = useRouter();
+    const setGender = useMarketStore((store) => store.setGender);
 
-    const goTo = (link: string) => {
+    const goTo = (link: string, filter?: Gender) => {
+        setGender(filter);
         router.push(`/${link}`);
     };
 
@@ -83,7 +86,7 @@ export const SectionsMD: FC<Sections> = ({ sections }) => {
                         }}
                     >
                         <Typography variant="h5">{e.label}</Typography>
-                        <Button variant="contained" onClick={() => goTo(e.redirect)}>
+                        <Button variant="contained" onClick={() => goTo(e.redirect, e.gender)}>
                             {resources.visit}
                         </Button>
                     </Box>

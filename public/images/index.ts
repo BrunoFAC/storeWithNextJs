@@ -1,13 +1,17 @@
-import Head from "./head.png";
-import Eletronic from "./eletronic.png";
-import Jewelry from "./jewelry.png";
-import Man from "./man.png";
-import Woman from "./woman.png";
+import Head from './head.png';
+import Eletronic from './eletronic.png';
+import Jewelery from './jewelery.png';
+import Man from './man.png';
+import Woman from './woman.png';
+import NoProductFound from './noProductFound.png';
+import UnderConstruction from './underConstruction.png';
 
 export const Images = {
-  Head,
-  Eletronic,
-  Jewelry, 
-  Man, 
-  Woman
+    Head,
+    Eletronic,
+    Jewelery,
+    Man,
+    Woman,
+    NoProductFound,
+    UnderConstruction,
 };

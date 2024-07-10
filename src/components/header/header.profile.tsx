@@ -1,21 +1,22 @@
 import * as React from 'react';
 import { Box, IconButton, Typography, Menu, Avatar, Tooltip, MenuItem, Zoom, alpha } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { useMarketStore } from '../../store/market.store';
+import { useMarketStore } from '../../store';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 const settings = ['Profile', 'Account', 'Logout'];
 
 export const HeaderProfile: React.FC = () => {
     const cart = useMarketStore((store) => store.cart);
+    const favorites = useMarketStore((store) => store.favorites);
     const cartLength = cart.length;
-    const [anchorUser, setAnchorUser] = React.useState<null | HTMLElement>(null);
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorUser(event.currentTarget);
-    };
+    const favoritesLength = favorites.length;
+    // const handleRedirectToUser = () => {};
+    const setOpenModal = useMarketStore((store) => store.setOpenModal);
 
-    const handleCloseUserMenu = () => {
-        setAnchorUser(null);
+    const handleClickOpen = () => {
+        setOpenModal(true);
     };
-
     return (
         <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row' }}>
             <Tooltip TransitionComponent={Zoom} title="Cart">
@@ -34,44 +35,37 @@ export const HeaderProfile: React.FC = () => {
                         width: 'min-content',
                     }}
                 >
-                    <Box style={{ display: 'flex', flexDirection: 'row' }}>
-                        <ShoppingCartOutlinedIcon />
-                        {cartLength > 0 ? <Typography fontSize={10}>{cartLength}</Typography> : null}
+                    <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'start' }}>
+                        <Box
+                            style={{
+                                marginRight: 4,
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'start',
+                            }}
+                        >
+                            <FavoriteBorderIcon onClick={handleClickOpen} />
+                            {favoritesLength > 0 ? (
+                                <Typography fontSize={9}>{favoritesLength > 99 ? '99+' : favoritesLength}</Typography>
+                            ) : null}
+                        </Box>
+                        <ShoppingCartOutlinedIcon onClick={handleClickOpen} />
+                        {cartLength > 0 ? (
+                            <Typography fontSize={9}>{cartLength > 99 ? '99+' : cartLength}</Typography>
+                        ) : null}
                     </Box>
                 </IconButton>
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }} title="Settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>
+                <IconButton onClick={handleClickOpen} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>
                     <Avatar alt="Bruno" src="." style={{ fontSize: '1rem', width: '30px', height: '30px' }} />
                 </IconButton>
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} title="Settings" sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
+                <IconButton onClick={handleClickOpen} sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
                     <Avatar alt="Bruno" src="." />
                 </IconButton>
             </Tooltip>
-            <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorUser}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                open={Boolean(anchorUser)}
-                onClose={handleCloseUserMenu}
-            >
-                {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                ))}
-            </Menu>
         </Box>
     );
 };

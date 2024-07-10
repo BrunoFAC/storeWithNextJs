@@ -3,21 +3,11 @@ import { AppBar, Toolbar, Container, Slide } from '@mui/material';
 import { useScrollTrigger } from '@mui/material';
 import { useRouter } from 'next/router';
 import { HeaderViews } from './header.views';
-
-const pages = ['clothes', 'eletronics', 'jewelry'];
+import { pages } from '../../store';
 
 export const Header: React.FC = () => {
-    const [anchorNav, setAnchorNav] = React.useState<null | HTMLElement>(null);
     const scrolled = useScrollTrigger();
     const router = useRouter();
-
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorNav(event.currentTarget);
-    };
-
-    const handleCloseNavMenu = () => {
-        setAnchorNav(null);
-    };
 
     const goTo = (link: string) => {
         router.push(`/${link}`);
@@ -28,14 +18,8 @@ export const Header: React.FC = () => {
             <AppBar position="sticky" elevation={scrolled ? 1 : 0}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <HeaderViews.HeaderMD pages={pages} goTo={goTo} handleCloseNavMenu={handleCloseNavMenu} />
-                        <HeaderViews.HeaderXS
-                            pages={pages}
-                            anchorNav={anchorNav}
-                            goTo={goTo}
-                            handleCloseNavMenu={handleCloseNavMenu}
-                            handleOpenNavMenu={handleOpenNavMenu}
-                        />
+                        <HeaderViews.HeaderMD pages={pages} goTo={goTo} />
+                        <HeaderViews.HeaderXS goTo={goTo} />
                         <HeaderViews.HeaderProfile />
                     </Toolbar>
                 </Container>
