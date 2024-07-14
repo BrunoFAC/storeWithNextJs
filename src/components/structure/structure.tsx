@@ -13,6 +13,9 @@ const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
     '&.notistack-MuiContent-success': {
         fontFamily: 'sans-serif',
     },
+    '&.notistack-MuiContent-info': {
+        fontFamily: 'sans-serif',
+    },
 }));
 
 export const Structure: React.FC<StructureProps> = ({ children }) => {
@@ -26,6 +29,7 @@ export const Structure: React.FC<StructureProps> = ({ children }) => {
             autoHideDuration={1500}
             Components={{
                 success: StyledMaterialDesignContent,
+                info: StyledMaterialDesignContent,
             }}
         >
             <Box style={{ overflowX: 'hidden' }} bgcolor={theme.primaryLight}>
