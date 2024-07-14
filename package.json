@@ -25,6 +25,7 @@
         "embla-carousel-react": "^8.1.6",
         "eslint-plugin-sonarjs": "^1.0.3",
         "next": "14.2.4",
+        "notistack": "^3.0.1",
         "react": "^18",
         "react-dom": "^18",
         "zustand": "^4.5.4"

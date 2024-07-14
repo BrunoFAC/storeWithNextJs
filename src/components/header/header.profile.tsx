@@ -3,11 +3,11 @@ import { Box, IconButton, Typography, Menu, Avatar, Tooltip, MenuItem, Zoom, alp
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useMarketStore } from '../../store';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-
-const settings = ['Profile', 'Account', 'Logout'];
+import { SwitchMode } from '../switchMode';
 
 export const HeaderProfile: React.FC = () => {
     const cart = useMarketStore((store) => store.cart);
+    const theme = useMarketStore((store) => store.theme);
     const favorites = useMarketStore((store) => store.favorites);
     const cartLength = cart.length;
     const favoritesLength = favorites.length;
@@ -20,46 +20,22 @@ export const HeaderProfile: React.FC = () => {
     return (
         <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row' }}>
             <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <Tooltip TransitionComponent={Zoom} title="Cart">
-                    <Box
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'start',
-                        }}
-                    >
-                        <IconButton
-                            sx={() => ({
-                                p: 0,
-                                color: 'white',
-                                borderRadius: 0,
-                                mr: 0.75,
-                                '&:hover': {
-                                    bgcolor: 'transparent',
-                                },
-                            })}
-                            style={{
-                                padding: 4,
-                                width: 'min-content',
-                            }}
-                        >
-                            <FavoriteBorderIcon onClick={handleClickOpen} />
-                            {favoritesLength > 0 ? (
-                                <Typography fontSize={9}>{favoritesLength > 99 ? '99+' : favoritesLength}</Typography>
-                            ) : null}
-                        </IconButton>
-                    </Box>
-                </Tooltip>
-
-                <Tooltip TransitionComponent={Zoom} title="Cart">
+                <Box
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'start',
+                        width: '40px',
+                    }}
+                >
                     <IconButton
                         sx={() => ({
                             p: 0,
-                            color: 'white',
+                            color: theme.light,
                             borderRadius: 0,
                             mr: 0.75,
                             '&:hover': {
-                                bgcolor: 'transparent',
+                                bgcolor: theme.transparent,
                             },
                         })}
                         style={{
@@ -67,12 +43,48 @@ export const HeaderProfile: React.FC = () => {
                             width: 'min-content',
                         }}
                     >
-                        <ShoppingCartOutlinedIcon onClick={handleClickOpen} />
+                        <Tooltip TransitionComponent={Zoom} title="Favorites">
+                            <FavoriteBorderIcon onClick={handleClickOpen} />
+                        </Tooltip>
+                        {favoritesLength > 0 ? (
+                            <Typography fontSize={9}>{favoritesLength > 99 ? '99+' : favoritesLength}</Typography>
+                        ) : null}
+                    </IconButton>
+                </Box>
+                <Box
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'start',
+                        width: '46px',
+                    }}
+                >
+                    <IconButton
+                        sx={() => ({
+                            p: 0,
+                            color: theme.light,
+                            borderRadius: 0,
+                            mr: 0.75,
+                            '&:hover': {
+                                bgcolor: theme.transparent,
+                            },
+                        })}
+                        style={{
+                            padding: 4,
+                            width: 'min-content',
+                        }}
+                    >
+                        <Tooltip TransitionComponent={Zoom} title="Cart">
+                            <ShoppingCartOutlinedIcon onClick={handleClickOpen} />
+                        </Tooltip>
                         {cartLength > 0 ? (
                             <Typography fontSize={9}>{cartLength > 99 ? '99+' : cartLength}</Typography>
                         ) : null}
                     </IconButton>
-                </Tooltip>
+                </Box>
+            </Box>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <SwitchMode />
             </Box>
             <Tooltip TransitionComponent={Zoom} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }} title="Settings">
                 <IconButton onClick={handleClickOpen} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>

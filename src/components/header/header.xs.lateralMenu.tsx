@@ -21,9 +21,11 @@ import { FC, useState } from 'react';
 import { pages, useMarketStore } from '../../store';
 import { useRouter } from 'next/router';
 import { Images } from '../../../public/images';
+import { SwitchMode } from '../switchMode';
 
 export const DrawerHeaderXS: FC = () => {
     const [open, setOpen] = useState<boolean>(false);
+    const theme = useMarketStore((store) => store.theme);
 
     const setOpenModal = useMarketStore((store) => store.setOpenModal);
 
@@ -37,13 +39,14 @@ export const DrawerHeaderXS: FC = () => {
     const handleRedirect = (link: string) => {
         router.push(`/${link}`);
     };
+    const darkMode = { ...(theme.type === 'dark' && { sx: { color: theme.light } }) };
 
     const DrawerList = (
         <Box
             sx={{
                 width: 250,
-                background: 'transparent',
-                bgcolor: '#D0E9FC',
+                background: theme.transparent,
+                bgcolor: theme.primaryLight,
                 overflowX: 'hidden',
                 height: '100%',
             }}
@@ -55,13 +58,18 @@ export const DrawerHeaderXS: FC = () => {
                     flexGrow: 1,
                     padding: '8px 8px 7px 16px',
                     height: '48.5px',
-                    backgroundColor: '#1876D2',
+                    backgroundColor: theme.primary,
                     display: 'flex',
                     alignItems: 'center',
                 }}
             >
                 <Box sx={{ mr: 1 }}>
-                    <Image src={Images.Head} alt="" width={35} height={35} />
+                    <Image
+                        src={theme.type === 'dark' ? Images.HeadLighter : Images.Head}
+                        alt=""
+                        width={35}
+                        height={35}
+                    />
                 </Box>
 
                 <Typography
@@ -74,7 +82,7 @@ export const DrawerHeaderXS: FC = () => {
                         fontWeight: 600,
                         fontSize: '.9rem',
                         letterSpacing: '.1rem',
-                        color: 'white',
+                        color: theme.light,
                         textDecoration: 'none',
                     }}
                 >
@@ -86,38 +94,55 @@ export const DrawerHeaderXS: FC = () => {
                     <ListItem disablePadding>
                         <ListItemButton>
                             <ListItemIcon onClick={() => handleRedirect('')}>
-                                <HomeIcon fontSize="large" />
+                                <HomeIcon {...darkMode} fontSize="large" />
                             </ListItemIcon>
-                            <ListItemText primary={'Home'} />
+                            <ListItemText {...darkMode} primary={'Home'} />
                         </ListItemButton>
                     </ListItem>
                 </Box>
                 {pages.map((text, index) => (
-                    <Box>
+                    <Box key={`${index}-${text}`}>
                         <ListItem key={index} disablePadding>
                             <ListItemButton onClick={() => handleRedirect(text)}>
                                 <ListItemIcon>
                                     {index === 1 ? (
-                                        <TvIcon fontSize="large" />
+                                        <TvIcon {...darkMode} fontSize="large" />
                                     ) : index === 2 ? (
-                                        <DiamondIcon fontSize="large" />
+                                        <DiamondIcon {...darkMode} fontSize="large" />
                                     ) : (
-                                        <CheckroomIcon fontSize="large" />
+                                        <CheckroomIcon {...darkMode} fontSize="large" />
                                     )}
                                 </ListItemIcon>
-                                <ListItemText sx={{ textTransform: 'capitalize' }} primary={text} />
+                                <ListItemText
+                                    sx={{
+                                        ...(theme.type === 'dark' && { color: theme.light }),
+                                        textTransform: 'capitalize',
+                                    }}
+                                    primary={text}
+                                />
                             </ListItemButton>
                         </ListItem>
                     </Box>
                 ))}
-                <Box style={{ marginTop: '24px' }}>
+                <Box>
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => handleClickOpen()}>
                             <ListItemIcon>
-                                <AccountCircleIcon fontSize="large" />
+                                <AccountCircleIcon {...darkMode} fontSize="large" />
                             </ListItemIcon>
-                            <ListItemText primary={'Profile'} />
+                            <ListItemText {...darkMode} primary={'Profile'} />
                         </ListItemButton>
+                        <Box
+                            onClick={(e) => e.stopPropagation()}
+                            sx={{
+                                display: { xs: 'flex', md: 'none' },
+                                alignItems: 'end',
+                                justifyContent: 'end',
+                                padding: '8px 8px 7px 16px',
+                            }}
+                        >
+                            <SwitchMode />
+                        </Box>
                     </ListItem>
                 </Box>
             </List>
@@ -131,8 +156,8 @@ export const DrawerHeaderXS: FC = () => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
+                sx={{ color: theme.light }}
                 onClick={toggleDrawer(true)}
-                color="inherit"
             >
                 <MenuIcon />
             </IconButton>

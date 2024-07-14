@@ -3,11 +3,12 @@ import { AppBar, Toolbar, Container, Slide } from '@mui/material';
 import { useScrollTrigger } from '@mui/material';
 import { useRouter } from 'next/router';
 import { HeaderViews } from './header.views';
-import { pages } from '../../store';
+import { pages, useMarketStore } from '../../store';
 
 export const Header: React.FC = () => {
     const scrolled = useScrollTrigger();
     const router = useRouter();
+    const theme = useMarketStore((store) => store.theme);
 
     const goTo = (link: string) => {
         router.push(`/${link}`);
@@ -15,7 +16,7 @@ export const Header: React.FC = () => {
 
     return (
         <Slide appear={false} direction="down" in={!scrolled}>
-            <AppBar position="sticky" elevation={scrolled ? 1 : 0}>
+            <AppBar sx={{ bgcolor: theme.primary }} position="sticky" elevation={scrolled ? 1 : 0}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <HeaderViews.HeaderMD pages={pages} goTo={goTo} />

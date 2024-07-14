@@ -10,7 +10,7 @@ interface BottomStructureProps {
 export const BottomStructure: FC<BottomStructureProps> = ({ rating, title }) => {
     const notRated = Math.round(5 - rating.rate);
     const rated = Math.round(rating.rate);
-
+    const theme = useMarketStore((store) => store.theme);
     const setOpenModal = useMarketStore((store) => store.setOpenModal);
 
     const handleClickOpen = () => {
@@ -78,15 +78,15 @@ export const BottomStructure: FC<BottomStructureProps> = ({ rating, title }) => 
                                 }}
                             >
                                 {Array.from({ length: rated }, (_, index) => (
-                                    <StarIcon key={index} style={{ color: '#1776D2' }} />
+                                    <StarIcon key={index} style={{ color: theme.primary }} />
                                 ))}
                                 {!(notRated === 0)
                                     ? Array.from({ length: notRated }, (_, index) => (
-                                          <StarBorderIcon key={index} style={{ color: '#1776D2' }} />
+                                          <StarBorderIcon key={index} style={{ color: theme.primary }} />
                                       ))
                                     : undefined}
                                 <Typography
-                                    style={{ color: 'white', paddingLeft: '4px' }}
+                                    style={{ color: theme.light, paddingLeft: '4px' }}
                                 >{`(${rating.count})`}</Typography>
                             </Box>
                         </Tooltip>
@@ -94,7 +94,7 @@ export const BottomStructure: FC<BottomStructureProps> = ({ rating, title }) => 
                     <Box style={{ padding: '4px 12px' }}>
                         <Button
                             onClick={() => handleClickOpen()}
-                            style={{ color: 'white', width: '100%', borderColor: 'white' }}
+                            style={{ color: theme.light, width: '100%', borderColor: theme.light }}
                             variant="outlined"
                         >
                             see details

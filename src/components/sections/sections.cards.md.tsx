@@ -7,9 +7,10 @@ import { Gender, useMarketStore } from '../../store';
 export const SectionsMD: FC<Sections> = ({ sections }) => {
     const router = useRouter();
     const setGender = useMarketStore((store) => store.setGender);
+    const theme = useMarketStore((store) => store.theme);
 
     const goTo = (link: string, filter?: Gender) => {
-        setGender(filter);
+        filter && setGender(filter);
         router.push(`/${link}`);
     };
 
@@ -32,10 +33,11 @@ export const SectionsMD: FC<Sections> = ({ sections }) => {
                     key={index}
                     sx={{
                         flex: '0 0 170px',
-                        borderRadius: '0.5rem',
                         transition: '0.5s ease-in-out',
+                        borderRadius: '0.5rem',
                         cursor: 'pointer',
-                        boxShadow: '1px 5px 15px #1876D2',
+                        boxShadow: `1px 5px 15px ${theme.primary}`,
+                        backgroundColor: theme.light,
                         position: 'relative',
                         overflow: 'hidden',
                         backgroundSize: 'cover',
@@ -44,7 +46,7 @@ export const SectionsMD: FC<Sections> = ({ sections }) => {
                     }}
                     onMouseEnter={(e) => {
                         e.currentTarget.style.flex = '0 0 300px';
-                        e.currentTarget.style.boxShadow = '1px 3px 15px #1876D2';
+                        e.currentTarget.style.boxShadow = `1px 3px 15px ${theme.primary}`;
                         e.currentTarget.style.transform = 'translateY(-30px)';
                         const content = e.currentTarget.querySelector('.content') as HTMLElement;
                         content.style.opacity = '1';
@@ -53,7 +55,7 @@ export const SectionsMD: FC<Sections> = ({ sections }) => {
                     }}
                     onMouseLeave={(e) => {
                         e.currentTarget.style.flex = '0 0 170px';
-                        e.currentTarget.style.boxShadow = '1px 5px 15px #1876D2';
+                        e.currentTarget.style.boxShadow = `1px 3px 15px ${theme.primary}`;
                         e.currentTarget.style.transform = 'translateY(0)';
                         const content = e.currentTarget.querySelector('.content') as HTMLElement;
                         content.style.opacity = '0';
@@ -65,7 +67,9 @@ export const SectionsMD: FC<Sections> = ({ sections }) => {
                         className="content"
                         sx={{
                             fontSize: '1.5rem',
-                            color: '#fff',
+                            color: theme.light,
+
+                            borderRadius: '0.5rem',
                             display: 'flex',
                             alignItems: 'center',
                             padding: '15px',
@@ -73,7 +77,7 @@ export const SectionsMD: FC<Sections> = ({ sections }) => {
                             flexDirection: 'column',
                             height: '100%',
                             justifyContent: 'flex-end',
-                            background: 'linear-gradient(0deg, #1876d2b0 0%, rgba(255, 255, 255, 0) 100%)',
+                            background: `linear-gradient(0deg,${theme.fadedPrimary} 0%, rgba(255, 255, 255, 0) 100%)`,
                             transform: 'translateY(100%)',
                             transition: 'opacity 0.5s ease-in-out, transform 0.5s 0.2s',
                             visibility: 'hidden',
@@ -84,7 +88,16 @@ export const SectionsMD: FC<Sections> = ({ sections }) => {
                         }}
                     >
                         <Typography variant="h5">{e.label}</Typography>
-                        <Button variant="contained" onClick={() => goTo(e.redirect, e.gender)}>
+                        <Button
+                            sx={{
+                                borderColor: theme.light,
+                                color: theme.light,
+                                '&:hover': { color: theme.light, borderColor: theme.light },
+                                '&:active': { color: theme.light, borderColor: theme.light },
+                            }}
+                            variant="outlined"
+                            onClick={() => goTo(e.redirect, e?.gender)}
+                        >
                             {resources.visit}
                         </Button>
                     </Box>

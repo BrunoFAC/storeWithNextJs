@@ -11,7 +11,6 @@ export const SkeletonLg: FC = () => {
                 gap: '16px',
             }}
         >
-            <Skeleton width={'100%'} height={'56px'} style={{ borderRadius: '4px' }} variant="rectangular" />
             <Box
                 style={{
                     display: 'flex',

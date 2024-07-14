@@ -1,12 +1,19 @@
 import { Box } from '@mui/material';
 import { FC } from 'react';
-import { Products } from '../../store';
+import { Products, useMarketStore } from '../../store';
 import { Card } from '../card';
 
 interface RowOfCardsProps {
     products: Products[];
 }
 export const RowOfCards: FC<RowOfCardsProps> = ({ products }) => {
+    const addCart = useMarketStore((store) => store.addCart);
+    const removeCart = useMarketStore((store) => store.removeCart);
+    const addFavorites = useMarketStore((store) => store.addFavorites);
+    const removeFavorites = useMarketStore((store) => store.removeFavorites);
+    const favorites = useMarketStore((store) => store.favorites);
+    const cart = useMarketStore((store) => store.cart);
+
     const clipArrayEveryXProducts = (division: number): Products[][] => {
         const result: Products[][] = [];
         let tempArray: Products[] = [];
@@ -20,6 +27,20 @@ export const RowOfCards: FC<RowOfCardsProps> = ({ products }) => {
         });
 
         return result;
+    };
+    const handleCart = (product: Products) => {
+        if (cart.some((e) => e.id === product.id)) {
+            removeCart(product);
+        } else {
+            addCart(product);
+        }
+    };
+    const handleFavorite = (product: Products) => {
+        if (favorites.some((e) => e.id === product.id)) {
+            removeFavorites(product);
+        } else {
+            addFavorites(product);
+        }
     };
 
     return (
@@ -37,7 +58,15 @@ export const RowOfCards: FC<RowOfCardsProps> = ({ products }) => {
                     .flat()
                     .map((e, key) => (
                         <Box key={key}>
-                            <Card title={e.title} image={e.image} id={e.id} rating={e.rating} price={e.price} />
+                            <Card
+                                handleFavorite={() => handleFavorite(e)}
+                                handleCart={() => handleCart(e)}
+                                title={e.title}
+                                image={e.image}
+                                id={e.id}
+                                rating={e.rating}
+                                price={e.price}
+                            />
                         </Box>
                     ))}
                 {Array.from({ length: (4 - (clipArrayEveryXProducts(4).length % 4)) % 4 }).map((_, index) => (
@@ -65,7 +94,15 @@ export const RowOfCards: FC<RowOfCardsProps> = ({ products }) => {
                     .flat()
                     .map((e, key) => (
                         <Box key={key}>
-                            <Card title={e.title} image={e.image} id={e.id} rating={e.rating} price={e.price} />
+                            <Card
+                                title={e.title}
+                                image={e.image}
+                                id={e.id}
+                                rating={e.rating}
+                                price={e.price}
+                                handleFavorite={() => handleFavorite(e)}
+                                handleCart={() => handleCart(e)}
+                            />
                         </Box>
                     ))}
                 {Array.from({ length: (3 - (clipArrayEveryXProducts(3).length % 3)) % 3 }).map((_, index) => (
@@ -96,7 +133,16 @@ export const RowOfCards: FC<RowOfCardsProps> = ({ products }) => {
                     }}
                 >
                     {products.map((e, index) => (
-                        <Card key={index} title={e.title} image={e.image} id={e.id} rating={e.rating} price={e.price} />
+                        <Card
+                            handleFavorite={() => handleFavorite(e)}
+                            handleCart={() => handleCart(e)}
+                            key={index}
+                            title={e.title}
+                            image={e.image}
+                            id={e.id}
+                            rating={e.rating}
+                            price={e.price}
+                        />
                     ))}
                 </Box>
             </Box>

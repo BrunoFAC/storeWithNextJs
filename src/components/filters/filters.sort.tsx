@@ -4,6 +4,7 @@ import { FiltersValue, useMarketStore } from '../../store';
 
 export const FiltersSort: FC = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const theme = useMarketStore((store) => store.theme);
     const filtersSort = useMarketStore((store) => store.filtersSort);
     const sort = useMarketStore((store) => store.filters?.sort);
     const setSort = useMarketStore((store) => store.setSort);
@@ -29,16 +30,20 @@ export const FiltersSort: FC = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+    const themeLight = open ? theme.primary : theme.gray;
+    const themeDark = sort === FiltersValue.RELEVANCE ? theme.darkGray : theme.light;
+    const colorBorder = theme.type === 'dark' ? themeDark : themeLight;
+    const colorTypography = theme.type === 'dark' ? themeDark : theme.darkGray;
 
     return (
         <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px' }}>
             <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
-                <Typography style={{ color: '#545D65' }}>Sort by: </Typography>
+                <Typography style={{ color: colorTypography }}>Sort by: </Typography>
                 <Box
                     sx={{
                         width: 120,
-                        backgroundColor: 'transparent',
-                        border: `1px solid ${open ? '#1876D2' : '#A0B3C2'}`,
+                        backgroundColor: theme.transparent,
+                        border: `1px solid ${colorBorder}`,
                         borderRadius: '4px',
                         display: 'flex',
                         alignItems: 'center',
@@ -47,7 +52,9 @@ export const FiltersSort: FC = () => {
                     onClick={handleClick}
                 >
                     <Box onClick={handleClick} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                        <Typography style={{ color: '#545D65', cursor: 'pointer', padding: '4px' }}>{sort}</Typography>
+                        <Typography style={{ color: colorTypography, cursor: 'pointer', padding: '4px' }}>
+                            {sort}
+                        </Typography>
                     </Box>
                 </Box>
                 <Popper
@@ -63,8 +70,8 @@ export const FiltersSort: FC = () => {
                             <Box
                                 sx={{
                                     width: 125,
-                                    backgroundColor: 'white',
-                                    boxShadow: '1px 1px 3px 0px rgba(0, 0, 0, 0.6)',
+                                    backgroundColor: theme.light,
+                                    boxShadow: `1px 1px 3px 0px ${theme.shadow}`,
 
                                     borderRadius: '4px',
                                 }}

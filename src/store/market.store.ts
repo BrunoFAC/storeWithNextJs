@@ -1,65 +1,15 @@
 import { create, StateCreator } from 'zustand';
-
-export interface Rating {
-    rate: number;
-    count: number;
-}
-export const pages = ['clothes', 'eletronics', 'jewelery'];
-
-export enum FiltersValue {
-    RELEVANCE = 'Relevance',
-    ASCENDENT = 'Ascendent',
-    DESCENDENT = 'Descendent',
-    HIGHEST_PRICE = 'Highest Price',
-    LOWEST_PRICE = 'Lowest Price',
-}
-
-export interface Filters {
-    price?: number[];
-    gender?: Gender;
-    sort?: FiltersValue;
-}
-
-export type Gender = 'man' | 'woman';
-
-export interface Products {
-    id: number;
-    category: string;
-    image: string;
-    rating: Rating;
-    title: string;
-    description: string;
-    price: number;
-}
-
-export interface MarketState {
-    cart: Products[];
-    filteredProducts: Products[];
-    products: Products[];
-    favorites: Products[];
-    filters: Filters;
-    section?: string;
-    isLoading: boolean;
-    filtersSort: FiltersValue[];
-    openModal: boolean;
-}
-
-interface MarketActions {
-    setCart(cart: Products[]): void;
-    setProducts(products: Products[]): void;
-    setFilteredProducts(filteredProducts: Products[]): void;
-    setFavorites(favorites: Products[]): void;
-    setPrice(price?: number[]): void;
-    setGender(gender?: Gender): void;
-    setSort(sort?: FiltersValue): void;
-    setFilters(filters: Filters): void;
-    setSection(section?: string): void;
-    setIsLoading(value: boolean): void;
-    setOpenModal(openModal: boolean): void;
-    resetStore(): void;
-}
-
-export interface MarketStore extends MarketState, MarketActions {}
+import { darkTheme, lightTheme } from '../theme/theme';
+import {
+    MarketState,
+    FiltersValue,
+    MarketActions,
+    ThemeType,
+    Products,
+    Gender,
+    Filters,
+    MarketStore,
+} from './market.types';
 
 const storeIdentifier = 'market-store';
 
@@ -73,9 +23,23 @@ const initialData: MarketState = {
     isLoading: false,
     openModal: false,
     filtersSort: Object.values(FiltersValue),
+    theme: darkTheme,
 };
 
 const actions = (set: any): MarketActions => {
+    const setTheme = (theme: ThemeType) => {
+        set(
+            (state: MarketState) => {
+                if (theme === 'dark') {
+                    state.theme = darkTheme;
+                } else {
+                    state.theme = lightTheme;
+                }
+            },
+            false,
+            `${storeIdentifier}/set-theme`
+        );
+    };
     const setCart = (cart: Products[]) => {
         set(
             (state: MarketState) => {
@@ -83,6 +47,26 @@ const actions = (set: any): MarketActions => {
             },
             false,
             `${storeIdentifier}/set-cart`
+        );
+    };
+    const addCart = (cart: Products) => {
+        set(
+            (state: MarketState) => {
+                const addedCart = [...state.cart, cart];
+                state.cart = addedCart;
+            },
+            false,
+            `${storeIdentifier}/set-cart`
+        );
+    };
+    const removeCart = (cart: Products) => {
+        set(
+            (state: MarketState) => {
+                const removedCart = state.cart.filter((e) => e.id !== cart.id);
+                state.cart = removedCart;
+            },
+            false,
+            `${storeIdentifier}/set-remove-cart`
         );
     };
 
@@ -95,6 +79,25 @@ const actions = (set: any): MarketActions => {
             `${storeIdentifier}/set-favorites`
         );
     };
+    const addFavorites = (favorites: Products) => {
+        set(
+            (state: MarketState) => {
+                state.favorites = [...state.favorites, favorites];
+            },
+            false,
+            `${storeIdentifier}/add-favorites`
+        );
+    };
+    const removeFavorites = (favorites: Products) => {
+        set(
+            (state: MarketState) => {
+                state.favorites = state.favorites.filter((e) => e.id !== favorites.id);
+            },
+            false,
+            `${storeIdentifier}/remove-favorites`
+        );
+    };
+
     const setPrice = (price?: number[]) => {
         set(
             (state: MarketState) => {
@@ -199,6 +202,11 @@ const actions = (set: any): MarketActions => {
         setFilteredProducts,
         setIsLoading,
         setOpenModal,
+        setTheme,
+        addCart,
+        removeFavorites,
+        addFavorites,
+        removeCart,
     };
 };
 

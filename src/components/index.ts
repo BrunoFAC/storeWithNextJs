@@ -8,3 +8,4 @@ export * from './card';
 export * from './rowOfCards';
 export * from './scrollToTop';
 export * from './notDevelopedModal';
+export * from './switchMode';

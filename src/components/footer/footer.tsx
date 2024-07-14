@@ -2,12 +2,14 @@ import * as React from 'react';
 import { Box, Container, IconButton, Tooltip, Typography, Zoom, alpha } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useMarketStore } from '../../store';
 
 export const Footer: React.FC = () => {
     const resources = {
         contacts: 'CONTACTS',
         footer: `Bruno Carvalho © ${new Date().getFullYear()}`,
     };
+    const themeStore = useMarketStore((store) => store.theme);
 
     const openLinks = (link: string) => {
         window.open(link, '_blank');
@@ -16,7 +18,7 @@ export const Footer: React.FC = () => {
         <Box
             style={{
                 display: 'flex',
-                backgroundColor: '#1776D2',
+                backgroundColor: themeStore.primary,
                 height: '150px',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
@@ -39,7 +41,12 @@ export const Footer: React.FC = () => {
                         gap: '8px',
                     }}
                 >
-                    <Typography color={'white'} fontSize={'14px'} sx={{ lineHeight: 1.75 }} textTransform={'uppercase'}>
+                    <Typography
+                        color={themeStore.light}
+                        fontSize={'14px'}
+                        sx={{ lineHeight: 1.75 }}
+                        textTransform={'uppercase'}
+                    >
                         {resources.contacts}
                     </Typography>
                     <Box style={{ display: 'flex', flexDirection: 'row' }}>
@@ -48,7 +55,7 @@ export const Footer: React.FC = () => {
                                 onClick={() => openLinks('https://github.com/BrunoFAC')}
                                 sx={(theme) => ({
                                     p: 0,
-                                    color: 'white',
+                                    color: themeStore.light,
                                     mr: 0.75,
                                     '&:hover': {
                                         bgcolor: alpha(theme.palette.common.white, 0.3),
@@ -69,7 +76,7 @@ export const Footer: React.FC = () => {
                                 onClick={() => openLinks('https://www.linkedin.com/in/bruno-almeida07')}
                                 sx={(theme) => ({
                                     p: 0,
-                                    color: 'white',
+                                    color: themeStore.light,
                                     '&:hover': {
                                         bgcolor: alpha(theme.palette.common.white, 0.3),
                                     },
@@ -89,7 +96,7 @@ export const Footer: React.FC = () => {
                 <Box style={{ display: 'flex' }}>
                     <Typography
                         style={{
-                            color: '#bbb6b6',
+                            color: themeStore.lightGray,
                             fontSize: '10px',
                             width: '100%',
                             justifyContent: 'center',
@@ -101,7 +108,7 @@ export const Footer: React.FC = () => {
                     </Typography>
                     <Typography
                         style={{
-                            color: '#bbb6b6',
+                            color: themeStore.lightGray,
                             fontSize: '10px',
                             width: '100%',
                             justifyContent: 'start',

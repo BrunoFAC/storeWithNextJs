@@ -2,7 +2,7 @@ import { Box, Button, Chip, Divider, Fade, IconButton, Popper, Slider, Typograph
 import { FC, useEffect, useRef, useState } from 'react';
 import { Gender, Products, useMarketStore } from '../../store';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import FilterAltOutlineIcon from '@mui/icons-material/FilterAlt';
 interface SearchBarProps {
     products: Products[];
 }
@@ -23,6 +23,8 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
 
         return 0;
     };
+    const theme = useMarketStore((store) => store.theme);
+
     const section = useMarketStore((store) => store?.section);
     const filteredPrice = useMarketStore((store) => store.filters?.price);
     const filteredGender = useMarketStore((store) => store.filters?.gender);
@@ -89,13 +91,17 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
         setGenderLocal(genderLocal === 'woman' ? undefined : 'woman');
     };
 
+    const themeLight = hasFilter ? theme.primary : theme.darkGray;
+    const themeDark = hasFilter ? theme.light : theme.darkGray;
+    const color = theme.type === 'dark' ? themeDark : themeLight;
+
     return (
         <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px' }}>
-            <IconButton onClick={handlePriceClick} color="primary">
+            <IconButton onClick={handlePriceClick}>
                 {openPrice ? (
-                    <FilterAltOffIcon style={{ color: hasFilter ? '#1875D2' : '#545D65' }} />
+                    <FilterAltOffIcon style={{ color: color }} />
                 ) : (
-                    <FilterAltIcon style={{ color: hasFilter ? '#1875D2' : '#545D65' }} />
+                    <FilterAltOutlineIcon style={{ color: color }} />
                 )}
             </IconButton>
 
@@ -112,8 +118,8 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
                         <Box
                             sx={{
                                 width: 250,
-                                backgroundColor: 'white',
-                                boxShadow: '1px 1px 3px 0px rgba(0, 0, 0, 0.6)',
+                                backgroundColor: theme.light,
+                                boxShadow: `1px 1px 3px 0px ${theme.shadow}`,
                                 padding: '16px',
                                 borderRadius: '4px',
                             }}
@@ -132,8 +138,8 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
                                         variant={genderLocal === 'man' ? 'filled' : 'outlined'}
                                         style={{
                                             ...(genderLocal === 'man' && {
-                                                backgroundColor: '#1876D2',
-                                                color: 'white',
+                                                backgroundColor: theme.primary,
+                                                color: theme.light,
                                             }),
                                         }}
                                         clickable
@@ -143,8 +149,8 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
                                         label="Woman"
                                         style={{
                                             ...(genderLocal === 'woman' && {
-                                                backgroundColor: '#1876D2',
-                                                color: 'white',
+                                                backgroundColor: theme.primary,
+                                                color: theme.light,
                                             }),
                                         }}
                                         variant={genderLocal === 'woman' ? 'filled' : 'outlined'}
@@ -167,6 +173,7 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
                                     value={priceLocal}
                                     valueLabelFormat={(value) => <Typography> {value}€ </Typography>}
                                     onChange={handleChange}
+                                    sx={{ color: theme.primary }}
                                     valueLabelDisplay="auto"
                                     max={findMaxNumber()}
                                     min={findMinNumber()}
@@ -185,10 +192,15 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
                                 </Box>
                             </Box>
                             <Box style={{ padding: '16px 0px' }}>
-                                <Divider style={{ color: 'rgba(0, 0, 0, 0.6)' }} />
+                                <Divider style={{ color: theme.shadow }} />
                             </Box>
                             <Box style={{ display: 'flex', justifyContent: 'end' }}>
-                                <Button onClick={handleConfirm} variant="contained" disabled={isDisabled}>
+                                <Button
+                                    sx={{ bgcolor: theme.primary }}
+                                    onClick={handleConfirm}
+                                    variant="contained"
+                                    disabled={isDisabled}
+                                >
                                     Confirm
                                 </Button>
                             </Box>
