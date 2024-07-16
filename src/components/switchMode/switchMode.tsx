@@ -61,14 +61,7 @@ export const SwitchMode: FC = () => {
     };
     return (
         <FormControlLabel
-            control={
-                <MaterialUISwitch
-                    sx={{ m: 1 }}
-                    checked={theme.type === 'dark'}
-                    onChange={handleChange}
-                    defaultChecked
-                />
-            }
+            control={<MaterialUISwitch sx={{ m: 1 }} checked={theme.type === 'dark'} onChange={handleChange} />}
             label={undefined}
         />
     );
