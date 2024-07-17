@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import { Images } from '../../../public/images';
+import { Images } from '../../../../public/images';
 import { DrawerHeaderXS } from './header.xs.lateralMenu';
-import { useMarketStore } from '../../store';
+import { useMarketStore } from '../../../store';
+import { resources } from '../../../global/resources';
 interface HeaderXSProps {
     goTo: (link: string) => void;
 }
 export const HeaderXS: React.FC<HeaderXSProps> = ({ goTo }) => {
-    const resources = { store: 'STORE' };
     const theme = useMarketStore((store) => store.theme);
 
     return (

@@ -1,5 +1,5 @@
-import { TopStructure } from './card.topStructure';
-import { BottomStructure } from './card.bottomStructure';
+import { TopStructure } from './views/card.topStructure';
+import { BottomStructure } from './views/card.bottomStructure';
 
 export const CardViews = {
     TopStructure,

@@ -5,7 +5,7 @@ export const lightTheme: Theme = {
     light: '#ffffff',
     primary: '#1876D2',
     secondary: '#114092',
-    primaryLight: '#ffffff',
+    primaryLight: 'rgb(231 228 228 / 60%)',
     darkGray: '#545D65',
     shadow: 'rgba(0, 0, 0, 0.6)',
     transparent: 'transparent',

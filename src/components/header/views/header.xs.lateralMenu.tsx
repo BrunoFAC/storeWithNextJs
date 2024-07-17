@@ -18,10 +18,11 @@ import {
 
 import Image from 'next/image';
 import { FC, useState } from 'react';
-import { pages, useMarketStore } from '../../store';
+import { pages, useMarketStore } from '../../../store';
 import { useRouter } from 'next/router';
-import { Images } from '../../../public/images';
-import { SwitchMode } from '../switchMode';
+import { Images } from '../../../../public/images';
+import { SwitchMode } from '../../switchMode';
+import { resources } from '../../../global/resources';
 
 export const DrawerHeaderXS: FC = () => {
     const [open, setOpen] = useState<boolean>(false);
@@ -86,7 +87,7 @@ export const DrawerHeaderXS: FC = () => {
                         textDecoration: 'none',
                     }}
                 >
-                    {'STORE'}
+                    {resources.store}
                 </Typography>
             </Box>
             <List>
@@ -96,7 +97,7 @@ export const DrawerHeaderXS: FC = () => {
                             <ListItemIcon onClick={() => handleRedirect('')}>
                                 <HomeIcon {...darkMode} fontSize="large" />
                             </ListItemIcon>
-                            <ListItemText {...darkMode} primary={'Home'} />
+                            <ListItemText {...darkMode} primary={resources.home} />
                         </ListItemButton>
                     </ListItem>
                 </Box>
@@ -130,7 +131,7 @@ export const DrawerHeaderXS: FC = () => {
                             <ListItemIcon>
                                 <AccountCircleIcon {...darkMode} fontSize="large" />
                             </ListItemIcon>
-                            <ListItemText {...darkMode} primary={'Profile'} />
+                            <ListItemText {...darkMode} primary={resources.profile} />
                         </ListItemButton>
                         <Box
                             onClick={(e) => e.stopPropagation()}

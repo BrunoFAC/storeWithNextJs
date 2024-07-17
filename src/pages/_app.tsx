@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Head>
                 <title>Store</title>
                 <meta name="author" content="Bruno Carvalho" />
+                <link rel="icon" href="./favicon.ico" sizes="32x32" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
             <Structure>

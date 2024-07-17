@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { AppBar, Toolbar, Container, Slide } from '@mui/material';
-import { useScrollTrigger } from '@mui/material';
+import { AppBar, Toolbar, Container, Slide, useScrollTrigger } from '@mui/material';
 import { useRouter } from 'next/router';
 import { HeaderViews } from './header.views';
 import { pages, useMarketStore } from '../../store';

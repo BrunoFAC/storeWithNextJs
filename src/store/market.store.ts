@@ -1,5 +1,5 @@
 import { create, StateCreator } from 'zustand';
-import { darkTheme, lightTheme } from '../theme/theme';
+import { darkTheme, lightTheme } from '../global/theme';
 import {
     MarketState,
     FiltersValue,
@@ -24,6 +24,7 @@ const initialData: MarketState = {
     openModal: false,
     filtersSort: Object.values(FiltersValue),
     theme: darkTheme,
+    detail: undefined,
 };
 
 const actions = (set: any): MarketActions => {
@@ -183,6 +184,15 @@ const actions = (set: any): MarketActions => {
             `${storeIdentifier}/set-is-loading`
         );
     };
+    const setDetail = (detail?: Products) => {
+        set(
+            (state: MarketState) => {
+                state.detail = detail;
+            },
+            false,
+            `${storeIdentifier}/add-favorites`
+        );
+    };
     const resetStore = () => {
         set(() => {
             return { ...initialData };
@@ -207,6 +217,7 @@ const actions = (set: any): MarketActions => {
         removeFavorites,
         addFavorites,
         removeCart,
+        setDetail,
     };
 };
 

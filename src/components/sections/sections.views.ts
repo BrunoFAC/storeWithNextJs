@@ -1,6 +1,6 @@
-import { SectionsLG } from './sections.cards.lg';
-import { SectionsMD } from './sections.cards.md';
-import { SectionsXS } from './sections.cards.xs';
+import { SectionsLG } from './views/sections.cards.lg';
+import { SectionsMD } from './views/sections.cards.md';
+import { SectionsXS } from './views/sections.cards.xs';
 
 export const SectionsViews = {
     SectionsXS,

@@ -1,8 +1,9 @@
-import { Box, Fade, Popper, Typography } from '@mui/material';
+import { Box, Button, Fade, Popper, Typography } from '@mui/material';
 import { FC, useEffect, useRef, useState } from 'react';
-import { FiltersValue, useMarketStore } from '../../store';
+import { FiltersValue, useMarketStore } from '../../../store';
+import { resources } from '../../../global/resources';
 
-export const FiltersSort: FC = () => {
+export const Sort: FC = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const theme = useMarketStore((store) => store.theme);
     const filtersSort = useMarketStore((store) => store.filtersSort);
@@ -23,6 +24,15 @@ export const FiltersSort: FC = () => {
         }
     };
 
+    const handleOnClick = (filter: FiltersValue, click: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        handleClick(click);
+        setIsLoading(true);
+        setTimeout(() => {
+            setSort(filter);
+            setIsLoading(false);
+        }, 150);
+    };
+
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
 
@@ -30,33 +40,46 @@ export const FiltersSort: FC = () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
-    const themeLight = open ? theme.primary : theme.gray;
-    const themeDark = sort === FiltersValue.RELEVANCE ? theme.darkGray : theme.light;
-    const colorBorder = theme.type === 'dark' ? themeDark : themeLight;
-    const colorTypography = theme.type === 'dark' ? themeDark : theme.darkGray;
+
+    const isDarkMode = theme.type === 'dark';
+    const isDefault = sort === FiltersValue.RELEVANCE;
+
+    const themeDark = isDefault ? theme.darkGray : theme.light;
+    const themeLight = isDefault ? theme.darkGray : theme.primary;
+    const colorSortBy = isDarkMode ? themeDark : themeLight;
+
+    const backgroundColorSelected = isDarkMode ? theme.light : theme.primary;
+    const colorTypographySelected = isDarkMode ? theme.primary : theme.light;
+    const backgroundColorDefault = 'transparent';
+
+    const colorTypographyDefault = theme.darkGray;
+    const borderColor = theme.darkGray;
 
     return (
         <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px' }}>
             <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}>
-                <Typography style={{ color: colorTypography }}>Sort by: </Typography>
-                <Box
-                    sx={{
-                        width: 120,
-                        backgroundColor: theme.transparent,
-                        border: `1px solid ${colorBorder}`,
-                        borderRadius: '4px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                <Typography style={{ color: colorSortBy }}>{resources.sortBy}</Typography>
+
+                <Button
+                    variant={isDefault ? 'outlined' : 'contained'}
+                    style={{
+                        width: 130,
+                        backgroundColor: isDefault ? backgroundColorDefault : backgroundColorSelected,
+                        color: isDefault ? colorTypographyDefault : colorTypographySelected,
+                        ...(isDefault && { borderColor }),
+                        textTransform: 'lowercase',
                     }}
                     onClick={handleClick}
                 >
-                    <Box onClick={handleClick} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                        <Typography style={{ color: colorTypography, cursor: 'pointer', padding: '4px' }}>
-                            {sort}
-                        </Typography>
-                    </Box>
-                </Box>
+                    <Typography
+                        style={{
+                            textTransform: 'capitalize',
+                        }}
+                    >
+                        {sort}
+                    </Typography>
+                </Button>
+
                 <Popper
                     ref={ref}
                     open={open}
@@ -79,7 +102,7 @@ export const FiltersSort: FC = () => {
                                 {filtersSort.map((filter, key) => {
                                     return (
                                         <Box
-                                            key={key}
+                                            key={`${filter + '-' + key}`}
                                             style={{
                                                 display: 'flex',
                                                 flexDirection: 'column',
@@ -88,12 +111,7 @@ export const FiltersSort: FC = () => {
                                         >
                                             <Box
                                                 onClick={(click) => {
-                                                    handleClick(click);
-                                                    setIsLoading(true);
-                                                    setTimeout(() => {
-                                                        setSort(filter);
-                                                        setIsLoading(false);
-                                                    }, 150);
+                                                    handleOnClick(filter, click);
                                                 }}
                                                 style={{
                                                     display: 'flex',

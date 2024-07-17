@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { SkeletonLg } from './skeleton.lg';
-import { SkeletonMD } from './skeleton.md';
-import { SkeletonXS } from './skeleton.xs';
+import { SkeletonLg } from './views/skeleton.lg';
+import { SkeletonMD } from './views/skeleton.md';
+import { SkeletonXS } from './views/skeleton.xs';
 
 export const Skeleton: FC = () => {
     return (

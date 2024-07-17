@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box, Slide, Typography, useScrollTrigger } from '@mui/material';
+import { Box } from '@mui/material';
 import { Images } from '../../../public/images';
 import { SectionsViews } from './sections.views';
 import { SectionsCards } from './sections.types';

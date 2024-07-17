@@ -1,21 +1,24 @@
-import { Box, Button, Tooltip, Typography, Zoom } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { FC } from 'react';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarIcon from '@mui/icons-material/Star';
-import { Rating, useMarketStore } from '../../store';
-interface BottomStructureProps {
-    title: string;
-    rating: Rating;
-}
-export const BottomStructure: FC<BottomStructureProps> = ({ rating, title }) => {
-    const notRated = Math.round(5 - rating.rate);
-    const rated = Math.round(rating.rate);
-    const theme = useMarketStore((store) => store.theme);
-    const setOpenModal = useMarketStore((store) => store.setOpenModal);
+import { Products, useMarketStore } from '../../../store';
+import { useRouter } from 'next/router';
+import { RatingStars } from '../../ratingStars';
+import { resources } from '../../../global/resources';
 
-    const handleClickOpen = () => {
-        setOpenModal(true);
+interface BottomStructureProps {
+    product: Products;
+}
+
+export const BottomStructure: FC<BottomStructureProps> = ({ product }) => {
+    const router = useRouter();
+    const theme = useMarketStore((store) => store.theme);
+    const setDetail = useMarketStore((store) => store.setDetail);
+
+    const handleDetail = () => {
+        setDetail(product);
+        router.push('/detail');
     };
+
     return (
         <Box
             sx={{
@@ -48,7 +51,7 @@ export const BottomStructure: FC<BottomStructureProps> = ({ rating, title }) => 
                             width: '100%',
                         }}
                     >
-                        {title}
+                        {product.title}
                     </Typography>
                 </Box>
                 <Box
@@ -69,35 +72,15 @@ export const BottomStructure: FC<BottomStructureProps> = ({ rating, title }) => 
                             justifyContent: 'space-between',
                         }}
                     >
-                        <Tooltip TransitionComponent={Zoom} arrow placement="right" title="Reviews">
-                            <Box
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                {Array.from({ length: rated }, (_, index) => (
-                                    <StarIcon key={index} style={{ color: theme.primary }} />
-                                ))}
-                                {!(notRated === 0)
-                                    ? Array.from({ length: notRated }, (_, index) => (
-                                          <StarBorderIcon key={index} style={{ color: theme.primary }} />
-                                      ))
-                                    : undefined}
-                                <Typography
-                                    style={{ color: theme.light, paddingLeft: '4px' }}
-                                >{`(${rating.count})`}</Typography>
-                            </Box>
-                        </Tooltip>
+                        <RatingStars rating={product.rating} />
                     </Box>
                     <Box style={{ padding: '4px 12px' }}>
                         <Button
-                            onClick={() => handleClickOpen()}
+                            onClick={handleDetail}
                             style={{ color: theme.light, width: '100%', borderColor: theme.light }}
                             variant="outlined"
                         >
-                            see details
+                            {resources.seeDetails}
                         </Button>
                     </Box>
                 </Box>

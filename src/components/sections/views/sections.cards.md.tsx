@@ -1,61 +1,59 @@
 import { FC } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-import { Sections } from './sections.types';
-import { Gender, useMarketStore } from '../../store';
+import { Sections } from '../sections.types';
+import { Gender, useMarketStore } from '../../../store';
+import { resources } from '../../../global/resources';
 
-export const SectionsXS: FC<Sections> = ({ sections }) => {
+export const SectionsMD: FC<Sections> = ({ sections }) => {
     const router = useRouter();
-
-    const theme = useMarketStore((store) => store.theme);
     const setGender = useMarketStore((store) => store.setGender);
+    const theme = useMarketStore((store) => store.theme);
 
     const goTo = (link: string, filter?: Gender) => {
         filter && setGender(filter);
         router.push(`/${link}`);
     };
-    const resources = { visit: 'Visit' };
 
     return (
         <Box
             style={{
-                justifyContent: 'center',
-                gap: '50px',
-                flexDirection: 'column',
                 width: '100%',
+                justifyContent: 'center',
+                height: '600px',
+                gap: '10px',
             }}
             sx={{
-                display: { lg: 'none', md: 'none', xs: 'flex' },
+                display: { lg: 'none', md: 'flex', xs: 'none' },
             }}
         >
             {sections.map((e, index) => (
                 <Box
                     key={index}
                     sx={{
-                        flex: '0 0 320px',
-                        borderRadius: '0.5rem',
+                        flex: '0 0 170px',
                         transition: '0.5s ease-in-out',
+                        borderRadius: '0.5rem',
                         cursor: 'pointer',
                         boxShadow: `1px 5px 15px ${theme.primary}`,
+                        backgroundColor: theme.light,
                         position: 'relative',
                         overflow: 'hidden',
-                        backgroundColor: theme.light,
-                        backgroundSize: 'contain',
-                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundImage: e.image,
                     }}
                     onMouseEnter={(e) => {
-                        e.currentTarget.style.flex = '0 0 450px';
+                        e.currentTarget.style.flex = '0 0 300px';
                         e.currentTarget.style.boxShadow = `1px 3px 15px ${theme.primary}`;
                         e.currentTarget.style.transform = 'translateY(-30px)';
                         const content = e.currentTarget.querySelector('.content') as HTMLElement;
                         content.style.opacity = '1';
-                        content.style.transform = 'translateY(-6%)';
+                        content.style.transform = 'translateY(-4%)';
                         content.style.visibility = 'visible';
                     }}
                     onMouseLeave={(e) => {
-                        e.currentTarget.style.flex = '0 0 320px';
+                        e.currentTarget.style.flex = '0 0 170px';
                         e.currentTarget.style.boxShadow = `1px 3px 15px ${theme.primary}`;
                         e.currentTarget.style.transform = 'translateY(0)';
                         const content = e.currentTarget.querySelector('.content') as HTMLElement;
@@ -69,6 +67,8 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                         sx={{
                             fontSize: '1.5rem',
                             color: theme.light,
+
+                            borderRadius: '0.5rem',
                             display: 'flex',
                             alignItems: 'center',
                             padding: '15px',

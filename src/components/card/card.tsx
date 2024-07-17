@@ -1,19 +1,12 @@
 import { Box, Grow } from '@mui/material';
 import { FC } from 'react';
 import { CardViews } from './card.views';
-import { Rating, useMarketStore } from '../../store';
+import { Products, useMarketStore } from '../../store';
 export interface CardProps {
-    id: number;
-    image: string;
-    rating: Rating;
-    title: string;
-    price: number;
-    handleFavorite: () => void;
-    handleCart: () => void;
+    product: Products;
 }
-export const Card: FC<CardProps> = ({ id, image, price, rating, title, handleCart, handleFavorite }) => {
+export const Card: FC<CardProps> = ({ product }) => {
     const theme = useMarketStore((store) => store.theme);
-
     return (
         <Grow in={true}>
             <Box
@@ -30,7 +23,7 @@ export const Card: FC<CardProps> = ({ id, image, price, rating, title, handleCar
                     backgroundColor: theme.light,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
-                    backgroundImage: `url('${image}')`,
+                    backgroundImage: `url('${product.image}')`,
                 }}
                 onMouseEnter={(e) => {
                     e.currentTarget.style.boxShadow = `1px 3px 15px ${theme.primary}`;
@@ -51,7 +44,7 @@ export const Card: FC<CardProps> = ({ id, image, price, rating, title, handleCar
                     content.style.visibility = 'hidden';
                 }}
             >
-                <CardViews.TopStructure handleFavorite={handleFavorite} handleCart={handleCart} id={id} price={price} />
+                <CardViews.TopStructure product={product} />
                 <Box
                     className="content"
                     sx={{
@@ -71,7 +64,7 @@ export const Card: FC<CardProps> = ({ id, image, price, rating, title, handleCar
                         overflow: 'hidden',
                     }}
                 >
-                    <CardViews.BottomStructure title={title} rating={rating} />
+                    <CardViews.BottomStructure product={product} />
                 </Box>
             </Box>
         </Grow>

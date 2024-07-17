@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Box, IconButton, Typography, Menu, Avatar, Tooltip, MenuItem, Zoom, alpha } from '@mui/material';
+import { Box, IconButton, Typography, Avatar, Tooltip, Zoom } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { useMarketStore } from '../../store';
+import { useMarketStore } from '../../../store';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { SwitchMode } from '../switchMode';
+import { SwitchMode } from '../../switchMode';
 import { useSnackbar } from 'notistack';
+import { resources } from '../../../global/resources';
 
 export const HeaderProfile: React.FC = () => {
     const cart = useMarketStore((store) => store.cart);
@@ -12,18 +13,16 @@ export const HeaderProfile: React.FC = () => {
     const favorites = useMarketStore((store) => store.favorites);
     const cartLength = cart.length;
     const favoritesLength = favorites.length;
-    // const handleRedirectToUser = () => {};
+
     const setOpenModal = useMarketStore((store) => store.setOpenModal);
     const { enqueueSnackbar } = useSnackbar();
 
     const handleClickCartOpen = () => {
-        cartLength === 0
-            ? enqueueSnackbar(`There's nothing in your cart yet.`, { variant: 'info' })
-            : setOpenModal(true);
+        cartLength === 0 ? enqueueSnackbar(resources.alertNothingInCart, { variant: 'info' }) : setOpenModal(true);
     };
     const handleClickFavoriteOpen = () => {
         favoritesLength === 0
-            ? enqueueSnackbar(`There's nothing in your favorites yet.`, {
+            ? enqueueSnackbar(resources.alertNothingInFavorites, {
                   variant: 'info',
               })
             : setOpenModal(true);
@@ -59,7 +58,7 @@ export const HeaderProfile: React.FC = () => {
                             width: 'min-content',
                         }}
                     >
-                        <Tooltip TransitionComponent={Zoom} title="Favorites">
+                        <Tooltip TransitionComponent={Zoom} title={resources.favorites}>
                             <FavoriteBorderIcon onClick={handleClickFavoriteOpen} />
                         </Tooltip>
                         {favoritesLength > 0 ? (
@@ -90,7 +89,7 @@ export const HeaderProfile: React.FC = () => {
                             width: 'min-content',
                         }}
                     >
-                        <Tooltip TransitionComponent={Zoom} title="Cart">
+                        <Tooltip TransitionComponent={Zoom} title={resources.cart}>
                             <ShoppingCartOutlinedIcon onClick={handleClickCartOpen} />
                         </Tooltip>
                         {cartLength > 0 ? (
@@ -102,12 +101,16 @@ export const HeaderProfile: React.FC = () => {
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <SwitchMode />
             </Box>
-            <Tooltip TransitionComponent={Zoom} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }} title="Settings">
+            <Tooltip
+                TransitionComponent={Zoom}
+                sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}
+                title={resources.settings}
+            >
                 <IconButton onClick={handleClickOpen} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>
                     <Avatar alt="Bruno" src="." style={{ fontSize: '1rem', width: '30px', height: '30px' }} />
                 </IconButton>
             </Tooltip>
-            <Tooltip TransitionComponent={Zoom} title="Settings" sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Tooltip TransitionComponent={Zoom} title={resources.settings} sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <IconButton onClick={handleClickOpen} sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
                     <Avatar alt="Bruno" src="." />
                 </IconButton>

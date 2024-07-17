@@ -1,13 +1,14 @@
 import { Box, Button, Chip, Divider, Fade, IconButton, Popper, Slider, Typography } from '@mui/material';
 import { FC, useEffect, useRef, useState } from 'react';
-import { Gender, Products, useMarketStore } from '../../store';
+import { Gender, Products, useMarketStore } from '../../../store';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import FilterAltOutlineIcon from '@mui/icons-material/FilterAlt';
+import { resources } from '../../../global/resources';
 interface SearchBarProps {
     products: Products[];
 }
 
-export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
+export const PriceAndGender: FC<SearchBarProps> = ({ products }) => {
     const numbers = products.map((e) => e.price);
     const findMinNumber = (): number => {
         if (numbers.length > 0) {
@@ -159,7 +160,7 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
                                     />
                                 </Box>
                             )}
-                            <Typography> Price: </Typography>
+                            <Typography> {resources.price}</Typography>
                             <Box
                                 style={{
                                     display: 'flex',
@@ -169,9 +170,13 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
                                 }}
                             >
                                 <Slider
-                                    getAriaLabel={() => 'Price'}
+                                    getAriaLabel={() => resources.priceAriaLabel}
                                     value={priceLocal}
-                                    valueLabelFormat={(value) => <Typography> {value}€ </Typography>}
+                                    valueLabelFormat={(value) => (
+                                        <Typography>
+                                            {value} {resources.eurSignal}
+                                        </Typography>
+                                    )}
                                     onChange={handleChange}
                                     sx={{ color: theme.primary }}
                                     valueLabelDisplay="auto"
@@ -187,8 +192,14 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
                                         width: '100%',
                                     }}
                                 >
-                                    <Typography> {findMinNumber()}€ </Typography>
-                                    <Typography> {findMaxNumber()}€ </Typography>
+                                    <Typography>
+                                        {findMinNumber()}
+                                        {resources.eurSignal}
+                                    </Typography>
+                                    <Typography>
+                                        {findMaxNumber()}
+                                        {resources.eurSignal}
+                                    </Typography>
                                 </Box>
                             </Box>
                             <Box style={{ padding: '16px 0px' }}>
@@ -201,7 +212,7 @@ export const FiltersPriceAndGender: FC<SearchBarProps> = ({ products }) => {
                                     variant="contained"
                                     disabled={isDisabled}
                                 >
-                                    Confirm
+                                    {resources.confirm}
                                 </Button>
                             </Box>
                         </Box>

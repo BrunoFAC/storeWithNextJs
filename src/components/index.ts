@@ -9,3 +9,8 @@ export * from './rowOfCards';
 export * from './scrollToTop';
 export * from './notDevelopedModal';
 export * from './switchMode';
+export * from './detailedCard';
+export * from './favoritesIconButton';
+export * from './cartButton';
+export * from './cartIconButton';
+export * from './ratingStars';

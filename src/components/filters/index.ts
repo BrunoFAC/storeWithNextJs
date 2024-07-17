@@ -1,3 +1,3 @@
-export * from './filters.sort';
-export * from './filters.priceAndGender';
+export * from './views/sort';
+export * from './views/priceAndGender';
 export * from './filters';

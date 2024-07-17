@@ -42,14 +42,14 @@ const Clothes: NextPage = () => {
         setIsLoading(true);
         const man = `men's clothing`;
         const woman = `women's clothing`;
-        const filter = !gender ? '' : gender === 'man' ? man : woman;
+        const genderType = gender === 'man' ? man : woman;
+        const filter = !gender ? '' : genderType;
         if (filter !== '') {
             axios
                 .get(`https://fakestoreapi.com/products/category/${filter}`)
                 .then((res) => {
                     if (res.data && res.status === 200) {
                         setProducts(res.data);
-                        // setFilteredProducts(res.data);
                         setSort(FiltersValue.RELEVANCE);
                     }
                 })
@@ -66,7 +66,6 @@ const Clothes: NextPage = () => {
                         }
                     });
                     setProducts(successfullyResponse);
-                    // setFilteredProducts(successfullyResponse);
                     setSort(FiltersValue.RELEVANCE);
                 })
                 .catch((e) => console.error(e))

@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import Image from 'next/image';
-import { Images } from '../../../public/images';
-import { useMarketStore } from '../../store';
+import { Images } from '../../../../public/images';
+import { useMarketStore } from '../../../store';
+import { resources } from '../../../global/resources';
 
 interface HeaderMDProps {
     pages: string[];
     goTo: (link: string) => void;
 }
 export const HeaderMD: React.FC<HeaderMDProps> = ({ pages, goTo }) => {
-    const resources = { store: 'STORE' };
     const theme = useMarketStore((store) => store.theme);
 
     return (

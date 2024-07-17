@@ -3,12 +3,9 @@ import { Box, Container, IconButton, Tooltip, Typography, Zoom, alpha } from '@m
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useMarketStore } from '../../store';
+import { resources } from '../../global/resources';
 
 export const Footer: React.FC = () => {
-    const resources = {
-        contacts: 'CONTACTS',
-        footer: `Bruno Carvalho © ${new Date().getFullYear()}`,
-    };
     const themeStore = useMarketStore((store) => store.theme);
 
     const openLinks = (link: string) => {
@@ -52,7 +49,7 @@ export const Footer: React.FC = () => {
                     <Box style={{ display: 'flex', flexDirection: 'row' }}>
                         <Tooltip title="GitHub" TransitionComponent={Zoom}>
                             <IconButton
-                                onClick={() => openLinks('https://github.com/BrunoFAC')}
+                                onClick={() => openLinks(resources.github)}
                                 sx={(theme) => ({
                                     p: 0,
                                     color: themeStore.light,
@@ -73,7 +70,7 @@ export const Footer: React.FC = () => {
                         </Tooltip>
                         <Tooltip title="LinkedIn" TransitionComponent={Zoom}>
                             <IconButton
-                                onClick={() => openLinks('https://www.linkedin.com/in/bruno-almeida07')}
+                                onClick={() => openLinks(resources.linkedIn)}
                                 sx={(theme) => ({
                                     p: 0,
                                     color: themeStore.light,

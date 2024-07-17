@@ -56,6 +56,7 @@ export interface MarketState {
     isLoading: boolean;
     filtersSort: FiltersValue[];
     openModal: boolean;
+    detail?: Products;
     theme: Theme;
 }
 
@@ -67,6 +68,7 @@ export interface MarketActions {
     removeFavorites(favorites: Products): void;
     setFavorites(favorites: Products[]): void;
     addCart(cart: Products): void;
+    setDetail(detail?: Products): void;
     removeCart(cart: Products): void;
     setCart(cart: Products[]): void;
     setPrice(price?: number[]): void;
