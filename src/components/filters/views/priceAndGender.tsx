@@ -207,7 +207,14 @@ export const PriceAndGender: FC<SearchBarProps> = ({ products }) => {
                             </Box>
                             <Box style={{ display: 'flex', justifyContent: 'end' }}>
                                 <Button
-                                    sx={{ bgcolor: theme.primary }}
+                                    sx={{
+                                        backgroundColor: theme.primary,
+                                        ...(theme.type === 'dark' && {
+                                            '&:hover': {
+                                                backgroundColor: theme.primaryLight,
+                                            },
+                                        }),
+                                    }}
                                     onClick={handleConfirm}
                                     variant="contained"
                                     disabled={isDisabled}
