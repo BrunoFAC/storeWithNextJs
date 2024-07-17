@@ -30,6 +30,7 @@ export const DetailedCard: FC = () => {
 
     return (
         <>
+            {detail !== undefined && <DetailedCardViews.CardLG handleCart={handleCart} detail={detail} />}
             {detail !== undefined && <DetailedCardViews.CardMD handleCart={handleCart} detail={detail} />}
             {detail !== undefined && <DetailedCardViews.CardXS handleCart={handleCart} detail={detail} />}
         </>

@@ -5,13 +5,11 @@ import { FavoritesIconButton } from '../../favoritesIconButton';
 import { RatingStars } from '../../ratingStars';
 import { CartButton } from '../../cartButton';
 import { resources } from '../../../global/resources';
-
 export interface CardXSProps {
     detail: Products;
     handleCart: (detail: Products) => void;
 }
-
-export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
+export const CardLG: FC<CardXSProps> = ({ detail, handleCart }) => {
     const theme = useMarketStore((store) => store.theme);
     const isDarkTheme = useMarketStore((store) => store.theme.type === 'dark');
 
@@ -22,45 +20,62 @@ export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
     return (
         <Box
             sx={{
-                display: { md: 'none', xs: 'flex' },
+                display: { lg: 'flex', md: 'none', xs: 'none' },
             }}
         >
             <Grow in={true}>
                 <Box
                     sx={{
                         display: 'flex',
-                        flexDirection: 'column',
-                        height: '100%',
+                        flexDirection: 'row',
+                        height: '500px',
                         width: '100%',
+                        borderRadius: '4px',
                         alignItems: 'center',
                         transition: '0.3s ease-in-out',
                     }}
                 >
                     <Box
-                        sx={{
+                        style={{
                             display: 'flex',
                             flexDirection: 'column',
-                            width: '100%',
+                            width: '50%',
                             height: '100%',
                             background: theme.light,
-                            borderRadius: '4px 4px 0px 0px',
+                            borderRadius: '4px 0px 0px 4px',
                             overflow: 'hidden',
                             ...(!isDarkTheme && {
                                 boxShadow: `inset 0 0 0 1px ${theme.gray}`,
-                                borderRadius: '4px 4px 0px 0px',
+                                borderRadius: '4px 0px 0px 4px',
                             }),
-                            minHeight: '400px',
-                            backgroundSize: '200px',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundImage: `url('${detail?.image}')`,
                         }}
-                    />
+                    >
+                        <Box
+                            style={{
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                overflow: 'hidden',
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    transition: '0.3s ease-in-out',
+                                    '&:hover': {
+                                        transform: 'scale(1.3)',
+                                    },
+                                }}
+                            >
+                                <img alt="" src={detail?.image} style={{ height: 260, objectFit: 'contain' }} />
+                            </Box>
+                        </Box>
+                    </Box>
                     <Box
                         style={{
-                            borderRadius: '0px 0px 4px 4px',
+                            borderRadius: '0px 4px 4px 0px',
                             background: backgroundText,
-                            width: '100%',
+                            width: '50%',
                             height: '100%',
                         }}
                     >
@@ -77,6 +92,7 @@ export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
                                     flexDirection: 'column',
                                     padding: '16px',
                                     justifyContent: 'space-between',
+                                    height: '500px',
                                     overflow: 'hidden',
                                     gap: '16px',
                                 }}
@@ -89,6 +105,7 @@ export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
                                         overflowY: 'auto',
                                         scrollbarWidth: 'none',
                                     }}
+                                    id="description"
                                 >
                                     <Box
                                         style={{
@@ -100,7 +117,7 @@ export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
                                         }}
                                     >
                                         <Typography
-                                            style={{ color: theme.light, fontWeight: 'bold', fontSize: '20px' }}
+                                            style={{ color: theme.light, fontWeight: 'bold', fontSize: '24px' }}
                                         >
                                             {detail?.title}
                                         </Typography>
@@ -108,7 +125,7 @@ export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
                                             <FavoritesIconButton favorite={detail} isLightIcon />
                                         ) : null}
                                     </Box>
-                                    <Typography style={{ color: theme.light, fontSize: '16px' }}>
+                                    <Typography style={{ color: theme.light, fontSize: '20px' }}>
                                         {detail?.price} {resources.eur}
                                     </Typography>
                                     <Box
@@ -120,7 +137,7 @@ export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
                                             gap: '4px',
                                         }}
                                     >
-                                        <Typography style={{ color: theme.light, fontSize: '12px' }}>
+                                        <Typography style={{ color: theme.light, fontSize: '16px' }}>
                                             {detail?.description}
                                         </Typography>
                                         <RatingStars

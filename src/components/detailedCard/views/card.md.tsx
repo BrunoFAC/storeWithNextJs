@@ -20,7 +20,7 @@ export const CardMD: FC<CardXSProps> = ({ detail, handleCart }) => {
     return (
         <Box
             sx={{
-                display: { md: 'flex', xs: 'none' },
+                display: { lg: 'none', md: 'flex', xs: 'none' },
             }}
         >
             <Grow in={true}>
@@ -105,6 +105,7 @@ export const CardMD: FC<CardXSProps> = ({ detail, handleCart }) => {
                                         overflowY: 'auto',
                                         scrollbarWidth: 'none',
                                     }}
+                                    id="description"
                                 >
                                     <Box
                                         style={{
@@ -116,7 +117,7 @@ export const CardMD: FC<CardXSProps> = ({ detail, handleCart }) => {
                                         }}
                                     >
                                         <Typography
-                                            style={{ color: theme.light, fontWeight: 'bold', fontSize: '24px' }}
+                                            style={{ color: theme.light, fontWeight: 'bold', fontSize: '22px' }}
                                         >
                                             {detail?.title}
                                         </Typography>
@@ -124,7 +125,7 @@ export const CardMD: FC<CardXSProps> = ({ detail, handleCart }) => {
                                             <FavoritesIconButton favorite={detail} isLightIcon />
                                         ) : null}
                                     </Box>
-                                    <Typography style={{ color: theme.light, fontSize: '20px' }}>
+                                    <Typography style={{ color: theme.light, fontSize: '18px' }}>
                                         {detail?.price} {resources.eur}
                                     </Typography>
                                     <Box
@@ -136,7 +137,7 @@ export const CardMD: FC<CardXSProps> = ({ detail, handleCart }) => {
                                             gap: '4px',
                                         }}
                                     >
-                                        <Typography style={{ color: theme.light, fontSize: '16px' }}>
+                                        <Typography style={{ color: theme.light, fontSize: '14px' }}>
                                             {detail?.description}
                                         </Typography>
                                         <RatingStars
