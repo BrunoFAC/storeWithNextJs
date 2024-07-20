@@ -2,6 +2,7 @@ export const resources = {
     seeDetails: 'see details',
     eur: ' EUR',
     hasBeenAddedToCart: 'Added to the cart.',
+    hasBeenRemovedFromCart: 'Removed form cart.',
     hasBeenAddedAllFavoritesToCart: 'Added all favorites to the cart.',
     hasBeenRemovedAllFavoritesFromCart: 'Removed all favorites from the cart.',
     addToCart: 'Add to Cart',
