@@ -35,7 +35,7 @@ export const BuyNowModal: React.FC = () => {
     };
 
     const handleBuy = () => {
-        enqueueSnackbar(resources.purchased, {
+        enqueueSnackbar(resources.singlePurchased, {
             variant: 'success',
         });
         handleClose();

@@ -24,7 +24,7 @@ export const BuyDrawerMD: FC<BuyDrawerMDProps> = ({ toggleDrawer }) => {
     const isDarkTheme = theme.type === 'dark';
 
     const handleClickCart = () => {
-        enqueueSnackbar(resources.purchased, {
+        enqueueSnackbar(cart.length > 1 ? resources.multiPurchased : resources.singlePurchased, {
             variant: 'success',
         });
         setCart([]);

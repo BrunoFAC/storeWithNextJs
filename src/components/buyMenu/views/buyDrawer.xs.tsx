@@ -26,7 +26,7 @@ export const BuyDrawerXS: FC<BuyDrawerXSProps> = ({ toggleDrawer }) => {
     const fontSize = '0.75rem';
 
     const handleClickCart = () => {
-        enqueueSnackbar(resources.purchased, {
+        enqueueSnackbar(cart.length > 1 ? resources.multiPurchased : resources.singlePurchased, {
             variant: 'success',
         });
         setCart([]);
