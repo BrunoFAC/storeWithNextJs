@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { resources } from '../../global/resources';
+import { resources } from '../../global';
 export interface CartIconButtonProps {
     cartProduct: Products;
 }

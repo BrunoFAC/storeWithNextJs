@@ -3,7 +3,7 @@ import { Rating, useMarketStore } from '../../store';
 import { Tooltip, Zoom, Box, Typography } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { resources } from '../../global/resources';
+import { resources } from '../../global';
 
 interface RatingStarsProps {
     rating: Rating;

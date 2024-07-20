@@ -4,7 +4,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { resources } from '../../global/resources';
+import { resources } from '../../global';
 export interface FavoritesButtonProps {
     favorite: Products;
     isLightIcon?: boolean;

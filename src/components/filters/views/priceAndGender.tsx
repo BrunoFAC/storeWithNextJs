@@ -3,7 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { Gender, Products, useMarketStore } from '../../../store';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import FilterAltOutlineIcon from '@mui/icons-material/FilterAlt';
-import { resources } from '../../../global/resources';
+import { resources } from '../../../global';
 interface SearchBarProps {
     products: Products[];
 }

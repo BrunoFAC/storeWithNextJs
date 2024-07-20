@@ -4,7 +4,7 @@ import { Box, Grow, Typography } from '@mui/material';
 import { FavoritesIconButton } from '../../favoritesIconButton';
 import { RatingStars } from '../../ratingStars';
 import { CartButton } from '../../cartButton';
-import { resources } from '../../../global/resources';
+import { resources } from '../../../global';
 import { BuyNow } from '../../buyNow';
 export interface CardXSProps {
     detail: Products;

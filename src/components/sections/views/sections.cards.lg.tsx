@@ -3,7 +3,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { Sections } from '../sections.types';
 import { Gender, useMarketStore } from '../../../store';
-import { resources } from '../../../global/resources';
+import { Paths, resources } from '../../../global';
 
 export const SectionsLG: FC<Sections> = ({ sections }) => {
     const router = useRouter();
@@ -11,9 +11,9 @@ export const SectionsLG: FC<Sections> = ({ sections }) => {
     const setGender = useMarketStore((store) => store.setGender);
     const theme = useMarketStore((store) => store.theme);
 
-    const goTo = (link: string, filter?: Gender) => {
+    const goTo = (link: Paths, filter?: Gender) => {
         filter && setGender(filter);
-        router.push(`/${link}`);
+        router.push(link);
     };
 
     return (

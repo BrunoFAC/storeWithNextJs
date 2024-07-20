@@ -5,6 +5,7 @@ import { BuyNowModal, DetailedCard } from '../components';
 import { Box } from '@mui/material';
 import { removeDuplicates } from '../helpers';
 import { useRouter } from 'next/router';
+import { Paths } from '../global';
 
 const Cart: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);
@@ -17,12 +18,12 @@ const Cart: NextPage = () => {
 
     useEffect(() => {
         if (!cart.length) {
-            router.push('/');
+            router.push(Paths.Home);
         }
     }, [cart]);
 
     useEffect(() => {
-        setSection('cart');
+        setSection(Paths.Cart);
         setShowButtonBuyNow(true);
         return () => {
             setShowButtonBuyNow(false);

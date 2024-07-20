@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useMarketStore } from '../store';
 import { DetailedCard } from '../components';
 import { useRouter } from 'next/router';
+import { Paths } from '../global';
 
 const Detail: NextPage = () => {
     const detail = useMarketStore((store) => store.detail);
@@ -12,13 +13,13 @@ const Detail: NextPage = () => {
 
     useEffect(() => {
         if (detail === undefined) {
-            router.push('/');
+            router.push(Paths.Home);
         }
         return () => setDetail(undefined);
     }, [detail]);
 
     useEffect(() => {
-        setSection('detail');
+        setSection(Paths.Detail);
     }, []);
 
     return (

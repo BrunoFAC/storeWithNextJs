@@ -6,6 +6,7 @@ import { Filters, Skeleton, RowOfCards } from '../components';
 import { priceHelper, sortHelper } from '../helpers';
 import { useMarketStore, Products, FiltersValue } from '../store';
 import { Images } from '../../public/images';
+import { Paths } from '../global';
 
 const Clothes: NextPage = () => {
     const filteredProducts = useMarketStore((store) => store.filteredProducts);
@@ -22,7 +23,7 @@ const Clothes: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);
 
     useEffect(() => {
-        setSection(window.location.pathname);
+        setSection(Paths.Clothes);
         return () => {
             setFilters({});
             setProducts([]);

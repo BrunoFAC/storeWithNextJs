@@ -5,6 +5,7 @@ import { DetailedCard } from '../components';
 import { Box } from '@mui/material';
 import { removeDuplicates } from '../helpers';
 import { useRouter } from 'next/router';
+import { Paths } from '../global';
 
 const Favorites: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);
@@ -13,12 +14,12 @@ const Favorites: NextPage = () => {
 
     useEffect(() => {
         if (!favorites.length) {
-            router.push('/');
+            router.push(Paths.Home);
         }
     }, [favorites]);
 
     useEffect(() => {
-        setSection('favorites');
+        setSection(Paths.Favorites);
     }, []);
 
     return (

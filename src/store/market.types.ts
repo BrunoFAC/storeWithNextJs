@@ -1,8 +1,9 @@
+import { Paths } from '../global';
+
 export interface Rating {
     rate: number;
     count: number;
 }
-export const pages = ['clothes', 'eletronics', 'jewelery'];
 export type ThemeType = 'dark' | 'light';
 
 export interface Theme {
@@ -82,7 +83,7 @@ export interface MarketActions {
     setGender(gender?: Gender): void;
     setSort(sort?: FiltersValue): void;
     setFilters(filters: Filters): void;
-    setSection(section?: string): void;
+    setSection(section?: Paths): void;
     setIsLoading(value: boolean): void;
     setOpenModal(openModal: boolean): void;
     setOpenBuyModal(openBuyModal: BuyModalProps): void;

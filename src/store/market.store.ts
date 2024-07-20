@@ -1,5 +1,4 @@
 import { create, StateCreator } from 'zustand';
-import { darkTheme, lightTheme } from '../global/theme';
 import {
     MarketState,
     FiltersValue,
@@ -11,6 +10,7 @@ import {
     MarketStore,
     BuyModalProps,
 } from './market.types';
+import { darkTheme, lightTheme, Paths } from '../global';
 
 const storeIdentifier = 'market-store';
 
@@ -64,8 +64,7 @@ const actions = (set: any): MarketActions => {
     const addCart = (cart: Products) => {
         set(
             (state: MarketState) => {
-                const addedCart = [...state.cart, cart].sort((a, b) => a.id - b.id);
-                state.cart = addedCart;
+                state.cart = [...state.cart, cart].sort((a, b) => a.id - b.id);
             },
             false,
             `${storeIdentifier}/set-cart`
@@ -78,8 +77,7 @@ const actions = (set: any): MarketActions => {
                     const removeIndex = state.cart.findIndex((product) => product.id === cart.id);
                     state.cart = state.cart.filter((_, index) => index !== removeIndex);
                 } else {
-                    const removedCart = state.cart.filter((e) => e.id !== cart.id);
-                    state.cart = removedCart;
+                    state.cart = state.cart.filter((e) => e.id !== cart.id);
                 }
                 if (state.cart.length === 0 && state.openBuyDrawer) {
                     state.openBuyDrawer = false;
@@ -155,10 +153,14 @@ const actions = (set: any): MarketActions => {
             `${storeIdentifier}/set-filters`
         );
     };
-    const setSection = (section?: string) => {
+    const setSection = (section?: Paths) => {
         set(
             (state: MarketState) => {
-                state.section = section?.replaceAll('/', '');
+                if (section === Paths.Home) {
+                    state.section = 'sections';
+                } else {
+                    state.section = section?.replaceAll('/', '');
+                }
             },
             false,
             `${storeIdentifier}/set-section`

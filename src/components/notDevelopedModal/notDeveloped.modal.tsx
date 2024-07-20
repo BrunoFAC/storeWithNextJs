@@ -4,7 +4,7 @@ import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import { useMarketStore } from '../../store';
 import ConstructionIcon from '@mui/icons-material/Construction';
-import { resources } from '../../global/resources';
+import { resources } from '../../global';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {

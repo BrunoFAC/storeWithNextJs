@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DialogContent, Dialog, Typography, Box, Button, Slide } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { resources } from '../../global/resources';
+import { resources } from '../../global';
 import { useMarketStore } from '../../store';
 import { sumFloatNumbersHelper } from '../../helpers';
 import { useSnackbar } from 'notistack';

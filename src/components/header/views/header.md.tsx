@@ -3,11 +3,11 @@ import { Box, Typography, Button } from '@mui/material';
 import Image from 'next/image';
 import { Images } from '../../../../public/images';
 import { useMarketStore } from '../../../store';
-import { resources } from '../../../global/resources';
+import { Paths, PathsAndTitle, resources } from '../../../global';
 
 interface HeaderMDProps {
-    pages: string[];
-    goTo: (link: string) => void;
+    pages: PathsAndTitle[];
+    goTo: (link: Paths) => void;
 }
 export const HeaderMD: React.FC<HeaderMDProps> = ({ pages, goTo }) => {
     const theme = useMarketStore((store) => store.theme);
@@ -23,7 +23,7 @@ export const HeaderMD: React.FC<HeaderMDProps> = ({ pages, goTo }) => {
                     gap: '8px',
                 }}
                 sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
-                onClick={() => goTo('')}
+                onClick={() => goTo(Paths.Home)}
             >
                 <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
                     <Image
@@ -52,9 +52,9 @@ export const HeaderMD: React.FC<HeaderMDProps> = ({ pages, goTo }) => {
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page, index) => (
                     <Button
-                        key={`${index}-${page}`}
+                        key={`${index}-${page.title}`}
                         onClick={() => {
-                            goTo(page);
+                            goTo(page.path);
                         }}
                         sx={{
                             my: 2,
@@ -62,7 +62,7 @@ export const HeaderMD: React.FC<HeaderMDProps> = ({ pages, goTo }) => {
                             display: 'block',
                         }}
                     >
-                        {page}
+                        {page.title}
                     </Button>
                 ))}
             </Box>

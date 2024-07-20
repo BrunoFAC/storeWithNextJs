@@ -1,7 +1,7 @@
 import { Box, Button, Divider, IconButton, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ClearIcon from '@mui/icons-material/Clear';
-import { resources } from '../../../global/resources';
+import { resources } from '../../../global';
 import { removeDuplicates, sumFloatNumbersHelper } from '../../../helpers';
 import { Products, useMarketStore } from '../../../store';
 import { FC, Fragment } from 'react';

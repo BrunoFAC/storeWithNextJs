@@ -5,7 +5,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import { useSnackbar } from 'notistack';
 import { Button } from '@mui/material';
-import { resources } from '../../global/resources';
+import { resources } from '../../global';
 export interface CartButtonProps {
     id: number;
     fontSize?: string;

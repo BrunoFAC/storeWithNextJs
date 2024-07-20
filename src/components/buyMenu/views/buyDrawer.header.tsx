@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { resources } from '../../../global/resources';
+import { resources } from '../../../global';
 import { useMarketStore } from '../../../store';
 import { FC } from 'react';
 

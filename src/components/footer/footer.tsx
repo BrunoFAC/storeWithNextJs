@@ -3,7 +3,7 @@ import { Box, Container, IconButton, Tooltip, Typography, Zoom, alpha } from '@m
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useMarketStore } from '../../store';
-import { resources } from '../../global/resources';
+import { resources } from '../../global';
 
 export const Footer: React.FC = () => {
     const themeStore = useMarketStore((store) => store.theme);

@@ -1,7 +1,7 @@
 import { Box, Button, Fade, Popper, Typography } from '@mui/material';
 import { FC, useEffect, useRef, useState } from 'react';
 import { FiltersValue, useMarketStore } from '../../../store';
-import { resources } from '../../../global/resources';
+import { resources } from '../../../global';
 
 export const Sort: FC = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

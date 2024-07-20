@@ -18,11 +18,11 @@ import {
 
 import Image from 'next/image';
 import { FC, useState } from 'react';
-import { pages, useMarketStore } from '../../../store';
+import { useMarketStore } from '../../../store';
 import { useRouter } from 'next/router';
 import { Images } from '../../../../public/images';
 import { SwitchMode } from '../../switchMode';
-import { resources } from '../../../global/resources';
+import { Paths, resources, Sections } from '../../../global';
 
 export const DrawerHeaderXS: FC = () => {
     const [open, setOpen] = useState<boolean>(false);
@@ -37,9 +37,11 @@ export const DrawerHeaderXS: FC = () => {
         setOpen(newOpen);
     };
     const router = useRouter();
-    const handleRedirect = (link: string) => {
-        router.push(`/${link}`);
+
+    const handleRedirect = (link: Paths) => {
+        router.push(link);
     };
+
     const darkMode = { ...(theme.type === 'dark' && { sx: { color: theme.light } }) };
 
     const DrawerList = (
@@ -94,17 +96,17 @@ export const DrawerHeaderXS: FC = () => {
                 <Box style={{ marginTop: '24px' }}>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon onClick={() => handleRedirect('')}>
+                            <ListItemIcon onClick={() => handleRedirect(Paths.Home)}>
                                 <HomeIcon {...darkMode} fontSize="large" />
                             </ListItemIcon>
                             <ListItemText {...darkMode} primary={resources.home} />
                         </ListItemButton>
                     </ListItem>
                 </Box>
-                {pages.map((text, index) => (
-                    <Box key={`${index}-${text}`}>
+                {Sections.map((page, index) => (
+                    <Box key={`${index}-${page.title}`}>
                         <ListItem key={index} disablePadding>
-                            <ListItemButton onClick={() => handleRedirect(text)}>
+                            <ListItemButton onClick={() => handleRedirect(page.path)}>
                                 <ListItemIcon>
                                     {index === 1 ? (
                                         <TvIcon {...darkMode} fontSize="large" />
@@ -119,7 +121,7 @@ export const DrawerHeaderXS: FC = () => {
                                         ...(theme.type === 'dark' && { color: theme.light }),
                                         textTransform: 'capitalize',
                                     }}
-                                    primary={text}
+                                    primary={page.title}
                                 />
                             </ListItemButton>
                         </ListItem>

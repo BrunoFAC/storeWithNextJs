@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Products, useMarketStore } from '../../store';
 import { Box, Button, IconButton, Typography } from '@mui/material';
-import { resources } from '../../global/resources';
+import { resources } from '../../global';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useSnackbar } from 'notistack';

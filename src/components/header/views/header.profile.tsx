@@ -5,7 +5,7 @@ import { useMarketStore } from '../../../store';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { SwitchMode } from '../../switchMode';
 import { useSnackbar } from 'notistack';
-import { resources } from '../../../global/resources';
+import { Paths, resources } from '../../../global';
 import { useRouter } from 'next/router';
 
 export const HeaderProfile: React.FC = () => {
@@ -19,14 +19,14 @@ export const HeaderProfile: React.FC = () => {
     const { enqueueSnackbar } = useSnackbar();
 
     const handleClickCartOpen = () => {
-        cartLength === 0 ? enqueueSnackbar(resources.alertNothingInCart, { variant: 'info' }) : router.push('/cart');
+        cartLength === 0 ? enqueueSnackbar(resources.alertNothingInCart, { variant: 'info' }) : router.push(Paths.Cart);
     };
     const handleClickFavoriteOpen = () => {
         favoritesLength === 0
             ? enqueueSnackbar(resources.alertNothingInFavorites, {
                   variant: 'info',
               })
-            : router.push('/favorites');
+            : router.push(Paths.Favorites);
     };
 
     const handleClickOpen = () => {

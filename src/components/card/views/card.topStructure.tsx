@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Products, useMarketStore } from '../../../store';
 import { FavoritesIconButton } from '../../favoritesIconButton';
 import { CartIconButton } from '../../cartIconButton';
-import { resources } from '../../../global/resources';
+import { resources } from '../../../global';
 
 interface TopStructureProps {
     product: Products;

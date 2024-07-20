@@ -4,9 +4,9 @@ import Image from 'next/image';
 import { Images } from '../../../../public/images';
 import { DrawerHeaderXS } from './header.xs.lateralMenu';
 import { useMarketStore } from '../../../store';
-import { resources } from '../../../global/resources';
+import { Paths, resources } from '../../../global';
 interface HeaderXSProps {
-    goTo: (link: string) => void;
+    goTo: (link: Paths) => void;
 }
 export const HeaderXS: React.FC<HeaderXSProps> = ({ goTo }) => {
     const theme = useMarketStore((store) => store.theme);
@@ -14,14 +14,14 @@ export const HeaderXS: React.FC<HeaderXSProps> = ({ goTo }) => {
     return (
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, position: 'static', alignItems: 'center' }}>
             <DrawerHeaderXS />
-            <Box onClick={() => goTo('')} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
+            <Box onClick={() => goTo(Paths.Home)} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
                 <Image src={theme.type === 'dark' ? Images.HeadLighter : Images.Head} alt="" width={35} height={35} />
             </Box>
 
             <Typography
                 noWrap
                 component="a"
-                onClick={() => goTo('')}
+                onClick={() => goTo(Paths.Home)}
                 sx={{
                     mr: 2,
                     display: { xs: 'flex', md: 'none' },

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Products, useMarketStore } from '../../../store';
 import { useRouter } from 'next/router';
 import { RatingStars } from '../../ratingStars';
-import { resources } from '../../../global/resources';
+import { Paths, resources } from '../../../global';
 
 interface BottomStructureProps {
     product: Products;
@@ -16,7 +16,7 @@ export const BottomStructure: FC<BottomStructureProps> = ({ product }) => {
 
     const handleDetail = () => {
         setDetail(product);
-        router.push('/detail');
+        router.push(Paths.Detail);
     };
 
     return (

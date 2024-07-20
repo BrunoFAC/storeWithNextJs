@@ -26,7 +26,7 @@ const images = [
     {
         label: 'Electronics Section',
         image: Images.Eletronic.src,
-        redirect: 'eletronics',
+        redirect: 'electronics',
         gender: '',
     },
 ];
