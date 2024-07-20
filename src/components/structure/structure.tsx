@@ -4,8 +4,10 @@ import { Header } from '../header';
 import { Footer } from '../footer';
 import { ScrollTopButton } from '../scrollToTop';
 import { useMarketStore } from '../../store';
-import { AlertDialogSlide } from '../notDevelopedModal';
+import { NotDevelopedModal } from '../notDevelopedModal';
 import { MaterialDesignContent, SnackbarProvider } from 'notistack';
+import { BuyMenu } from '../buyMenu';
+import { AddToCartFloatButton } from '../addToCartFloatButton/addToCartFloatButton';
 interface StructureProps {
     children: React.ReactNode;
 }
@@ -22,7 +24,6 @@ export const Structure: React.FC<StructureProps> = ({ children }) => {
     const scrolled = useScrollTrigger();
     const section = useMarketStore((store) => store.section);
     const theme = useMarketStore((store) => store.theme);
-
     return (
         <SnackbarProvider
             maxSnack={3}
@@ -78,8 +79,10 @@ export const Structure: React.FC<StructureProps> = ({ children }) => {
                     </Typography>
                     <Box style={{ marginTop: 90, marginBottom: 90 }}>{children}</Box>
                 </Stack>
+                <BuyMenu />
+                <AddToCartFloatButton />
                 <ScrollTopButton />
-                <AlertDialogSlide />
+                <NotDevelopedModal />
                 <Footer />
             </Box>
         </SnackbarProvider>

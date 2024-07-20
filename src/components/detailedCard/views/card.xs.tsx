@@ -5,6 +5,7 @@ import { FavoritesIconButton } from '../../favoritesIconButton';
 import { RatingStars } from '../../ratingStars';
 import { CartButton } from '../../cartButton';
 import { resources } from '../../../global/resources';
+import { BuyNow } from '../../buyNow';
 
 export interface CardXSProps {
     detail: Products;
@@ -129,7 +130,16 @@ export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
                                         />
                                     </Box>
                                 </Box>
-                                <CartButton handleCart={() => detail && handleCart(detail)} id={detail?.id || 0} />
+                                <Box style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                    <CartButton
+                                        fontSize="0.750rem"
+                                        handleCart={() => detail && handleCart(detail)}
+                                        id={detail?.id || 0}
+                                    />
+                                    <Box style={{ display: 'flex', flexDirection: 'row', gap: '8px' }}>
+                                        <BuyNow detail={detail} fontSize="0.750rem" width={'100%'} />
+                                    </Box>
+                                </Box>
                             </Box>
                         </Box>
                     </Box>

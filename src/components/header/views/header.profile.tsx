@@ -6,6 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { SwitchMode } from '../../switchMode';
 import { useSnackbar } from 'notistack';
 import { resources } from '../../../global/resources';
+import { useRouter } from 'next/router';
 
 export const HeaderProfile: React.FC = () => {
     const cart = useMarketStore((store) => store.cart);
@@ -13,19 +14,19 @@ export const HeaderProfile: React.FC = () => {
     const favorites = useMarketStore((store) => store.favorites);
     const cartLength = cart.length;
     const favoritesLength = favorites.length;
-
+    const router = useRouter();
     const setOpenModal = useMarketStore((store) => store.setOpenModal);
     const { enqueueSnackbar } = useSnackbar();
 
     const handleClickCartOpen = () => {
-        cartLength === 0 ? enqueueSnackbar(resources.alertNothingInCart, { variant: 'info' }) : setOpenModal(true);
+        cartLength === 0 ? enqueueSnackbar(resources.alertNothingInCart, { variant: 'info' }) : router.push('/cart');
     };
     const handleClickFavoriteOpen = () => {
         favoritesLength === 0
             ? enqueueSnackbar(resources.alertNothingInFavorites, {
                   variant: 'info',
               })
-            : setOpenModal(true);
+            : router.push('/favorites');
     };
 
     const handleClickOpen = () => {
@@ -57,9 +58,10 @@ export const HeaderProfile: React.FC = () => {
                             padding: 4,
                             width: 'min-content',
                         }}
+                        onClick={handleClickFavoriteOpen}
                     >
                         <Tooltip TransitionComponent={Zoom} title={resources.favorites}>
-                            <FavoriteBorderIcon onClick={handleClickFavoriteOpen} />
+                            <FavoriteBorderIcon />
                         </Tooltip>
                         {favoritesLength > 0 ? (
                             <Typography fontSize={9}>{favoritesLength > 99 ? '99+' : favoritesLength}</Typography>
@@ -88,9 +90,10 @@ export const HeaderProfile: React.FC = () => {
                             padding: 4,
                             width: 'min-content',
                         }}
+                        onClick={handleClickCartOpen}
                     >
                         <Tooltip TransitionComponent={Zoom} title={resources.cart}>
-                            <ShoppingCartOutlinedIcon onClick={handleClickCartOpen} />
+                            <ShoppingCartOutlinedIcon />
                         </Tooltip>
                         {cartLength > 0 ? (
                             <Typography fontSize={9}>{cartLength > 99 ? '99+' : cartLength}</Typography>

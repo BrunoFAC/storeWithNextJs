@@ -17,6 +17,7 @@ export interface Theme {
     lightGray: string;
     gray: string;
     fadedPrimary: string;
+    fadedBackground: string;
 }
 
 export enum FiltersValue {
@@ -45,7 +46,10 @@ export interface Products {
     price: number;
     switchMode: ThemeType;
 }
-
+export interface BuyModalProps {
+    open: boolean;
+    detail?: Products;
+}
 export interface MarketState {
     cart: Products[];
     filteredProducts: Products[];
@@ -56,8 +60,11 @@ export interface MarketState {
     isLoading: boolean;
     filtersSort: FiltersValue[];
     openModal: boolean;
+    openBuyModal?: BuyModalProps;
     detail?: Products;
     theme: Theme;
+    openBuyDrawer: boolean;
+    showButtonBuyNow: boolean;
 }
 
 export interface MarketActions {
@@ -69,7 +76,7 @@ export interface MarketActions {
     setFavorites(favorites: Products[]): void;
     addCart(cart: Products): void;
     setDetail(detail?: Products): void;
-    removeCart(cart: Products): void;
+    removeCart(cart: Products, isOnCart?: boolean): void;
     setCart(cart: Products[]): void;
     setPrice(price?: number[]): void;
     setGender(gender?: Gender): void;
@@ -78,6 +85,9 @@ export interface MarketActions {
     setSection(section?: string): void;
     setIsLoading(value: boolean): void;
     setOpenModal(openModal: boolean): void;
+    setOpenBuyModal(openBuyModal: BuyModalProps): void;
+    setOpenBuyDrawer(openBuyDrawer: boolean): void;
+    setShowButtonBuyNow(showButtonBuyNow: boolean): void;
     setTheme(theme: ThemeType): void;
     resetStore(): void;
 }

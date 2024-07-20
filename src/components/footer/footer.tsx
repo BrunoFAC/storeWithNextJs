@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
                         {resources.contacts}
                     </Typography>
                     <Box style={{ display: 'flex', flexDirection: 'row' }}>
-                        <Tooltip title="GitHub" TransitionComponent={Zoom}>
+                        <Tooltip title={resources.github} TransitionComponent={Zoom}>
                             <IconButton
                                 onClick={() => openLinks(resources.github)}
                                 sx={(theme) => ({
@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
                                 <GitHubIcon />
                             </IconButton>
                         </Tooltip>
-                        <Tooltip title="LinkedIn" TransitionComponent={Zoom}>
+                        <Tooltip title={resources.linkedIn} TransitionComponent={Zoom}>
                             <IconButton
                                 onClick={() => openLinks(resources.linkedIn)}
                                 sx={(theme) => ({

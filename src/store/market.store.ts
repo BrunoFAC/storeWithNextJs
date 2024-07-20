@@ -9,6 +9,7 @@ import {
     Gender,
     Filters,
     MarketStore,
+    BuyModalProps,
 } from './market.types';
 
 const storeIdentifier = 'market-store';
@@ -22,9 +23,12 @@ const initialData: MarketState = {
     section: undefined,
     isLoading: false,
     openModal: false,
+    openBuyModal: undefined,
     filtersSort: Object.values(FiltersValue),
     theme: darkTheme,
     detail: undefined,
+    openBuyDrawer: false,
+    showButtonBuyNow: false,
 };
 
 const actions = (set: any): MarketActions => {
@@ -44,7 +48,14 @@ const actions = (set: any): MarketActions => {
     const setCart = (cart: Products[]) => {
         set(
             (state: MarketState) => {
-                state.cart = cart;
+                if (cart.length > 0) {
+                    state.cart = [...cart].sort((a, b) => a.id - b.id);
+                } else {
+                    state.cart = cart;
+                    if (state.openBuyDrawer) {
+                        state.openBuyDrawer = false;
+                    }
+                }
             },
             false,
             `${storeIdentifier}/set-cart`
@@ -53,18 +64,26 @@ const actions = (set: any): MarketActions => {
     const addCart = (cart: Products) => {
         set(
             (state: MarketState) => {
-                const addedCart = [...state.cart, cart];
+                const addedCart = [...state.cart, cart].sort((a, b) => a.id - b.id);
                 state.cart = addedCart;
             },
             false,
             `${storeIdentifier}/set-cart`
         );
     };
-    const removeCart = (cart: Products) => {
+    const removeCart = (cart: Products, isOnCart?: boolean) => {
         set(
             (state: MarketState) => {
-                const removedCart = state.cart.filter((e) => e.id !== cart.id);
-                state.cart = removedCart;
+                if (isOnCart) {
+                    const removeIndex = state.cart.findIndex((product) => product.id === cart.id);
+                    state.cart = state.cart.filter((_, index) => index !== removeIndex);
+                } else {
+                    const removedCart = state.cart.filter((e) => e.id !== cart.id);
+                    state.cart = removedCart;
+                }
+                if (state.cart.length === 0 && state.openBuyDrawer) {
+                    state.openBuyDrawer = false;
+                }
             },
             false,
             `${storeIdentifier}/set-remove-cart`
@@ -174,6 +193,33 @@ const actions = (set: any): MarketActions => {
             `${storeIdentifier}/set-open-modal`
         );
     };
+    const setOpenBuyModal = (openBuyModal: BuyModalProps) => {
+        set(
+            (state: MarketState) => {
+                state.openBuyModal = openBuyModal;
+            },
+            false,
+            `${storeIdentifier}/set-open-buy-modal`
+        );
+    };
+    const setOpenBuyDrawer = (openBuyDrawer: boolean) => {
+        set(
+            (state: MarketState) => {
+                state.openBuyDrawer = openBuyDrawer;
+            },
+            false,
+            `${storeIdentifier}/set-open-buy-drawer`
+        );
+    };
+    const setShowButtonBuyNow = (showButtonBuyNow: boolean) => {
+        set(
+            (state: MarketState) => {
+                state.showButtonBuyNow = showButtonBuyNow;
+            },
+            false,
+            `${storeIdentifier}/set-show-button-buy-now`
+        );
+    };
 
     const setIsLoading = (isLoading: boolean) => {
         set(
@@ -218,6 +264,9 @@ const actions = (set: any): MarketActions => {
         addFavorites,
         removeCart,
         setDetail,
+        setOpenBuyDrawer,
+        setOpenBuyModal,
+        setShowButtonBuyNow,
     };
 };
 

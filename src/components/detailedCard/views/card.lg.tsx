@@ -5,6 +5,7 @@ import { FavoritesIconButton } from '../../favoritesIconButton';
 import { RatingStars } from '../../ratingStars';
 import { CartButton } from '../../cartButton';
 import { resources } from '../../../global/resources';
+import { BuyNow } from '../../buyNow';
 export interface CardXSProps {
     detail: Products;
     handleCart: (detail: Products) => void;
@@ -12,10 +13,6 @@ export interface CardXSProps {
 export const CardLG: FC<CardXSProps> = ({ detail, handleCart }) => {
     const theme = useMarketStore((store) => store.theme);
     const isDarkTheme = useMarketStore((store) => store.theme.type === 'dark');
-
-    const backgroundText = isDarkTheme
-        ? `linear-gradient(60deg, ${theme.fadedPrimary} 0%, rgba(255, 255, 255, 0) 92%)`
-        : `linear-gradient(60deg, ${theme.primary} 0%, ${theme.secondary} 92%)`;
 
     return (
         <Box
@@ -74,7 +71,7 @@ export const CardLG: FC<CardXSProps> = ({ detail, handleCart }) => {
                     <Box
                         style={{
                             borderRadius: '0px 4px 4px 0px',
-                            background: backgroundText,
+                            background: theme.fadedBackground,
                             width: '50%',
                             height: '100%',
                         }}
@@ -146,7 +143,10 @@ export const CardLG: FC<CardXSProps> = ({ detail, handleCart }) => {
                                         />
                                     </Box>
                                 </Box>
-                                <CartButton handleCart={() => detail && handleCart(detail)} id={detail?.id || 0} />
+                                <Box style={{ display: 'flex', flexDirection: 'row', gap: '12px' }}>
+                                    <CartButton handleCart={() => detail && handleCart(detail)} id={detail?.id || 0} />
+                                    <BuyNow detail={detail} fontSize="0.875rem" width={'300px'} />
+                                </Box>
                             </Box>
                         </Box>
                     </Box>

@@ -15,7 +15,7 @@ const Transition = React.forwardRef(function Transition(
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const AlertDialogSlide: React.FC = () => {
+export const NotDevelopedModal: React.FC = () => {
     const setOpenModal = useMarketStore((store) => store.setOpenModal);
     const openModal = useMarketStore((store) => store.openModal);
     const theme = useMarketStore((store) => store.theme);

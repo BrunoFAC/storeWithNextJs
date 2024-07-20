@@ -8,10 +8,11 @@ import { Button } from '@mui/material';
 import { resources } from '../../global/resources';
 export interface CartButtonProps {
     id: number;
+    fontSize?: string;
     handleCart: () => void;
 }
 
-export const CartButton: FC<CartButtonProps> = ({ handleCart, id }) => {
+export const CartButton: FC<CartButtonProps> = ({ handleCart, fontSize, id }) => {
     const { enqueueSnackbar } = useSnackbar();
     const theme = useMarketStore((store) => store.theme);
     const cart = useMarketStore((store) => store.cart);
@@ -33,6 +34,7 @@ export const CartButton: FC<CartButtonProps> = ({ handleCart, id }) => {
                 color: isOnCart ? colorOnCart : theme.light,
                 borderColor: theme.light,
                 width: '100%',
+                ...(fontSize && { fontSize }),
             }}
             onClick={handleClickCart}
             startIcon={isOnCart ? <ShoppingCartIcon /> : <ShoppingCartOutlinedIcon />}
