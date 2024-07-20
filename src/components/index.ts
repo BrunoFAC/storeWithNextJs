@@ -17,3 +17,4 @@ export * from './ratingStars';
 export * from './buyMenu';
 export * from './buyNowModal';
 export * from './buyNow';
+export * from './addToCartFloatButton';

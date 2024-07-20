@@ -1,1 +1,1 @@
-export * from './buyMenu';
+export * from './addToCartFloatButton';
