@@ -18,7 +18,7 @@ const Cart: NextPage = () => {
 
     useEffect(() => {
         if (!cart.length) {
-            router.push(Paths.Home);
+            setTimeout(() => router.push(Paths.Home), 300);
         }
     }, [cart]);
 

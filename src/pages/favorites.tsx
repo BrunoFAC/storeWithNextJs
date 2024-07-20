@@ -14,7 +14,7 @@ const Favorites: NextPage = () => {
 
     useEffect(() => {
         if (!favorites.length) {
-            router.push(Paths.Home);
+            setTimeout(() => router.push(Paths.Home), 200);
         }
     }, [favorites]);
 
