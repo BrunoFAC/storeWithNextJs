@@ -1,6 +1,6 @@
 import { FormControlLabel, styled, Switch } from '@mui/material';
 import { FC } from 'react';
-import { useMarketStore } from '../../store';
+import { useMarketStore } from '@/store';
 
 const MaterialUISwitch = styled(Switch)(() => {
     const themeStore = useMarketStore((store) => store.theme);

@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
-import { Sections } from '../components/sections/sections';
-import { useMarketStore } from '../store';
+import { Sections } from '@/components';
+import { useMarketStore } from '@/store';
 import { useEffect } from 'react';
-import { Paths } from '../global';
+import { Paths } from '@/global';
 
 const Index: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);

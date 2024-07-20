@@ -1,4 +1,4 @@
-import { Products } from '../store';
+import { Products } from '@/store';
 
 export const removeDuplicates = (items: Products[]): Products[] => {
     const uniqueItems = items.reduce((product, current) => {

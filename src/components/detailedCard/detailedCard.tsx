@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Products, useMarketStore } from '../../store';
 import { DetailedCardViews } from './detailedCard.views';
+import { Products, useMarketStore } from '@/store';
 
 export interface DetailedCardProps {
     detail?: Products;

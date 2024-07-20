@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { Products, useMarketStore } from '../../store';
-import { Box, Button, IconButton, Typography } from '@mui/material';
-import { resources } from '../../global';
+import { resources } from '@/global';
+import { Products, useMarketStore } from '@/store';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { Button, Box, IconButton, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
+import { FC } from 'react';
 export interface CardXSProps {
     detail: Products;
     width?: string;

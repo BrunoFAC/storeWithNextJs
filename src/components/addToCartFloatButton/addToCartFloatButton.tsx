@@ -2,9 +2,9 @@ import { Box, Fab, Tooltip, useScrollTrigger, Zoom } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { FC } from 'react';
-import { useMarketStore } from '../../store';
-import { resources } from '../../global';
 import { useSnackbar } from 'notistack';
+import { useMarketStore } from '@/store';
+import { resources } from '@/global';
 
 export const AddToCartFloatButton: FC = () => {
     const { enqueueSnackbar } = useSnackbar();

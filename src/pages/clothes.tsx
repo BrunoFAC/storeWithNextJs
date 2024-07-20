@@ -1,12 +1,12 @@
+import { Filters, RowOfCards, Skeleton } from '@/components';
+import { Paths } from '@/global';
+import { sortHelper, priceHelper } from '@/helpers';
+import { Images } from '@/images';
+import { useMarketStore, Products, FiltersValue } from '@/store';
 import { Box } from '@mui/material';
 import axios from 'axios';
 import { NextPage } from 'next';
 import { useEffect } from 'react';
-import { Filters, Skeleton, RowOfCards } from '../components';
-import { priceHelper, sortHelper } from '../helpers';
-import { useMarketStore, Products, FiltersValue } from '../store';
-import { Images } from '../../public/images';
-import { Paths } from '../global';
 
 const Clothes: NextPage = () => {
     const filteredProducts = useMarketStore((store) => store.filteredProducts);

@@ -1,4 +1,4 @@
-import { Paths } from '../global';
+import { Paths } from '@/global';
 
 export interface Rating {
     rate: number;

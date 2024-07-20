@@ -1,7 +1,7 @@
 import { Box, Fab, useScrollTrigger } from '@mui/material';
-import { useMarketStore } from '../../../store';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { FC } from 'react';
+import { useMarketStore } from '@/store';
 
 export const FloatButton: FC = () => {
     const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 0 });

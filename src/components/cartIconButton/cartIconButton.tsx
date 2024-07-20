@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { Products, useMarketStore } from '../../store';
 import { IconButton } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { resources } from '../../global';
+import { resources } from '@/global';
+import { Products, useMarketStore } from '@/store';
 export interface CartIconButtonProps {
     cartProduct: Products;
 }

@@ -1,11 +1,11 @@
-import { Box, Button, Divider, IconButton, Typography } from '@mui/material';
-import { resources } from '../../../global';
-import { removeDuplicates, sumFloatNumbersHelper } from '../../../helpers';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ClearIcon from '@mui/icons-material/Clear';
-import { Products, useMarketStore } from '../../../store';
-import { FC, Fragment } from 'react';
+import { resources } from '@/global';
+import { removeDuplicates, sumFloatNumbersHelper } from '@/helpers';
+import { useMarketStore, Products } from '@/store';
+import { Box, Typography, IconButton, Divider, Button } from '@mui/material';
 import { useSnackbar } from 'notistack';
+import { FC, Fragment } from 'react';
 import { BuyMenusViews } from '../buyMenu.views';
 
 export interface BuyDrawerXSProps {

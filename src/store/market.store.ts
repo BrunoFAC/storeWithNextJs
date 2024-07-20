@@ -10,7 +10,7 @@ import {
     MarketStore,
     BuyModalProps,
 } from './market.types';
-import { darkTheme, lightTheme, Paths } from '../global';
+import { darkTheme, lightTheme, Paths } from '@/global';
 
 const storeIdentifier = 'market-store';
 

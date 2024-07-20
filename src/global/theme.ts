@@ -1,4 +1,4 @@
-import { Theme } from '../store';
+import { Theme } from '@/store';
 
 export const lightTheme: Theme = {
     type: 'light',

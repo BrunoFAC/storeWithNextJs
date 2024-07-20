@@ -1,4 +1,4 @@
-import { Products } from '../store';
+import { Products } from '@/store';
 
 export const priceHelper = (
     price: number[] | undefined,

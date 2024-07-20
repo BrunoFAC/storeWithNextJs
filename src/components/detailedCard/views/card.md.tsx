@@ -1,11 +1,9 @@
-import { FC } from 'react';
-import { Products, useMarketStore } from '../../../store';
+import { FavoritesIconButton, BuyNow, RatingStars, CartButton } from '@/components';
+import { resources } from '@/global';
+import { Products, useMarketStore } from '@/store';
 import { Box, Grow, Typography } from '@mui/material';
-import { FavoritesIconButton } from '../../favoritesIconButton';
-import { RatingStars } from '../../ratingStars';
-import { CartButton } from '../../cartButton';
-import { resources } from '../../../global';
-import { BuyNow } from '../../buyNow';
+import { FC } from 'react';
+
 export interface CardXSProps {
     detail: Products;
     handleCart: (detail: Products) => void;

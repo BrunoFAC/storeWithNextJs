@@ -2,8 +2,8 @@ import * as React from 'react';
 import { AppBar, Toolbar, Container, Slide, useScrollTrigger } from '@mui/material';
 import { useRouter } from 'next/router';
 import { HeaderViews } from './header.views';
-import { useMarketStore } from '../../store';
-import { Paths, Sections } from '../../global';
+import { Paths, Sections } from '@/global';
+import { useMarketStore } from '@/store';
 
 export const Header: React.FC = () => {
     const scrolled = useScrollTrigger();

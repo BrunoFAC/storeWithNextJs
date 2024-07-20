@@ -1,9 +1,8 @@
+import { CartIconButton, FavoritesIconButton } from '@/components';
+import { resources } from '@/global';
+import { Products, useMarketStore } from '@/store';
 import { Box, Typography } from '@mui/material';
 import { FC } from 'react';
-import { Products, useMarketStore } from '../../../store';
-import { FavoritesIconButton } from '../../favoritesIconButton';
-import { CartIconButton } from '../../cartIconButton';
-import { resources } from '../../../global';
 
 interface TopStructureProps {
     product: Products;

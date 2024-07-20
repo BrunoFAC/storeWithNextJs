@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import Image from 'next/image';
-import { Images } from '../../../../public/images';
-import { useMarketStore } from '../../../store';
-import { Paths, PathsAndTitle, resources } from '../../../global';
+import { PathsAndTitle, Paths, resources } from '@/global';
+import { useMarketStore } from '@/store';
+import { Images } from '@/images';
 
 interface HeaderMDProps {
     pages: PathsAndTitle[];

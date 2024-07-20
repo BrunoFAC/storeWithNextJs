@@ -1,7 +1,7 @@
 import { Box, Grow } from '@mui/material';
 import { FC } from 'react';
 import { CardViews } from './card.views';
-import { Products, useMarketStore } from '../../store';
+import { Products, useMarketStore } from '@/store';
 export interface CardProps {
     product: Products;
 }

@@ -1,8 +1,8 @@
+import { resources } from '@/global';
+import { sumFloatNumbersHelper } from '@/helpers';
+import { useMarketStore } from '@/store';
 import { Box, Typography } from '@mui/material';
-import { resources } from '../../../global';
-import { sumFloatNumbersHelper } from '../../../helpers';
-import { useMarketStore } from '../../../store';
-import { FC, ReactNode } from 'react';
+import { ReactNode, FC } from 'react';
 
 export interface StructureProps {
     children: ReactNode;

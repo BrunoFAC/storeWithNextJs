@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { FC } from 'react';
-import { Products } from '../../store';
 import { FiltersViews } from './filters.views';
+import { Products } from '@/store';
 interface FiltersProps {
     products: Products[];
 }

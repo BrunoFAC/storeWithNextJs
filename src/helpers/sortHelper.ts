@@ -1,4 +1,4 @@
-import { FiltersValue, Products } from '../store';
+import { FiltersValue, Products } from '@/store';
 
 export const sortHelper = (sort: FiltersValue | undefined, filtered: Products[], products: Products[]) => {
     switch (sort) {

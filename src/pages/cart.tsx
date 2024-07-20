@@ -1,11 +1,11 @@
 import { NextPage } from 'next';
 import { useEffect } from 'react';
-import { useMarketStore } from '../store';
-import { BuyNowModal, DetailedCard } from '../components';
 import { Box } from '@mui/material';
-import { removeDuplicates } from '../helpers';
 import { useRouter } from 'next/router';
-import { Paths } from '../global';
+import { DetailedCard, BuyNowModal } from '@/components';
+import { Paths } from '@/global';
+import { removeDuplicates } from '@/helpers';
+import { useMarketStore } from '@/store';
 
 const Cart: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);

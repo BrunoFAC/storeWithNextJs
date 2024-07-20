@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import { useEffect } from 'react';
-import { useMarketStore } from '../store';
-import { DetailedCard } from '../components';
+import { useMarketStore } from '@/store';
+import { DetailedCard } from '@/components';
 import { useRouter } from 'next/router';
-import { Paths } from '../global';
+import { Paths } from '@/global';
 
 const Detail: NextPage = () => {
     const detail = useMarketStore((store) => store.detail);

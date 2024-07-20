@@ -18,11 +18,11 @@ import {
 
 import Image from 'next/image';
 import { FC, useState } from 'react';
-import { useMarketStore } from '../../../store';
 import { useRouter } from 'next/router';
-import { Images } from '../../../../public/images';
-import { SwitchMode } from '../../switchMode';
-import { Paths, resources, Sections } from '../../../global';
+import { SwitchMode } from '@/components';
+import { Paths, resources, Sections } from '@/global';
+import { Images } from '@/images';
+import { useMarketStore } from '@/store';
 
 export const DrawerHeaderXS: FC = () => {
     const [open, setOpen] = useState<boolean>(false);

@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { Products, useMarketStore } from '../../store';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { resources } from '@/global';
+import { Products, useMarketStore } from '@/store';
 import { IconButton } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { resources } from '../../global';
+import { FC } from 'react';
 export interface FavoritesButtonProps {
     favorite: Products;
     isLightIcon?: boolean;

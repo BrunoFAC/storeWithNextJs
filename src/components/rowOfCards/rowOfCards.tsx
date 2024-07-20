@@ -1,8 +1,7 @@
+import { Products } from '@/store';
 import { Box } from '@mui/material';
 import { FC } from 'react';
-import { Products } from '../../store';
-import { Card } from '../card';
-
+import { Card } from '@/components';
 interface RowOfCardsProps {
     products: Products[];
 }

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Box } from '@mui/material';
-import { Images } from '../../../public/images';
 import { SectionsViews } from './sections.views';
 import { SectionsCards } from './sections.types';
+import { Images } from '@/images';
 
 const images = [
     {

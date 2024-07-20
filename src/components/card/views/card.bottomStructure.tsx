@@ -1,9 +1,9 @@
-import { Box, Button, Typography } from '@mui/material';
-import { FC } from 'react';
-import { Products, useMarketStore } from '../../../store';
+import { RatingStars } from '@/components/ratingStars';
+import { Paths, resources } from '@/global';
+import { Products, useMarketStore } from '@/store';
+import { Box, Typography, Button } from '@mui/material';
 import { useRouter } from 'next/router';
-import { RatingStars } from '../../ratingStars';
-import { Paths, resources } from '../../../global';
+import { FC } from 'react';
 
 interface BottomStructureProps {
     product: Products;

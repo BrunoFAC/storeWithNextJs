@@ -1,11 +1,10 @@
+import { Filters, RowOfCards, Skeleton } from '@/components';
+import { Paths } from '@/global';
+import { sortHelper, priceHelper } from '@/helpers';
+import { useMarketStore, Products, FiltersValue } from '@/store';
 import axios from 'axios';
 import { NextPage } from 'next';
 import { useEffect } from 'react';
-import { FiltersValue, Products, useMarketStore } from '../store';
-import { Filters, Skeleton } from '../components';
-import { RowOfCards } from '../components/rowOfCards';
-import { sortHelper, priceHelper } from '../helpers';
-import { Paths } from '../global';
 
 const Electronics: NextPage = () => {
     const isLoading = useMarketStore((store) => store.isLoading);

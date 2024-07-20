@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { Box, Slide, Stack, styled, Typography, useScrollTrigger } from '@mui/material';
-import { Header } from '../header';
-import { Footer } from '../footer';
-import { ScrollTopButton } from '../scrollToTop';
-import { useMarketStore } from '../../store';
-import { NotDevelopedModal } from '../notDevelopedModal';
 import { MaterialDesignContent, SnackbarProvider } from 'notistack';
-import { BuyMenu } from '../buyMenu';
-import { AddToCartFloatButton } from '../addToCartFloatButton/addToCartFloatButton';
+import { useMarketStore } from '@/store';
+import { AddToCartFloatButton, BuyMenu, Footer, Header, NotDevelopedModal, ScrollTopButton } from '@/components';
+
 interface StructureProps {
     children: React.ReactNode;
 }

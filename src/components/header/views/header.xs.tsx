@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import { Images } from '../../../../public/images';
+import { Paths, resources } from '@/global';
+import { Images } from '@/images';
+import { useMarketStore } from '@/store';
 import { DrawerHeaderXS } from './header.xs.lateralMenu';
-import { useMarketStore } from '../../../store';
-import { Paths, resources } from '../../../global';
 interface HeaderXSProps {
     goTo: (link: Paths) => void;
 }

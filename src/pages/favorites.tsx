@@ -1,11 +1,11 @@
 import { NextPage } from 'next';
 import { useEffect } from 'react';
-import { useMarketStore } from '../store';
-import { DetailedCard } from '../components';
 import { Box } from '@mui/material';
-import { removeDuplicates } from '../helpers';
 import { useRouter } from 'next/router';
-import { Paths } from '../global';
+import { DetailedCard } from '@/components';
+import { Paths } from '@/global';
+import { removeDuplicates } from '@/helpers';
+import { useMarketStore } from '@/store';
 
 const Favorites: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);

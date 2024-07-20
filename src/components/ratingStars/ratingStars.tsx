@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { Rating, useMarketStore } from '../../store';
 import { Tooltip, Zoom, Box, Typography } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { resources } from '../../global';
+import { resources } from '@/global';
+import { Rating, useMarketStore } from '@/store';
 
 interface RatingStarsProps {
     rating: Rating;

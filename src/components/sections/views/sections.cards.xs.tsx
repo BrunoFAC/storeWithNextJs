@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { Sections } from '../sections.types';
-import { Gender, useMarketStore } from '../../../store';
-import { Paths, resources } from '../../../global';
+import { Paths, resources } from '@/global';
+import { useMarketStore, Gender } from '@/store';
 
 export const SectionsXS: FC<Sections> = ({ sections }) => {
     const router = useRouter();

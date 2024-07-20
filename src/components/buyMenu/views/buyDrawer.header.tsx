@@ -1,6 +1,6 @@
+import { resources } from '@/global';
+import { useMarketStore } from '@/store';
 import { Box, Typography } from '@mui/material';
-import { resources } from '../../../global';
-import { useMarketStore } from '../../../store';
 import { FC } from 'react';
 
 export interface HeaderProps {

@@ -1,10 +1,9 @@
+import { resources } from '@/global';
+import { sumFloatNumbersHelper } from '@/helpers';
+import { useMarketStore } from '@/store';
+import { Slide, Dialog, DialogContent, Box, Typography, Button } from '@mui/material';
+import { TransitionProps, useSnackbar } from 'notistack';
 import * as React from 'react';
-import { DialogContent, Dialog, Typography, Box, Button, Slide } from '@mui/material';
-import { TransitionProps } from '@mui/material/transitions';
-import { resources } from '../../global';
-import { useMarketStore } from '../../store';
-import { sumFloatNumbersHelper } from '../../helpers';
-import { useSnackbar } from 'notistack';
 import { BuyNow } from '../buyNow/buyNow';
 
 const Transition = React.forwardRef(function Transition(

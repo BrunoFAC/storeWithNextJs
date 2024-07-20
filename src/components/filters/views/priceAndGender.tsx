@@ -1,9 +1,10 @@
 import { Box, Button, Chip, Divider, Fade, IconButton, Popper, Slider, Typography } from '@mui/material';
 import { FC, useEffect, useRef, useState } from 'react';
-import { Gender, Products, useMarketStore } from '../../../store';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import FilterAltOutlineIcon from '@mui/icons-material/FilterAlt';
-import { resources } from '../../../global';
+import { resources } from '@/global';
+import { Products, useMarketStore, Gender } from '@/store';
+
 interface SearchBarProps {
     products: Products[];
 }

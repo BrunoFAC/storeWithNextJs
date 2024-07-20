@@ -1,5 +1,5 @@
+import { useMarketStore } from '@/store';
 import { Drawer } from '@mui/material';
-import { useMarketStore } from '../../../store';
 import { BuyMenusViews } from '../buyMenu.views';
 
 export const BuyDrawer: React.FC = () => {

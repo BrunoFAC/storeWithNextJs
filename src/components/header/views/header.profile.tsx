@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Box, IconButton, Typography, Avatar, Tooltip, Zoom } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { useMarketStore } from '../../../store';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { SwitchMode } from '../../switchMode';
-import { useSnackbar } from 'notistack';
-import { Paths, resources } from '../../../global';
 import { useRouter } from 'next/router';
+import { SwitchMode } from '@/components';
+import { resources, Paths } from '@/global';
+import { useMarketStore } from '@/store';
+import { useSnackbar } from 'notistack';
 
 export const HeaderProfile: React.FC = () => {
     const cart = useMarketStore((store) => store.cart);

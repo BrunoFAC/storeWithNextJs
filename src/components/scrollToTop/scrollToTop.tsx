@@ -1,7 +1,7 @@
 import { Box, Fab, useScrollTrigger, Zoom } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { FC } from 'react';
-import { useMarketStore } from '../../store';
+import { useMarketStore } from '@/store';
 
 export const ScrollTopButton: FC = () => {
     const scrolled = useScrollTrigger({
