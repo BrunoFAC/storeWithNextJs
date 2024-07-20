@@ -3,6 +3,9 @@ import { Box, Slide, Stack, styled, Typography, useScrollTrigger } from '@mui/ma
 import { MaterialDesignContent, SnackbarProvider } from 'notistack';
 import { useMarketStore } from '@/store';
 import { AddToCartFloatButton, BuyMenu, Footer, Header, NotDevelopedModal, ScrollTopButton } from '@/components';
+import { useEffect } from 'react';
+import { Paths } from '@/global';
+import { useRouter } from 'next/router';
 
 interface StructureProps {
     children: React.ReactNode;
@@ -20,6 +23,17 @@ export const Structure: React.FC<StructureProps> = ({ children }) => {
     const scrolled = useScrollTrigger();
     const section = useMarketStore((store) => store.section);
     const theme = useMarketStore((store) => store.theme);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const paths = Object.values(Paths).map((e) => e.replace('/', ''));
+            if (!paths.includes(window.location.pathname.replace('/', ''))) {
+                router.push(Paths.Home);
+            }
+        }
+    }, []);
+
     return (
         <SnackbarProvider
             maxSnack={3}
