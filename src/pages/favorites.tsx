@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useEffect } from 'react';
 import { useMarketStore } from '../store';
-import { BuyNowModal, DetailedCard } from '../components';
+import { DetailedCard } from '../components';
 import { Box } from '@mui/material';
 import { removeDuplicates } from '../helpers';
 import { useRouter } from 'next/router';
@@ -36,7 +36,6 @@ const Favorites: NextPage = () => {
                     <DetailedCard key={`${e.id}-${index}`} detail={e} />
                 ))}
             </Box>
-            <BuyNowModal />
         </Box>
     );
 };
