@@ -40,7 +40,7 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
                         position: 'relative',
                         overflow: 'hidden',
                         backgroundColor: theme.light,
-                        backgroundSize: 'contain',
+                        backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundImage: e.image,
