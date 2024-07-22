@@ -4,11 +4,11 @@ import { Products, useMarketStore } from '@/store';
 import { Box, Grow, Typography } from '@mui/material';
 import { FC } from 'react';
 
-export interface CardXSProps {
+export interface CardLGProps {
     detail: Products;
     handleCart: (detail: Products) => void;
 }
-export const CardLG: FC<CardXSProps> = ({ detail, handleCart }) => {
+export const CardLG: FC<CardLGProps> = ({ detail, handleCart }) => {
     const theme = useMarketStore((store) => store.theme);
     const isDarkTheme = useMarketStore((store) => store.theme.type === 'dark');
 
