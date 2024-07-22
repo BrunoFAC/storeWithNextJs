@@ -36,7 +36,7 @@ export const RowOfCards: FC<RowOfCardsProps> = ({ products }) => {
                     .flat()
                     .map((e, key) => (
                         <Box key={key}>
-                            <Card product={e} />
+                            <Card product={e} isClickable />
                         </Box>
                     ))}
                 {Array.from({ length: (4 - (clipArrayEveryXProducts(4).length % 4)) % 4 }).map((_, index) => (
@@ -64,7 +64,7 @@ export const RowOfCards: FC<RowOfCardsProps> = ({ products }) => {
                     .flat()
                     .map((e, key) => (
                         <Box key={key}>
-                            <Card product={e} />
+                            <Card product={e} isClickable />
                         </Box>
                     ))}
                 {Array.from({ length: (3 - (clipArrayEveryXProducts(3).length % 3)) % 3 }).map((_, index) => (

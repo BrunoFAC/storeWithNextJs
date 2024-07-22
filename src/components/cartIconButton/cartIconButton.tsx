@@ -33,7 +33,15 @@ export const CartIconButton: FC<CartIconButtonProps> = ({ cartProduct }) => {
         handleCart();
     };
     return (
-        <IconButton sx={{ color: theme.primary }} onClick={handleClickCart} size="small" color="primary">
+        <IconButton
+            sx={{ color: theme.primary }}
+            onClick={(e) => {
+                handleClickCart();
+                e.stopPropagation();
+            }}
+            size="small"
+            color="primary"
+        >
             {isOnCart ? (
                 <ShoppingCartIcon sx={{ color: theme.primary }} />
             ) : (

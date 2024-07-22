@@ -2,11 +2,22 @@ import { Box, Grow } from '@mui/material';
 import { FC } from 'react';
 import { CardViews } from './card.views';
 import { Products, useMarketStore } from '@/store';
+import { useRouter } from 'next/router';
+import { Paths } from '@/global';
 export interface CardProps {
     product: Products;
+    isClickable?: boolean;
 }
-export const Card: FC<CardProps> = ({ product }) => {
+export const Card: FC<CardProps> = ({ product, isClickable }) => {
+    const router = useRouter();
     const theme = useMarketStore((store) => store.theme);
+    const setDetail = useMarketStore((store) => store.setDetail);
+
+    const handleDetail = () => {
+        setDetail(product);
+        router.push(Paths.Detail);
+    };
+
     return (
         <Grow in={true}>
             <Box
@@ -25,6 +36,7 @@ export const Card: FC<CardProps> = ({ product }) => {
                     backgroundPosition: 'center',
                     backgroundImage: `url('${product.image}')`,
                 }}
+                onClick={() => isClickable && handleDetail()}
                 onMouseEnter={(e) => {
                     e.currentTarget.style.boxShadow = `1px 3px 15px ${theme.primary}`;
                     e.currentTarget.style.transform = 'translateY(-10px)';

@@ -34,7 +34,15 @@ export const FavoritesIconButton: FC<FavoritesButtonProps> = ({ favorite, isLigh
         handleFavorite();
     };
     return (
-        <IconButton sx={{ color: theme.primary }} onClick={handleClickFavorites} size="small" color="primary">
+        <IconButton
+            sx={{ color: theme.primary }}
+            onClick={(e) => {
+                handleClickFavorites();
+                e.stopPropagation();
+            }}
+            size="small"
+            color="primary"
+        >
             {isOnFavorites ? (
                 <FavoriteIcon sx={{ color: isLightIcon ? theme.light : theme.primary }} />
             ) : (
