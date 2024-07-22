@@ -3,6 +3,9 @@
 First, run the development server:
 
 ```bash
+#to install dependencies
+npm i
+#to run project
 npm run dev
 # or
 yarn dev
