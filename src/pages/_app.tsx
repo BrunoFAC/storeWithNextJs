@@ -1,4 +1,3 @@
-import { MantineProvider } from '@mantine/core';
 import type { AppProps } from 'next/app';
 import '../components/structure/structure.css';
 import { Structure } from '@/components';
@@ -7,7 +6,7 @@ import Head from 'next/head';
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <MantineProvider>
+        <>
             <Head>
                 <title>Store</title>
                 <meta name="author" content="Bruno Carvalho" />
@@ -19,6 +18,6 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Component {...pageProps} />
                 </Container>
             </Structure>
-        </MantineProvider>
+        </>
     );
 }
