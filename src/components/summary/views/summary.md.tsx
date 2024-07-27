@@ -1,32 +1,46 @@
-import { resources } from '@/global';
+import { Paths, resources } from '@/global';
 import { sumFloatNumbersHelper } from '@/helpers';
-import { useBillingStore, useMarketStore } from '@/store';
+import { useBillingStore, useMarketStore, useTransactionStore } from '@/store';
 import { Box, Typography, Button } from '@mui/material';
 import { FC } from 'react';
 import { AddressAccordion } from '@/components';
 import { useSnackbar } from 'notistack';
+import { useRouter } from 'next/router';
 export interface SummaryProps {
     priceProduct: (id?: number) => number[];
 }
 export const SummaryMD: FC<SummaryProps> = ({ priceProduct }) => {
     const { enqueueSnackbar } = useSnackbar();
-
+    const router = useRouter();
     const theme = useMarketStore((store) => store.theme);
     const buyProducts = useBillingStore((store) => store.buyProducts);
     const billingAddress = useBillingStore((store) => store.billingAddress);
+    const setBoughtProducts = useBillingStore((store) => store.setBoughtProducts);
+    const setCart = useTransactionStore((store) => store.setCart);
+    const cart = useTransactionStore((store) => store.cart);
 
     const isDisabled = () => {
         if (!buyProducts.length) return true;
         if (billingAddress.nif.status !== 'success' || billingAddress.zipCode.status !== 'success') return true;
-        if (billingAddress.address.length < 3 || billingAddress.fullName.length < 3) return true;
+        if (billingAddress.address.length < 10 || billingAddress.fullName.length < 3) return true;
         return false;
     };
+
     const handleOnClick = () => {
-        //edit here
         if (isDisabled()) {
-            enqueueSnackbar('In order to buy these product(s), you need to fill every field on the form.', {
+            enqueueSnackbar(resources.errorBuyProducts, {
                 variant: 'error',
             });
+        } else {
+            enqueueSnackbar(resources.successOrder, {
+                variant: 'success',
+                autoHideDuration: 3000,
+            });
+            setTimeout(() => {
+                router.push(Paths.Home);
+                setBoughtProducts();
+                setCart(cart.filter((e) => !buyProducts.includes(e)));
+            }, 3000);
         }
     };
     return (

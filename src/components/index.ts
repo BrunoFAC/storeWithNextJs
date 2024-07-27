@@ -21,3 +21,4 @@ export * from './addToCartFloatButton';
 export * from './addressAccordion';
 export * from './confirmationProducts';
 export * from './summary';
+export * from './disclaimer';

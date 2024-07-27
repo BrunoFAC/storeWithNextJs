@@ -56,4 +56,8 @@ export const resources = {
         nif: '123 456 789',
         zipCode: '0000-000',
     },
+    errorBuyProducts: 'In order to buy these product(s), you need to fill every field correctly on the form.',
+    successOrder: 'Order placed successfully! In 3 seconds, you will be redirected to the home page.',
+    fullNameDisclaimer: 'Field name must have at least 3 characters.',
+    addressDisclaimer: 'Field Address must have at least 10 characters.',
 };

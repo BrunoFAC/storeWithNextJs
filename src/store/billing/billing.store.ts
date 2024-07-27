@@ -1,11 +1,12 @@
 import { create, StateCreator } from 'zustand';
-import { BillingState, BillingActions, BillingStore, Status } from './billing.types';
+import { BillingState, BillingActions, BillingStore, Status, BoughtProducts } from './billing.types';
 import { Products } from '../market';
 
 const storeIdentifier = 'billing-store';
 
 const initialData: BillingState = {
     buyProducts: [],
+    boughtProducts: [],
     billingAddress: {
         fullName: '',
         address: '',
@@ -84,26 +85,49 @@ const actions = (set: any): BillingActions => {
             `${storeIdentifier}/set-nif-value`
         );
     };
-    const resetBillingStore = () => {
+    const resetBillingDetails = () => {
         set(
-            () => {
-                //edit here
+            (state: BillingState) => {
+                state.billingAddress = {
+                    fullName: '',
+                    address: '',
+                    zipCode: {
+                        status: 'default',
+                        field: '',
+                    },
+                    nif: {
+                        status: 'default',
+                        field: '',
+                    },
+                };
 
-                return { ...initialData };
+                state.buyProducts = [];
             },
             false,
             `${storeIdentifier}/reset-billing-store`
         );
     };
+    const setBoughtProducts = () => {
+        set(
+            (state: BillingState) => {
+                const boughtProducts = { boughtProducts: state.buyProducts, address: state.billingAddress };
+                state.boughtProducts = [...state.boughtProducts, boughtProducts];
+                resetBillingDetails();
+            },
+            false,
+            `${storeIdentifier}/set-bought-products`
+        );
+    };
     return {
         setBuyProducts,
         setFullName,
-        resetBillingStore,
+        resetBillingDetails,
         setZipCodeStatus,
         setZipCodeValue,
         setNifStatus,
         setNifValue,
         setAddress,
+        setBoughtProducts,
     };
 };
 

@@ -12,8 +12,6 @@ interface StructureProps {
 }
 const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
     '&.notistack-MuiContent': {
-        //edit here
-
         fontFamily: 'sans-serif',
     },
 }));
@@ -41,6 +39,8 @@ export const Structure: React.FC<StructureProps> = ({ children }) => {
             Components={{
                 success: StyledMaterialDesignContent,
                 info: StyledMaterialDesignContent,
+                error: StyledMaterialDesignContent,
+                warning: StyledMaterialDesignContent,
             }}
         >
             <Box style={{ overflowX: 'hidden' }} bgcolor={theme.primaryLight}>
