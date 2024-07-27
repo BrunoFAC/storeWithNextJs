@@ -5,11 +5,11 @@ import { useRouter } from 'next/router';
 import { DetailedCard } from '@/components';
 import { Paths } from '@/global';
 import { removeDuplicates } from '@/helpers';
-import { useMarketStore } from '@/store';
+import { useMarketStore, useTransactionStore } from '@/store';
 
 const Favorites: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);
-    const favorites = useMarketStore((store) => store.favorites);
+    const favorites = useTransactionStore((store) => store.favorites);
     const router = useRouter();
 
     useEffect(() => {

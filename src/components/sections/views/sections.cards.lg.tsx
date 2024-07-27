@@ -7,12 +7,14 @@ import { useMarketStore, Gender } from '@/store';
 
 export const SectionsLG: FC<Sections> = ({ sections }) => {
     const router = useRouter();
+    const setIsLoading = useMarketStore((store) => store.setIsLoading);
 
     const setGender = useMarketStore((store) => store.setGender);
     const theme = useMarketStore((store) => store.theme);
 
     const goTo = (link: Paths, filter?: Gender) => {
         filter && setGender(filter);
+        setIsLoading(true);
         router.push(link);
     };
 

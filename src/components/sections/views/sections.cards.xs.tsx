@@ -10,9 +10,11 @@ export const SectionsXS: FC<Sections> = ({ sections }) => {
 
     const theme = useMarketStore((store) => store.theme);
     const setGender = useMarketStore((store) => store.setGender);
+    const setIsLoading = useMarketStore((store) => store.setIsLoading);
 
     const goTo = (link: Paths, filter?: Gender) => {
         filter && setGender(filter);
+        setIsLoading(true);
         router.push(link);
     };
 

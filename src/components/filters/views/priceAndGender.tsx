@@ -27,7 +27,7 @@ export const PriceAndGender: FC<SearchBarProps> = ({ products }) => {
     };
     const theme = useMarketStore((store) => store.theme);
 
-    const section = useMarketStore((store) => store?.section);
+    const section = useMarketStore((store) => store?.section?.toLocaleLowerCase());
     const filteredPrice = useMarketStore((store) => store.filters?.price);
     const filteredGender = useMarketStore((store) => store.filters?.gender);
     const defaultRange = [findMinNumber(), findMaxNumber()];

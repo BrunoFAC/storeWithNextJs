@@ -7,6 +7,7 @@ import Woman from './woman.png';
 import NoProductFound from './noProductFound.png';
 import UnderConstruction from './underConstruction.png';
 import HeadLighter from './headLighter.png';
+import Portugal from './portugal.png';
 
 export const Images = {
     Head,
@@ -18,4 +19,5 @@ export const Images = {
     UnderConstruction,
     HeadDarkMode,
     HeadLighter,
+    Portugal,
 };

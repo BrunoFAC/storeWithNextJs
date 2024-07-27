@@ -1,13 +1,13 @@
 import { Box, Fab, useScrollTrigger } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { FC } from 'react';
-import { useMarketStore } from '@/store';
+import { useMarketStore, useTransactionStore } from '@/store';
 
 export const FloatButton: FC = () => {
     const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
-    const section = useMarketStore((store) => store.section);
+    const section = useMarketStore((store) => store.section?.toLocaleLowerCase());
     const theme = useMarketStore((store) => store.theme);
-    const setOpen = useMarketStore((store) => store.setOpenBuyDrawer);
+    const setOpen = useTransactionStore((store) => store.setOpenBuyDrawer);
 
     const toggleDrawer = () => () => {
         setOpen(true);

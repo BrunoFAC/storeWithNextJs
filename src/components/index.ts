@@ -18,3 +18,6 @@ export * from './buyMenu';
 export * from './buyNowModal';
 export * from './buyNow';
 export * from './addToCartFloatButton';
+export * from './addressAccordion';
+export * from './confirmationProducts';
+export * from './summary';

@@ -8,10 +8,12 @@ import { Paths, resources } from '@/global';
 export const SectionsMD: FC<Sections> = ({ sections }) => {
     const router = useRouter();
     const setGender = useMarketStore((store) => store.setGender);
+    const setIsLoading = useMarketStore((store) => store.setIsLoading);
     const theme = useMarketStore((store) => store.theme);
 
     const goTo = (link: Paths, filter?: Gender) => {
         filter && setGender(filter);
+        setIsLoading(true);
         router.push(link);
     };
 

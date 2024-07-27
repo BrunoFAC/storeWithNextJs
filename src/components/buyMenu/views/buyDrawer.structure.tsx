@@ -1,6 +1,6 @@
 import { resources } from '@/global';
 import { sumFloatNumbersHelper } from '@/helpers';
-import { useMarketStore } from '@/store';
+import { useMarketStore, useTransactionStore } from '@/store';
 import { Box, Typography } from '@mui/material';
 import { ReactNode, FC } from 'react';
 
@@ -10,7 +10,7 @@ export interface StructureProps {
 }
 export const Structure: FC<StructureProps> = ({ children, fontSize }) => {
     const theme = useMarketStore((store) => store.theme);
-    const cart = useMarketStore((store) => store.cart);
+    const cart = useTransactionStore((store) => store.cart);
 
     const priceArray = cart.map((e) => e.price);
     const totalCartProducts = cart.length;

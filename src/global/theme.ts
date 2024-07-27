@@ -13,6 +13,8 @@ export const lightTheme: Theme = {
     gray: '#A0B3C2',
     fadedPrimary: '#1876d2b0',
     fadedBackground: `linear-gradient(60deg, #1876D2 0%, #114092 92%)`,
+    green: 'green',
+    red: 'red',
 };
 
 export const darkTheme: Theme = {
@@ -28,4 +30,6 @@ export const darkTheme: Theme = {
     gray: '#A0B3C2',
     fadedPrimary: 'rgb(25 41 50 / 96%)',
     fadedBackground: `linear-gradient(60deg, rgb(25 41 50 / 96%) 0%, rgba(255, 255, 255, 0) 92%)`,
+    green: 'green',
+    red: 'red',
 };

@@ -1,33 +1,33 @@
 import { Box, Button, Divider, IconButton, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ClearIcon from '@mui/icons-material/Clear';
-import { resources } from '@/global';
+import { Paths, resources } from '@/global';
 import { removeDuplicates, sumFloatNumbersHelper } from '@/helpers';
-import { useMarketStore, Products } from '@/store';
+import { useMarketStore, Products, useTransactionStore, useBillingStore } from '@/store';
 import { useSnackbar } from 'notistack';
 import { FC, Fragment } from 'react';
 import { BuyMenusViews } from '../buyMenu.views';
+import { useRouter } from 'next/router';
 
 export interface BuyDrawerMDProps {
     toggleDrawer: () => void;
 }
 export const BuyDrawerMD: FC<BuyDrawerMDProps> = ({ toggleDrawer }) => {
     const { enqueueSnackbar } = useSnackbar();
+    const router = useRouter();
 
     const theme = useMarketStore((store) => store.theme);
-    const cart = useMarketStore((store) => store.cart);
-    const setCart = useMarketStore((store) => store.setCart);
-    const removeCart = useMarketStore((store) => store.removeCart);
+    const cart = useTransactionStore((store) => store.cart);
+    const setBuyProducts = useBillingStore((store) => store.setBuyProducts);
+    const removeCart = useTransactionStore((store) => store.removeCart);
     const priceProduct = (id: number) => cart.filter((c) => c.id === id)?.map((cart) => cart.price);
 
     const colorOnCart = theme.primary;
     const isDarkTheme = theme.type === 'dark';
 
     const handleClickCart = () => {
-        enqueueSnackbar(cart.length > 1 ? resources.multiPurchased : resources.singlePurchased, {
-            variant: 'success',
-        });
-        setCart([]);
+        setBuyProducts(cart);
+        router.push(Paths.Confirmation);
     };
 
     const handleRemoveCart = (e: Products) => {

@@ -1,10 +1,11 @@
-import { resources } from '@/global';
+import { Paths, resources } from '@/global';
 import { sumFloatNumbersHelper } from '@/helpers';
-import { useMarketStore } from '@/store';
+import { useBillingStore, useMarketStore, useTransactionStore } from '@/store';
 import { Slide, Dialog, DialogContent, Box, Typography, Button } from '@mui/material';
-import { TransitionProps, useSnackbar } from 'notistack';
+import { TransitionProps } from 'notistack';
 import * as React from 'react';
 import { BuyNow } from '../buyNow/buyNow';
+import { useRouter } from 'next/router';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -17,28 +18,25 @@ const Transition = React.forwardRef(function Transition(
 });
 
 export const BuyNowModal: React.FC = () => {
-    const { enqueueSnackbar } = useSnackbar();
-    const openBuyModal = useMarketStore((store) => store.openBuyModal);
-    const cart = useMarketStore((store) => store.cart);
+    const openBuyModal = useTransactionStore((store) => store.openBuyModal);
+    const cart = useTransactionStore((store) => store.cart);
     const products = cart.filter((e) => e.id === openBuyModal?.detail?.id);
     const detail = cart.find((e) => e.id === openBuyModal?.detail?.id);
     const totalPrice = sumFloatNumbersHelper(products.map((e) => e.price));
     const theme = useMarketStore((store) => store.theme);
     const isDarkTheme = theme.type === 'dark';
-
-    const removeCart = useMarketStore((store) => store.removeCart);
-    const setOpenBuyModal = useMarketStore((store) => store.setOpenBuyModal);
+    const router = useRouter();
+    const setBuyProducts = useBillingStore((store) => store.setBuyProducts);
+    const setOpenBuyModal = useTransactionStore((store) => store.setOpenBuyModal);
 
     const handleClose = () => {
         setOpenBuyModal({ open: false, detail: undefined });
     };
 
     const handleBuy = () => {
-        enqueueSnackbar(resources.singlePurchased, {
-            variant: 'success',
-        });
         handleClose();
-        detail && removeCart(detail);
+        setBuyProducts(cart.filter((e) => e.id === detail?.id));
+        router.push(Paths.Confirmation);
     };
 
     return (

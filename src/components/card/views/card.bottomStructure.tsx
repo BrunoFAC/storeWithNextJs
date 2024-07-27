@@ -1,6 +1,6 @@
 import { RatingStars } from '@/components/ratingStars';
 import { Paths, resources } from '@/global';
-import { Products, useMarketStore } from '@/store';
+import { Products, useMarketStore, useTransactionStore } from '@/store';
 import { Box, Typography, Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
@@ -12,7 +12,7 @@ interface BottomStructureProps {
 export const BottomStructure: FC<BottomStructureProps> = ({ product }) => {
     const router = useRouter();
     const theme = useMarketStore((store) => store.theme);
-    const setDetail = useMarketStore((store) => store.setDetail);
+    const setDetail = useTransactionStore((store) => store.setDetail);
 
     const handleDetail = () => {
         setDetail(product);

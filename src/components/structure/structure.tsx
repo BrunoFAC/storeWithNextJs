@@ -11,17 +11,16 @@ interface StructureProps {
     children: React.ReactNode;
 }
 const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
-    '&.notistack-MuiContent-success': {
-        fontFamily: 'sans-serif',
-    },
-    '&.notistack-MuiContent-info': {
+    '&.notistack-MuiContent': {
+        //edit here
+
         fontFamily: 'sans-serif',
     },
 }));
 
 export const Structure: React.FC<StructureProps> = ({ children }) => {
     const scrolled = useScrollTrigger();
-    const section = useMarketStore((store) => store.section);
+    const section = useMarketStore((store) => store.section?.toLocaleLowerCase());
     const theme = useMarketStore((store) => store.theme);
     const router = useRouter();
 
@@ -38,6 +37,7 @@ export const Structure: React.FC<StructureProps> = ({ children }) => {
         <SnackbarProvider
             maxSnack={3}
             autoHideDuration={1500}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             Components={{
                 success: StyledMaterialDesignContent,
                 info: StyledMaterialDesignContent,

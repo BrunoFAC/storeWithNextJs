@@ -1,10 +1,10 @@
-import { useMarketStore } from '@/store';
+import { useTransactionStore } from '@/store';
 import { Drawer } from '@mui/material';
 import { BuyMenusViews } from '../buyMenu.views';
 
 export const BuyDrawer: React.FC = () => {
-    const open = useMarketStore((store) => store.openBuyDrawer);
-    const setOpen = useMarketStore((store) => store.setOpenBuyDrawer);
+    const open = useTransactionStore((store) => store.openBuyDrawer);
+    const setOpen = useTransactionStore((store) => store.setOpenBuyDrawer);
 
     const toggleDrawer = () => () => {
         setOpen(false);

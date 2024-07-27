@@ -1,7 +1,7 @@
 import { Box, Grow } from '@mui/material';
 import { FC } from 'react';
 import { CardViews } from './card.views';
-import { Products, useMarketStore } from '@/store';
+import { Products, useMarketStore, useTransactionStore } from '@/store';
 import { useRouter } from 'next/router';
 import { Paths } from '@/global';
 export interface CardProps {
@@ -11,7 +11,7 @@ export interface CardProps {
 export const Card: FC<CardProps> = ({ product, isClickable }) => {
     const router = useRouter();
     const theme = useMarketStore((store) => store.theme);
-    const setDetail = useMarketStore((store) => store.setDetail);
+    const setDetail = useTransactionStore((store) => store.setDetail);
 
     const handleDetail = () => {
         setDetail(product);

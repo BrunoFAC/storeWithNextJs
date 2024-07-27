@@ -20,7 +20,7 @@ import Image from 'next/image';
 import { FC, useState } from 'react';
 import { useRouter } from 'next/router';
 import { SwitchMode } from '@/components';
-import { Paths, resources, Sections } from '@/global';
+import { Paths, resources, navigationItems } from '@/global';
 import { Images } from '@/images';
 import { useMarketStore } from '@/store';
 
@@ -32,6 +32,7 @@ export const DrawerHeaderXS: FC = () => {
 
     const handleClickOpen = () => {
         setOpenModal(true);
+        // router.push(Paths.Profile);
     };
     const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
@@ -103,30 +104,32 @@ export const DrawerHeaderXS: FC = () => {
                         </ListItemButton>
                     </ListItem>
                 </Box>
-                {Sections.map((page, index) => (
-                    <Box key={`${index}-${page.title}`}>
-                        <ListItem key={index} disablePadding>
-                            <ListItemButton onClick={() => handleRedirect(page.path)}>
-                                <ListItemIcon>
-                                    {index === 1 ? (
-                                        <TvIcon {...darkMode} fontSize="large" />
-                                    ) : index === 2 ? (
-                                        <DiamondIcon {...darkMode} fontSize="large" />
-                                    ) : (
-                                        <CheckroomIcon {...darkMode} fontSize="large" />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText
-                                    sx={{
-                                        ...(theme.type === 'dark' && { color: theme.light }),
-                                        textTransform: 'capitalize',
-                                    }}
-                                    primary={page.title}
-                                />
-                            </ListItemButton>
-                        </ListItem>
-                    </Box>
-                ))}
+                {navigationItems
+                    .filter((e) => e.type === 'section')
+                    .map((page, index) => (
+                        <Box key={`${index}-${page.title}`}>
+                            <ListItem key={index} disablePadding>
+                                <ListItemButton onClick={() => handleRedirect(page.path)}>
+                                    <ListItemIcon>
+                                        {index === 1 ? (
+                                            <TvIcon {...darkMode} fontSize="large" />
+                                        ) : index === 2 ? (
+                                            <DiamondIcon {...darkMode} fontSize="large" />
+                                        ) : (
+                                            <CheckroomIcon {...darkMode} fontSize="large" />
+                                        )}
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        sx={{
+                                            ...(theme.type === 'dark' && { color: theme.light }),
+                                            textTransform: 'capitalize',
+                                        }}
+                                        primary={page.title}
+                                    />
+                                </ListItemButton>
+                            </ListItem>
+                        </Box>
+                    ))}
                 <Box>
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => handleClickOpen()}>

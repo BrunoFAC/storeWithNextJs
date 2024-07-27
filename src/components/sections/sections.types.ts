@@ -1,5 +1,5 @@
 import { Paths } from '../../global';
-import { Gender } from '../../store';
+import { Gender } from '@/store';
 
 export interface SectionsCards {
     image: string;

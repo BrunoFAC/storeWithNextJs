@@ -1,5 +1,5 @@
 import { resources } from '@/global';
-import { Products, useMarketStore } from '@/store';
+import { Products, useMarketStore, useTransactionStore } from '@/store';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Button, Box, IconButton, Typography } from '@mui/material';
@@ -13,12 +13,12 @@ export interface CardXSProps {
 }
 export const BuyNow: FC<CardXSProps> = ({ detail, width, fontSize, handleBuy }) => {
     const { enqueueSnackbar } = useSnackbar();
-    const showButtonBuyNow = useMarketStore((store) => store.showButtonBuyNow);
-    const setOpenBuyModal = useMarketStore((store) => store.setOpenBuyModal);
+    const showButtonBuyNow = useTransactionStore((store) => store.showButtonBuyNow);
+    const setOpenBuyModal = useTransactionStore((store) => store.setOpenBuyModal);
     const theme = useMarketStore((store) => store.theme);
-    const addToCart = useMarketStore((store) => store.addCart);
-    const removeCart = useMarketStore((store) => store.removeCart);
-    const cart = useMarketStore((store) => store.cart);
+    const addToCart = useTransactionStore((store) => store.addCart);
+    const removeCart = useTransactionStore((store) => store.removeCart);
+    const cart = useTransactionStore((store) => store.cart);
 
     const products = cart.filter((e) => e.id === detail.id);
 

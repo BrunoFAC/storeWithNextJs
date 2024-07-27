@@ -18,6 +18,8 @@ export interface Theme {
     lightGray: string;
     gray: string;
     fadedPrimary: string;
+    red: string;
+    green: string;
     fadedBackground: string;
 }
 
@@ -47,38 +49,21 @@ export interface Products {
     price: number;
     switchMode: ThemeType;
 }
-export interface BuyModalProps {
-    open: boolean;
-    detail?: Products;
-}
+
 export interface MarketState {
-    cart: Products[];
     filteredProducts: Products[];
     products: Products[];
-    favorites: Products[];
     filters: Filters;
     section?: string;
     isLoading: boolean;
     filtersSort: FiltersValue[];
     openModal: boolean;
-    openBuyModal?: BuyModalProps;
-    detail?: Products;
     theme: Theme;
-    openBuyDrawer: boolean;
-    showButtonBuyNow: boolean;
 }
 
 export interface MarketActions {
-    setCart(cart: Products[]): void;
     setProducts(products: Products[]): void;
     setFilteredProducts(filteredProducts: Products[]): void;
-    addFavorites(favorites: Products): void;
-    removeFavorites(favorites: Products): void;
-    setFavorites(favorites: Products[]): void;
-    addCart(cart: Products): void;
-    setDetail(detail?: Products): void;
-    removeCart(cart: Products, isOnCart?: boolean): void;
-    setCart(cart: Products[]): void;
     setPrice(price?: number[]): void;
     setGender(gender?: Gender): void;
     setSort(sort?: FiltersValue): void;
@@ -86,9 +71,6 @@ export interface MarketActions {
     setSection(section?: Paths): void;
     setIsLoading(value: boolean): void;
     setOpenModal(openModal: boolean): void;
-    setOpenBuyModal(openBuyModal: BuyModalProps): void;
-    setOpenBuyDrawer(openBuyDrawer: boolean): void;
-    setShowButtonBuyNow(showButtonBuyNow: boolean): void;
     setTheme(theme: ThemeType): void;
     resetStore(): void;
 }

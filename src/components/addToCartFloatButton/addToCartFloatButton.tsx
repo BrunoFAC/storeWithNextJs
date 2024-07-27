@@ -3,17 +3,17 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { FC } from 'react';
 import { useSnackbar } from 'notistack';
-import { useMarketStore } from '@/store';
+import { useMarketStore, useTransactionStore } from '@/store';
 import { resources } from '@/global';
 
 export const AddToCartFloatButton: FC = () => {
     const { enqueueSnackbar } = useSnackbar();
 
     const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
-    const cart = useMarketStore((store) => store.cart);
-    const favorites = useMarketStore((store) => store.favorites);
-    const setCart = useMarketStore((store) => store.setCart);
-    const section = useMarketStore((store) => store.section);
+    const cart = useTransactionStore((store) => store.cart);
+    const favorites = useTransactionStore((store) => store.favorites);
+    const setCart = useTransactionStore((store) => store.setCart);
+    const section = useMarketStore((store) => store.section?.toLocaleLowerCase());
     const theme = useMarketStore((store) => store.theme);
 
     const cartIds = cart.map((e) => e.id);

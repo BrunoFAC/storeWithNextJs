@@ -5,14 +5,14 @@ import { useRouter } from 'next/router';
 import { DetailedCard, BuyNowModal } from '@/components';
 import { Paths } from '@/global';
 import { removeDuplicates } from '@/helpers';
-import { useMarketStore } from '@/store';
+import { useMarketStore, useTransactionStore } from '@/store';
 
 const Cart: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);
-    const cart = useMarketStore((store) => store.cart);
-    const setShowButtonBuyNow = useMarketStore((store) => store.setShowButtonBuyNow);
-    const setOpenBuyModal = useMarketStore((store) => store.setOpenBuyModal);
-    const setOpenBuyDrawer = useMarketStore((store) => store.setOpenBuyDrawer);
+    const cart = useTransactionStore((store) => store.cart);
+    const setShowButtonBuyNow = useTransactionStore((store) => store.setShowButtonBuyNow);
+    const setOpenBuyModal = useTransactionStore((store) => store.setOpenBuyModal);
+    const setOpenBuyDrawer = useTransactionStore((store) => store.setOpenBuyDrawer);
 
     const router = useRouter();
 

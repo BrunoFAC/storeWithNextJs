@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { DetailedCardViews } from './detailedCard.views';
-import { Products, useMarketStore } from '@/store';
+import { Products, useTransactionStore } from '@/store';
 
 export interface DetailedCardProps {
     detail?: Products;
 }
 export const DetailedCard: FC<DetailedCardProps> = ({ detail }) => {
-    const cart = useMarketStore((store) => store.cart);
-    const addCart = useMarketStore((store) => store.addCart);
-    const removeCart = useMarketStore((store) => store.removeCart);
+    const cart = useTransactionStore((store) => store.cart);
+    const addCart = useTransactionStore((store) => store.addCart);
+    const removeCart = useTransactionStore((store) => store.removeCart);
 
     const handleCart = (product: Products) => {
         if (cart.some((e) => e.id === product.id)) {

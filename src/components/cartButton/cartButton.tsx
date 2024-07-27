@@ -1,5 +1,5 @@
 import { resources } from '@/global';
-import { useMarketStore } from '@/store';
+import { useMarketStore, useTransactionStore } from '@/store';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Button } from '@mui/material';
@@ -15,7 +15,7 @@ export interface CartButtonProps {
 export const CartButton: FC<CartButtonProps> = ({ handleCart, fontSize, id }) => {
     const { enqueueSnackbar } = useSnackbar();
     const theme = useMarketStore((store) => store.theme);
-    const cart = useMarketStore((store) => store.cart);
+    const cart = useTransactionStore((store) => store.cart);
     const isOnCart = cart.some((e) => e.id === id);
     const colorOnCart = theme.type === 'dark' ? theme.primary : theme.secondary;
 

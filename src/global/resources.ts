@@ -44,4 +44,16 @@ export const resources = {
     singleProduct: 'Product',
     multiProducts: 'Products',
     cancel: 'cancel',
+    fullName: 'Full Name',
+    address: 'Address',
+    zipCode: 'ZIP Code',
+    nif: 'NIF',
+    billingAddress: 'Billing Address',
+    profileAddress: 'Profile Address',
+    placeholder: {
+        address: '1 Example Street, Block 2',
+        fullName: 'Andrea Starford',
+        nif: '123 456 789',
+        zipCode: '0000-000',
+    },
 };

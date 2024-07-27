@@ -5,13 +5,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useRouter } from 'next/router';
 import { SwitchMode } from '@/components';
 import { resources, Paths } from '@/global';
-import { useMarketStore } from '@/store';
+import { useMarketStore, useTransactionStore } from '@/store';
 import { useSnackbar } from 'notistack';
 
 export const HeaderProfile: React.FC = () => {
-    const cart = useMarketStore((store) => store.cart);
+    const cart = useTransactionStore((store) => store.cart);
     const theme = useMarketStore((store) => store.theme);
-    const favorites = useMarketStore((store) => store.favorites);
+    const favorites = useTransactionStore((store) => store.favorites);
     const cartLength = cart.length;
     const favoritesLength = favorites.length;
     const router = useRouter();
@@ -31,6 +31,7 @@ export const HeaderProfile: React.FC = () => {
 
     const handleClickOpen = () => {
         setOpenModal(true);
+        // router.push(Paths.Profile);
     };
 
     return (

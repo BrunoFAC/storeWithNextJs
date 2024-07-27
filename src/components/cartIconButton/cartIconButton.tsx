@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { resources } from '@/global';
-import { Products, useMarketStore } from '@/store';
+import { Products, useMarketStore, useTransactionStore } from '@/store';
 export interface CartIconButtonProps {
     cartProduct: Products;
 }
@@ -12,10 +12,10 @@ export interface CartIconButtonProps {
 export const CartIconButton: FC<CartIconButtonProps> = ({ cartProduct }) => {
     const { enqueueSnackbar } = useSnackbar();
 
-    const cart = useMarketStore((store) => store.cart);
+    const cart = useTransactionStore((store) => store.cart);
     const isOnCart = cart.some((e) => e.id === cartProduct.id);
-    const addCart = useMarketStore((store) => store.addCart);
-    const removeCart = useMarketStore((store) => store.removeCart);
+    const addCart = useTransactionStore((store) => store.addCart);
+    const removeCart = useTransactionStore((store) => store.removeCart);
 
     const handleCart = () => {
         if (cart.some((e) => e.id === cartProduct.id)) {

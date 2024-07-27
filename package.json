@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@mui/icons-material": "5.15.21",
+        "@mui/joy": "^5.0.0-beta.48",
         "@mui/material": "5.15.21",
         "@mui/material-nextjs": "5.15.11",
         "@typescript-eslint/eslint-plugin": "7.16.0",
@@ -21,6 +22,7 @@
         "notistack": "3.0.1",
         "react": "18",
         "react-dom": "18",
+        "react-imask": "^7.6.1",
         "sharp": "0.33.4",
         "zustand": "4.5.4"
     },

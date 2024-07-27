@@ -6,18 +6,54 @@ export enum Paths {
     Jewelery = '/jewelery',
     Cart = '/cart',
     Detail = '/detail',
+    Profile = '/profile',
+    Confirmation = '/confirmation',
 }
 export interface PathsAndTitle {
     path: Paths;
     title: string;
+    type: NavigationType;
 }
-export const Sections: PathsAndTitle[] = [
-    { path: Paths.Clothes, title: 'Clothes' },
-    { path: Paths.Electronics, title: 'Electronics' },
-    { path: Paths.Jewelery, title: 'Jewelery' },
-];
-export const Transactions: PathsAndTitle[] = [
-    { path: Paths.Cart, title: 'Cart' },
-    { path: Paths.Favorites, title: 'Favorites' },
-    { path: Paths.Detail, title: 'Detail' },
+export type NavigationType = 'transaction' | 'section' | 'default';
+export const navigationItems: PathsAndTitle[] = [
+    {
+        path: Paths.Home,
+        title: 'Sections',
+        type: 'default',
+    },
+    {
+        path: Paths.Clothes,
+        title: 'Clothes',
+        type: 'section',
+    },
+    {
+        path: Paths.Electronics,
+        title: 'Electronics',
+        type: 'section',
+    },
+    {
+        path: Paths.Jewelery,
+        title: 'Jewelery',
+        type: 'section',
+    },
+    {
+        path: Paths.Cart,
+        title: 'Cart',
+        type: 'transaction',
+    },
+    {
+        path: Paths.Favorites,
+        title: 'Favorites',
+        type: 'transaction',
+    },
+    {
+        path: Paths.Detail,
+        title: 'Detail',
+        type: 'transaction',
+    },
+    {
+        path: Paths.Confirmation,
+        title: 'Confirm payment',
+        type: 'transaction',
+    },
 ];
