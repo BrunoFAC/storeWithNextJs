@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { DialogContent, Dialog, Typography } from '@mui/material';
-import Slide from '@mui/material/Slide';
-import { TransitionProps } from '@mui/material/transitions';
+import { DialogContent, Dialog, Typography, Slide } from '@mui/material';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import { resources } from '@/global';
 import { useMarketStore } from '@/store';
+import { TransitionProps } from '@mui/material/transitions';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {

@@ -3,30 +3,31 @@ import { Box } from '@mui/material';
 import { SectionsViews } from './sections.views';
 import { SectionsCards } from './sections.types';
 import { Images } from '@/images';
+import { Paths, resources } from '@/global';
 
 const images = [
     {
-        label: "Men's Section",
+        label: resources.manSection,
         image: Images.Man.src,
-        redirect: 'clothes',
+        redirect: Paths.Clothes,
         gender: 'man',
     },
     {
-        label: "Women's Section",
+        label: resources.womanSection,
         image: Images.Woman.src,
-        redirect: 'clothes',
+        redirect: Paths.Clothes,
         gender: 'woman',
     },
     {
-        label: 'Jewelery Section',
+        label: resources.jewelerySection,
         image: Images.Jewelery.src,
-        redirect: 'jewelery',
+        redirect: Paths.Jewelery,
         gender: '',
     },
     {
-        label: 'Electronics Section',
+        label: resources.electronicsSection,
         image: Images.Eletronic.src,
-        redirect: 'electronics',
+        redirect: Paths.Electronics,
         gender: '',
     },
 ];

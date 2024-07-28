@@ -1,4 +1,4 @@
-import { RatingStars } from '@/components/ratingStars';
+import { RatingStars } from '@/components';
 import { Paths, resources } from '@/global';
 import { Products, useMarketStore, useTransactionStore } from '@/store';
 import { Box, Typography, Button } from '@mui/material';

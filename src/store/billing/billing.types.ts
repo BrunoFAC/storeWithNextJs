@@ -1,4 +1,4 @@
-import { Products } from '../market';
+import { Products } from '@/store';
 
 export type Status = 'success' | 'error' | 'default';
 export interface FieldValidator {

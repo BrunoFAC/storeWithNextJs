@@ -1,6 +1,6 @@
 import { create, StateCreator } from 'zustand';
-import { BillingState, BillingActions, BillingStore, Status, BoughtProducts } from './billing.types';
-import { Products } from '../market';
+import { BillingState, BillingActions, BillingStore, Status } from './billing.types';
+import { Products } from '@/store';
 
 const storeIdentifier = 'billing-store';
 

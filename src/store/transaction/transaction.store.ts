@@ -1,7 +1,7 @@
 import { create, StateCreator } from 'zustand';
 
 import { BuyModalProps, TransactionActions, TransactionState, TransactionStore } from './transaction.types';
-import { Products } from '../market';
+import { Products } from '@/store';
 
 const storeIdentifier = 'transaction-store';
 

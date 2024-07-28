@@ -1,4 +1,8 @@
 export const resources = {
+    manSection: `Men's Section`,
+    womanSection: `Women's Section`,
+    jewelerySection: 'Jewelery Section',
+    electronicsSection: 'Electronics Section',
     seeDetails: 'see details',
     eur: ' EUR',
     hasBeenAddedToCart: 'Added to the cart.',
