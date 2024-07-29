@@ -55,7 +55,7 @@ export interface MarketState {
     products: Products[];
     filters: Filters;
     section?: string;
-    isLoading: boolean;
+    isLoading: boolean | null;
     filtersSort: FiltersValue[];
     openModal: boolean;
     theme: Theme;

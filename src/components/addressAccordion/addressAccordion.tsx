@@ -26,8 +26,7 @@ export const AddressAccordion: FC = () => {
                 </AccordionSummary>
                 <Divider />
                 <AccordionDetails>
-                    <AddressAccordionViews.Address />
-                    <AddressAccordionViews.ZipCode />
+                    <AddressAccordionViews.FormNewAddress />
                 </AccordionDetails>
             </Accordion>
             <Accordion style={{ borderRadius: '4px' }} expanded={isSelected === 'new'} sx={{ marginTop: '16px' }}>

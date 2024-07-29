@@ -5,6 +5,8 @@ import { useBillingStore, useMarketStore } from '@/store';
 import { nifHelper } from '@/helpers';
 import { forwardRef, FC, useMemo, useEffect } from 'react';
 import { resources } from '@/global';
+import { Box } from '@mui/material';
+import { Images } from '@/images';
 
 interface CustomProps {
     onChange: (event: { target: { name: string; value: string } }) => void;
@@ -43,6 +45,11 @@ export const Nif: FC = () => {
             value={nif}
             onChange={(event) => setNifValue(event.target.value)}
             placeholder={resources.placeholder.nif}
+            startDecorator={
+                <Box style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src={Images.Portugal.src} style={{ borderRadius: '8px', width: 32, height: 20 }} />
+                </Box>
+            }
             endDecorator={
                 <CheckCircleOutlined
                     sx={{
@@ -52,7 +59,7 @@ export const Nif: FC = () => {
                 />
             }
             sx={{
-                width: 'min-content',
+                width: '300px',
                 maxWidth: '100%',
                 '&::before': {
                     transform: 'scaleX(0)',

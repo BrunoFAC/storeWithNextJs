@@ -61,7 +61,7 @@ export const ZipCode: FC = () => {
                 />
             }
             sx={{
-                width: 'min-content',
+                width: '300px',
                 maxWidth: '100%',
                 '&::before': {
                     transform: 'scaleX(0)',

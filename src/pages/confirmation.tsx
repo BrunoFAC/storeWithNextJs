@@ -17,7 +17,7 @@ const Confirmation: NextPage = () => {
     };
     useEffect(() => {
         if (!buyProducts.length) {
-            setTimeout(() => router.push(Paths.Home), 300);
+            router.push(Paths.Home);
         }
     }, [buyProducts]);
 

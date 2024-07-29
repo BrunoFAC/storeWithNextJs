@@ -2,7 +2,7 @@ import { Paths, resources } from '@/global';
 import { sumFloatNumbersHelper } from '@/helpers';
 import { useMarketStore, useBillingStore, useTransactionStore } from '@/store';
 import { Box, Typography, Button } from '@mui/material';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { AddressAccordion } from '@/components';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
@@ -18,6 +18,7 @@ export const SummaryXS: FC<SummaryProps> = ({ priceProduct }) => {
     const setBoughtProducts = useBillingStore((store) => store.setBoughtProducts);
     const setCart = useTransactionStore((store) => store.setCart);
     const cart = useTransactionStore((store) => store.cart);
+    const [hasBoughtProducts, setHasBoughtProducts] = useState<boolean>(false);
 
     const isDisabled = () => {
         if (!buyProducts.length) return true;
@@ -25,12 +26,14 @@ export const SummaryXS: FC<SummaryProps> = ({ priceProduct }) => {
         if (billingAddress.address.length < 10 || billingAddress.fullName.length < 3) return true;
         return false;
     };
+
     const handleOnClick = () => {
         if (isDisabled()) {
             enqueueSnackbar(resources.errorBuyProducts, {
                 variant: 'error',
             });
         } else {
+            setHasBoughtProducts(true);
             enqueueSnackbar(resources.successOrder, {
                 variant: 'success',
                 autoHideDuration: 3000,
@@ -39,6 +42,7 @@ export const SummaryXS: FC<SummaryProps> = ({ priceProduct }) => {
                 router.push(Paths.Home);
                 setBoughtProducts();
                 setCart(cart.filter((e) => !buyProducts.includes(e)));
+                setHasBoughtProducts(false);
             }, 3000);
         }
     };
@@ -104,7 +108,7 @@ export const SummaryXS: FC<SummaryProps> = ({ priceProduct }) => {
                 </Box>
                 <AddressAccordion />
                 <Button
-                    onClick={() => handleOnClick()}
+                    onClick={() => !hasBoughtProducts && handleOnClick()}
                     variant="outlined"
                     style={{
                         borderColor: theme.light,

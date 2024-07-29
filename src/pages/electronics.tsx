@@ -53,7 +53,7 @@ const Electronics: NextPage = () => {
             .finally(() => setIsLoading(false));
     }, []);
 
-    return isLoading ? (
+    return isLoading || isLoading === null ? (
         <Skeleton />
     ) : (
         <>

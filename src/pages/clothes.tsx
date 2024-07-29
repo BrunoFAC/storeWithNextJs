@@ -74,7 +74,7 @@ const Clothes: NextPage = () => {
         }
     }, [gender]);
 
-    return isLoading ? (
+    return isLoading || isLoading === null ? (
         <Skeleton />
     ) : (
         <>

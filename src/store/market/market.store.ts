@@ -18,7 +18,7 @@ const initialData: MarketState = {
     filteredProducts: [],
     filters: { sort: FiltersValue.RELEVANCE },
     section: undefined,
-    isLoading: false,
+    isLoading: null,
     openModal: false,
     filtersSort: Object.values(FiltersValue),
     theme: darkTheme,
