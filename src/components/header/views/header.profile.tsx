@@ -29,9 +29,8 @@ export const HeaderProfile: React.FC = () => {
             : router.push(Paths.Favorites);
     };
 
-    const handleClickOpen = () => {
-        setOpenModal(true);
-        // router.push(Paths.Profile);
+    const handleRedirectToProfile = () => {
+        router.push(Paths.Profile);
     };
 
     return (
@@ -110,12 +109,12 @@ export const HeaderProfile: React.FC = () => {
                 sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}
                 title={resources.settings}
             >
-                <IconButton onClick={handleClickOpen} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>
+                <IconButton onClick={handleRedirectToProfile} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>
                     <Avatar alt="Bruno" src="." style={{ fontSize: '1rem', width: '30px', height: '30px' }} />
                 </IconButton>
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} title={resources.settings} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton onClick={handleClickOpen} sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
+                <IconButton onClick={handleRedirectToProfile} sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
                     <Avatar alt="Bruno" src="." />
                 </IconButton>
             </Tooltip>

@@ -2,11 +2,10 @@ import { NextPage } from 'next';
 import { useMarketStore } from '@/store';
 import { useEffect } from 'react';
 import { Paths } from '@/global';
-import { Input } from '@mui/material';
+import { Box } from '@mui/material';
+import { ProfileFields } from '@/components';
 
 const Profile: NextPage = () => {
-    const theme = useMarketStore((store) => store.theme);
-    const isDark = theme.type === 'dark';
     const setSection = useMarketStore((store) => store.setSection);
 
     useEffect(() => {
@@ -14,9 +13,9 @@ const Profile: NextPage = () => {
     }, []);
 
     return (
-        <div>
-            <Input sx={{ borderColor: isDark ? theme.light : theme.primary }} />
-        </div>
+        <Box style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <ProfileFields />
+        </Box>
     );
 };
 export default Profile;

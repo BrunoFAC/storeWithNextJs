@@ -37,6 +37,11 @@ export const navigationItems: PathsAndTitle[] = [
         type: 'section',
     },
     {
+        path: Paths.Profile,
+        title: 'Profile',
+        type: 'section',
+    },
+    {
         path: Paths.Cart,
         title: 'Cart',
         type: 'transaction',
