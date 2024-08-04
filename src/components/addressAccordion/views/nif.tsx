@@ -1,7 +1,7 @@
 import { IMaskInput } from 'react-imask';
 import { Input } from '@mui/joy';
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
-import { useBillingStore, useMarketStore } from '@/store';
+import { useBillingStore, useMarketStore, useProfileStore } from '@/store';
 import { nifHelper } from '@/helpers';
 import { forwardRef, FC, useMemo, useEffect } from 'react';
 import { resources } from '@/global';
@@ -33,6 +33,9 @@ export const Nif: FC = () => {
     const setNifStatus = useBillingStore((store) => store.setNifStatus);
     const nif = useBillingStore((store) => store.billingAddress.nif.field);
     const theme = useMarketStore((store) => store.theme);
+    const selected = useBillingStore((store) => store.selected);
+    const profile = useProfileStore((store) => store.profile);
+    const isDisable = selected === 'profile';
 
     const hasErrorNIF = useMemo(() => nifHelper(nif.replaceAll(' ', '')) === 'error', [nif]);
     const isValidNIF = useMemo(() => nifHelper(nif.replaceAll(' ', '')) === 'success', [nif]);
@@ -42,8 +45,9 @@ export const Nif: FC = () => {
     }, [hasErrorNIF, isValidNIF]);
     return (
         <Input
-            value={nif}
-            onChange={(event) => setNifValue(event.target.value)}
+            disabled={isDisable}
+            value={isDisable ? profile?.nif.field : nif}
+            onChange={(event) => !isDisable && setNifValue(event.target.value)}
             placeholder={resources.placeholder.nif}
             startDecorator={
                 <Box style={{ display: 'flex', alignItems: 'center' }}>
@@ -54,7 +58,7 @@ export const Nif: FC = () => {
                 <CheckCircleOutlined
                     sx={{
                         transition: '0.2s ease-in-out',
-                        color: hasErrorNIF ? theme.red : isValidNIF ? theme.green : theme.gray,
+                        color: isDisable || isValidNIF ? theme.green : hasErrorNIF ? theme.red : theme.gray,
                     }}
                 />
             }

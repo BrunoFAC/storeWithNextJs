@@ -1,5 +1,5 @@
 import { create, StateCreator } from 'zustand';
-
+import { devtools } from '@pavlobu/zustand/middleware';
 import { BuyModalProps, TransactionActions, TransactionState, TransactionStore } from './transaction.types';
 import { Products } from '@/store';
 
@@ -147,4 +147,5 @@ const storeData: StateCreator<TransactionStore> = (set) => ({
     ...actions(set),
 });
 
-export const useTransactionStore = create<TransactionStore>(storeData);
+// @ts-ignore
+export const useTransactionStore = create<TransactionStore>(devtools(storeData));

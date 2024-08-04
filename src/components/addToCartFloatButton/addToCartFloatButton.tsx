@@ -58,7 +58,6 @@ export const AddToCartFloatButton: FC = () => {
                                 height: 64,
                                 color: theme.primary,
                             }}
-                            aria-label="buy"
                             onClick={() => (allFavoritesAreOnCart ? removeAllToCart() : addAllToCart())}
                         >
                             {allFavoritesAreOnCart ? <RemoveShoppingCartIcon /> : <AddShoppingCartIcon />}

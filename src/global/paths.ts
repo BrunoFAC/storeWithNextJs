@@ -14,7 +14,7 @@ export interface PathsAndTitle {
     title: string;
     type: NavigationType;
 }
-export type NavigationType = 'transaction' | 'section' | 'default';
+export type NavigationType = 'transaction' | 'section' | 'default' | 'profile';
 export const navigationItems: PathsAndTitle[] = [
     {
         path: Paths.Home,
@@ -35,6 +35,11 @@ export const navigationItems: PathsAndTitle[] = [
         path: Paths.Jewelery,
         title: 'Jewelery',
         type: 'section',
+    },
+    {
+        path: Paths.Profile,
+        title: 'Profile',
+        type: 'profile',
     },
     {
         path: Paths.Cart,

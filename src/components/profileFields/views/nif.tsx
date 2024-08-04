@@ -1,12 +1,12 @@
 import { IMaskInput } from 'react-imask';
 import { Input } from '@mui/joy';
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
+import { useProfileStore, useMarketStore } from '@/store';
+import { nifHelper } from '@/helpers';
+import { forwardRef, FC, useMemo, useEffect } from 'react';
+import { resources } from '@/global';
 import { Box } from '@mui/material';
 import { Images } from '@/images';
-import { FC, forwardRef, useEffect, useMemo } from 'react';
-import { useBillingStore, useMarketStore, useProfileStore } from '@/store';
-import { zipCodeHelper } from '@/helpers';
-import { resources } from '@/global';
 
 interface CustomProps {
     onChange: (event: { target: { name: string; value: string } }) => void;
@@ -18,7 +18,7 @@ const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAd
     return (
         <IMaskInput
             {...other}
-            mask="0000-000"
+            mask="000 000 000"
             definitions={{
                 '#': /[1-9]/,
             }}
@@ -28,26 +28,23 @@ const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAd
     );
 });
 
-export const ZipCode: FC = () => {
-    const setZipCodeValue = useBillingStore((store) => store.setZipCodeValue);
-    const setZipCodeStatus = useBillingStore((store) => store.setZipCodeStatus);
-    const zipCode = useBillingStore((store) => store.billingAddress.zipCode.field);
+export const Nif: FC = () => {
+    const setNifValue = useProfileStore((store) => store.setNifValue);
+    const setNifStatus = useProfileStore((store) => store.setNifStatus);
+    const nif = useProfileStore((store) => store.nifField);
     const theme = useMarketStore((store) => store.theme);
-    const hasErrorZipCode = useMemo(() => zipCodeHelper(zipCode) === 'error', [zipCode]);
-    const isValidZipCode = useMemo(() => zipCodeHelper(zipCode) === 'success', [zipCode]);
-    const selected = useBillingStore((store) => store.selected);
-    const profileZipCode = useProfileStore((store) => store.profile?.zipCode.field);
-    const isDisable = selected === 'profile';
-    useEffect(() => {
-        setZipCodeStatus(hasErrorZipCode ? 'error' : isValidZipCode ? 'success' : 'default');
-    }, [hasErrorZipCode, isValidZipCode]);
 
+    const hasErrorNIF = useMemo(() => nifHelper(nif.replaceAll(' ', '')) === 'error', [nif]);
+    const isValidNIF = useMemo(() => nifHelper(nif.replaceAll(' ', '')) === 'success', [nif]);
+
+    useEffect(() => {
+        setNifStatus(hasErrorNIF ? 'error' : isValidNIF ? 'success' : 'default');
+    }, [hasErrorNIF, isValidNIF]);
     return (
         <Input
-            disabled={isDisable}
-            value={isDisable ? profileZipCode : zipCode}
-            onChange={(event) => !isDisable && setZipCodeValue(event.target.value)}
-            placeholder={resources.placeholder.zipCode}
+            value={nif}
+            onChange={(event) => setNifValue(event.target.value)}
+            placeholder={resources.placeholder.nif}
             startDecorator={
                 <Box style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={Images.Portugal.src} style={{ borderRadius: '8px', width: 32, height: 20 }} />
@@ -57,12 +54,12 @@ export const ZipCode: FC = () => {
                 <CheckCircleOutlined
                     sx={{
                         transition: '0.2s ease-in-out',
-                        color: isDisable || isValidZipCode ? theme.green : hasErrorZipCode ? theme.red : theme.gray,
+                        color: hasErrorNIF ? theme.red : isValidNIF ? theme.green : theme.gray,
                     }}
                 />
             }
             sx={{
-                width: '300px',
+                width: '100%',
                 maxWidth: '100%',
                 '&::before': {
                     transform: 'scaleX(0)',

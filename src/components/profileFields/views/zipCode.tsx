@@ -4,7 +4,7 @@ import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
 import { Box } from '@mui/material';
 import { Images } from '@/images';
 import { FC, forwardRef, useEffect, useMemo } from 'react';
-import { useBillingStore, useMarketStore, useProfileStore } from '@/store';
+import { useProfileStore, useMarketStore } from '@/store';
 import { zipCodeHelper } from '@/helpers';
 import { resources } from '@/global';
 
@@ -29,24 +29,23 @@ const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAd
 });
 
 export const ZipCode: FC = () => {
-    const setZipCodeValue = useBillingStore((store) => store.setZipCodeValue);
-    const setZipCodeStatus = useBillingStore((store) => store.setZipCodeStatus);
-    const zipCode = useBillingStore((store) => store.billingAddress.zipCode.field);
+    const setZipCodeValue = useProfileStore((store) => store.setZipCodeValue);
+    const setZipCodeStatus = useProfileStore((store) => store.setZipCodeStatus);
+    const zipCode = useProfileStore((store) => store.zipCodeField);
     const theme = useMarketStore((store) => store.theme);
     const hasErrorZipCode = useMemo(() => zipCodeHelper(zipCode) === 'error', [zipCode]);
     const isValidZipCode = useMemo(() => zipCodeHelper(zipCode) === 'success', [zipCode]);
-    const selected = useBillingStore((store) => store.selected);
-    const profileZipCode = useProfileStore((store) => store.profile?.zipCode.field);
-    const isDisable = selected === 'profile';
+
     useEffect(() => {
         setZipCodeStatus(hasErrorZipCode ? 'error' : isValidZipCode ? 'success' : 'default');
     }, [hasErrorZipCode, isValidZipCode]);
 
     return (
         <Input
-            disabled={isDisable}
-            value={isDisable ? profileZipCode : zipCode}
-            onChange={(event) => !isDisable && setZipCodeValue(event.target.value)}
+            value={zipCode}
+            onChange={(event) => {
+                setZipCodeValue(event.target.value);
+            }}
             placeholder={resources.placeholder.zipCode}
             startDecorator={
                 <Box style={{ display: 'flex', alignItems: 'center' }}>
@@ -57,12 +56,12 @@ export const ZipCode: FC = () => {
                 <CheckCircleOutlined
                     sx={{
                         transition: '0.2s ease-in-out',
-                        color: isDisable || isValidZipCode ? theme.green : hasErrorZipCode ? theme.red : theme.gray,
+                        color: isValidZipCode ? theme.green : hasErrorZipCode ? theme.red : theme.gray,
                     }}
                 />
             }
             sx={{
-                width: '300px',
+                width: '100%',
                 maxWidth: '100%',
                 '&::before': {
                     transform: 'scaleX(0)',

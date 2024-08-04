@@ -1,6 +1,7 @@
 import { create, StateCreator } from 'zustand';
-import { BillingState, BillingActions, BillingStore, Status } from './billing.types';
-import { Products } from '@/store';
+import { BillingState, BillingActions, BillingStore, Status, Address } from './billing.types';
+import { Products } from '../market';
+import { devtools } from '@pavlobu/zustand/middleware';
 
 const storeIdentifier = 'billing-store';
 
@@ -19,6 +20,8 @@ const initialData: BillingState = {
             field: '',
         },
     },
+    selected: undefined,
+    isSelectedAsProfile: false,
 };
 
 const actions = (set: any): BillingActions => {
@@ -85,6 +88,15 @@ const actions = (set: any): BillingActions => {
             `${storeIdentifier}/set-nif-value`
         );
     };
+    const setSelected = (selected?: 'profile' | 'new') => {
+        set(
+            (state: BillingState) => {
+                state.selected = selected;
+            },
+            false,
+            `${storeIdentifier}/set-selected`
+        );
+    };
     const resetBillingDetails = () => {
         set(
             (state: BillingState) => {
@@ -107,15 +119,24 @@ const actions = (set: any): BillingActions => {
             `${storeIdentifier}/reset-billing-store`
         );
     };
-    const setBoughtProducts = () => {
+    const setBoughtProducts = (address?: Address) => {
         set(
             (state: BillingState) => {
-                const boughtProducts = { boughtProducts: state.buyProducts, address: state.billingAddress };
+                const boughtProducts = { boughtProducts: state.buyProducts, address: address ?? state.billingAddress };
                 state.boughtProducts = [...state.boughtProducts, boughtProducts];
                 resetBillingDetails();
             },
             false,
             `${storeIdentifier}/set-bought-products`
+        );
+    };
+    const setIsSelectedAsProfile = (value: boolean) => {
+        set(
+            (state: BillingState) => {
+                state.isSelectedAsProfile = value;
+            },
+            false,
+            `${storeIdentifier}/set-is-selected-as-profile`
         );
     };
     return {
@@ -128,6 +149,8 @@ const actions = (set: any): BillingActions => {
         setNifValue,
         setAddress,
         setBoughtProducts,
+        setSelected,
+        setIsSelectedAsProfile,
     };
 };
 
@@ -136,4 +159,5 @@ const storeData: StateCreator<BillingStore> = (set) => ({
     ...actions(set),
 });
 
-export const useBillingStore = create<BillingStore>(storeData);
+// @ts-ignore
+export const useBillingStore = create<BillingStore>(devtools(storeData));

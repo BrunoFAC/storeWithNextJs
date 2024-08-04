@@ -1,26 +1,37 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Box, Radio, Typography, Accordion, Divider, AccordionDetails, AccordionSummary } from '@mui/material';
 import { AddressAccordionViews } from './addressAccordion.views';
-import { useMarketStore } from '@/store';
+import { useBillingStore, useMarketStore, useProfileStore } from '@/store';
 import { resources } from '@/global';
 
 export const AddressAccordion: FC = () => {
-    const [isSelected, setIsSelected] = useState<'profile' | 'new'>();
+    const selected = useBillingStore((store) => store.selected);
+    const setSelected = useBillingStore((store) => store.setSelected);
     const theme = useMarketStore((store) => store.theme);
+    const profile = useProfileStore((store) => store.profile);
+
     return (
         <div style={{ gap: '16px' }}>
             <Accordion
-                disabled
+                disabled={profile === undefined}
                 style={{ borderRadius: '4px', backgroundColor: 'white' }}
-                expanded={isSelected === 'profile'}
+                expanded={selected === 'profile'}
             >
                 <AccordionSummary
                     onClick={() => {
-                        setIsSelected('profile');
+                        setSelected('profile');
                     }}
                 >
                     <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                        <Radio checked={isSelected === 'profile'} value={isSelected === 'profile'} />
+                        <Radio
+                            sx={{
+                                '&.Mui-checked': {
+                                    color: theme.primary,
+                                },
+                            }}
+                            checked={selected === 'profile'}
+                            value={selected === 'profile'}
+                        />
                         <Typography>{resources.profileAddress}</Typography>
                     </Box>
                 </AccordionSummary>
@@ -29,21 +40,21 @@ export const AddressAccordion: FC = () => {
                     <AddressAccordionViews.FormNewAddress />
                 </AccordionDetails>
             </Accordion>
-            <Accordion style={{ borderRadius: '4px' }} expanded={isSelected === 'new'} sx={{ marginTop: '16px' }}>
+            <Accordion style={{ borderRadius: '4px' }} expanded={selected === 'new'} sx={{ marginTop: '16px' }}>
                 <AccordionSummary
                     onClick={() => {
-                        setIsSelected('new');
+                        setSelected('new');
                     }}
                 >
                     <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                         <Radio
-                            checked={isSelected === 'new'}
+                            checked={selected === 'new'}
                             sx={{
                                 '&.Mui-checked': {
                                     color: theme.primary,
                                 },
                             }}
-                            value={isSelected === 'new'}
+                            value={selected === 'new'}
                         />
                         <Typography>{resources.billingAddress}</Typography>
                     </Box>

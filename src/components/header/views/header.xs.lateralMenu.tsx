@@ -157,14 +157,7 @@ export const DrawerHeaderXS: FC = () => {
 
     return (
         <div>
-            <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                sx={{ color: theme.light }}
-                onClick={toggleDrawer(true)}
-            >
+            <IconButton sx={{ color: theme.light }} onClick={toggleDrawer(true)}>
                 <MenuIcon />
             </IconButton>
             <Drawer open={open} onClose={toggleDrawer(false)}>

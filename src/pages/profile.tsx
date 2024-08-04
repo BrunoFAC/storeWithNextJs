@@ -1,22 +1,30 @@
 import { NextPage } from 'next';
-import { useMarketStore } from '@/store';
+import { useMarketStore, useProfileStore } from '@/store';
 import { useEffect } from 'react';
 import { Paths } from '@/global';
-import { Input } from '@mui/material';
+import { Box } from '@mui/material';
+import { ProfileFields } from '@/components';
 
 const Profile: NextPage = () => {
-    const theme = useMarketStore((store) => store.theme);
-    const isDark = theme.type === 'dark';
     const setSection = useMarketStore((store) => store.setSection);
-
+    const resetTemporaryProfileDetails = useProfileStore((store) => store.resetTemporaryProfileDetails);
     useEffect(() => {
         setSection(Paths.Profile);
+        resetTemporaryProfileDetails();
+        return () => {
+            resetTemporaryProfileDetails();
+        };
     }, []);
 
     return (
-        <div>
-            <Input sx={{ borderColor: isDark ? theme.light : theme.primary }} />
-        </div>
+        <>
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', gap: '12px' }}>
+                <ProfileFields />
+            </Box>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'column', gap: '12px' }}>
+                <ProfileFields width={'50%'} />
+            </Box>
+        </>
     );
 };
 export default Profile;
