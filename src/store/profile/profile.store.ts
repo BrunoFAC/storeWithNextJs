@@ -1,37 +1,43 @@
 import { create, StateCreator } from 'zustand';
-import { ProfileState, ProfileActions, ProfileStore, Status } from '@/store';
+import { ProfileState, ProfileActions, ProfileStore, Status, Profile } from '@/store';
+import { devtools } from '@pavlobu/zustand/middleware';
 
 const storeIdentifier = 'profile-store';
 
 const initialData: ProfileState = {
-    profileAddress: {
-        fullName: '',
-        address: '',
-        zipCode: {
-            status: 'default',
-            field: '',
-        },
-        nif: {
-            status: 'default',
-            field: '',
-        },
-    },
+    image: '',
+    fullName: '',
+    address: '',
+    zipCodeStatus: 'default',
+    zipCodeField: '',
+    nifStatus: 'default',
+    nifField: '',
+    profile: undefined,
 };
 
 const actions = (set: any): ProfileActions => {
     const setFullName = (fullName: string) => {
         set(
             (state: ProfileState) => {
-                state.profileAddress.fullName = fullName;
+                state.fullName = fullName;
             },
             false,
             `${storeIdentifier}/set-full-name`
         );
     };
+    const setImage = (image: string) => {
+        set(
+            (state: ProfileState) => {
+                state.image = image;
+            },
+            false,
+            `${storeIdentifier}/set-image`
+        );
+    };
     const setAddress = (address: string) => {
         set(
             (state: ProfileState) => {
-                state.profileAddress.address = address;
+                state.address = address;
             },
             false,
             `${storeIdentifier}/set-address`
@@ -40,7 +46,7 @@ const actions = (set: any): ProfileActions => {
     const setZipCodeValue = (zipCode: string) => {
         set(
             (state: ProfileState) => {
-                state.profileAddress.zipCode.field = zipCode;
+                state.zipCodeField = zipCode;
             },
             false,
             `${storeIdentifier}/set-zip-code-value`
@@ -49,7 +55,7 @@ const actions = (set: any): ProfileActions => {
     const setZipCodeStatus = (zipCode: Status) => {
         set(
             (state: ProfileState) => {
-                state.profileAddress.zipCode.status = zipCode;
+                state.zipCodeStatus = zipCode;
             },
             false,
             `${storeIdentifier}/set-zip-code-status`
@@ -58,7 +64,7 @@ const actions = (set: any): ProfileActions => {
     const setNifStatus = (nif: Status) => {
         set(
             (state: ProfileState) => {
-                state.profileAddress.nif.status = nif;
+                state.nifStatus = nif;
             },
             false,
             `${storeIdentifier}/set-nif-status`
@@ -67,41 +73,81 @@ const actions = (set: any): ProfileActions => {
     const setNifValue = (nif: string) => {
         set(
             (state: ProfileState) => {
-                state.profileAddress.nif.field = nif;
+                state.nifField = nif;
             },
             false,
             `${storeIdentifier}/set-nif-value`
         );
     };
-    const resetProfileDetails = () => {
+    const resetTemporaryProfileDetails = () => {
         set(
             (state: ProfileState) => {
-                state.profileAddress = {
-                    fullName: '',
-                    address: '',
-                    zipCode: {
-                        status: 'default',
-                        field: '',
-                    },
-                    nif: {
-                        status: 'default',
-                        field: '',
-                    },
+                if (state.profile !== undefined) {
+                    state.image = state.profile?.image;
+                    state.fullName = state.profile?.fullName;
+                    state.address = state.profile?.address;
+                    state.zipCodeStatus = state.profile?.zipCode.status;
+                    state.zipCodeField = state.profile?.zipCode.field;
+                    state.nifField = state.profile?.nif.field;
+                    state.nifStatus = state.profile?.nif.status;
+                } else {
+                    state.image = '';
+                    state.fullName = '';
+                    state.address = '';
+                    state.nifField = '';
+                    state.zipCodeField = '';
+                    state.nifStatus = 'default';
+                    state.zipCodeStatus = 'default';
+                }
+            },
+            false,
+            `${storeIdentifier}/reset-temporary-profile-details`
+        );
+    };
+    const resetChanges = () => {
+        set(
+            (state: ProfileState) => {
+                state.image = '';
+                state.fullName = '';
+                state.address = '';
+                state.nifField = '';
+                state.zipCodeField = '';
+                state.nifStatus = 'default';
+                state.zipCodeStatus = 'default';
+                state.profile = undefined;
+            },
+            false,
+            `${storeIdentifier}/reset-changes`
+        );
+    };
+
+    const saveProfile = (profile?: Profile) => {
+        set(
+            (state: ProfileState) => {
+                state.profile = profile ?? {
+                    address: state.address,
+                    fullName: state.fullName,
+                    image: state.image,
+                    nif: { field: state.nifField, status: state.nifStatus },
+                    zipCode: { field: state.zipCodeField, status: state.zipCodeStatus },
                 };
             },
             false,
-            `${storeIdentifier}/reset-profile-store`
+            `${storeIdentifier}/save-profile`
         );
     };
 
     return {
         setFullName,
-        resetProfileDetails,
+        saveProfile,
+        resetChanges,
+        resetTemporaryProfileDetails,
         setZipCodeStatus,
         setZipCodeValue,
         setNifStatus,
         setNifValue,
         setAddress,
+        setImage,
     };
 };
 
@@ -109,5 +155,5 @@ const storeData: StateCreator<ProfileStore> = (set) => ({
     ...initialData,
     ...actions(set),
 });
-
-export const useProfileStore = create<ProfileStore>(storeData);
+// @ts-ignore
+export const useProfileStore = create<ProfileStore>(devtools(storeData));

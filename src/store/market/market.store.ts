@@ -10,6 +10,7 @@ import {
     MarketStore,
 } from './market.types';
 import { darkTheme, lightTheme, Paths, navigationItems } from '@/global';
+import { devtools } from '@pavlobu/zustand/middleware';
 
 const storeIdentifier = 'market-store';
 
@@ -151,4 +152,5 @@ const storeData: StateCreator<MarketStore> = (set) => ({
     ...actions(set),
 });
 
-export const useMarketStore = create<MarketStore>(storeData);
+// @ts-ignore
+export const useMarketStore = create<MarketStore>(devtools(storeData));

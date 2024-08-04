@@ -4,7 +4,7 @@ import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
 import { Box } from '@mui/material';
 import { Images } from '@/images';
 import { FC, forwardRef, useEffect, useMemo } from 'react';
-import { useBillingStore, useMarketStore } from '@/store';
+import { useBillingStore, useMarketStore, useProfileStore } from '@/store';
 import { zipCodeHelper } from '@/helpers';
 import { resources } from '@/global';
 
@@ -27,7 +27,7 @@ const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAd
         />
     );
 });
-
+// make this reusable
 export const ZipCode: FC = () => {
     const setZipCodeValue = useBillingStore((store) => store.setZipCodeValue);
     const setZipCodeStatus = useBillingStore((store) => store.setZipCodeStatus);
@@ -35,17 +35,18 @@ export const ZipCode: FC = () => {
     const theme = useMarketStore((store) => store.theme);
     const hasErrorZipCode = useMemo(() => zipCodeHelper(zipCode) === 'error', [zipCode]);
     const isValidZipCode = useMemo(() => zipCodeHelper(zipCode) === 'success', [zipCode]);
-
+    const selected = useBillingStore((store) => store.selected);
+    const profileZipCode = useProfileStore((store) => store.profile?.zipCode.field);
+    const isDisable = selected === 'profile';
     useEffect(() => {
         setZipCodeStatus(hasErrorZipCode ? 'error' : isValidZipCode ? 'success' : 'default');
     }, [hasErrorZipCode, isValidZipCode]);
 
     return (
         <Input
-            value={zipCode}
-            onChange={(event) => {
-                setZipCodeValue(event.target.value);
-            }}
+            disabled={isDisable}
+            value={isDisable ? profileZipCode : zipCode}
+            onChange={(event) => setZipCodeValue(event.target.value)}
             placeholder={resources.placeholder.zipCode}
             startDecorator={
                 <Box style={{ display: 'flex', alignItems: 'center' }}>
@@ -56,7 +57,7 @@ export const ZipCode: FC = () => {
                 <CheckCircleOutlined
                     sx={{
                         transition: '0.2s ease-in-out',
-                        color: isValidZipCode ? theme.green : hasErrorZipCode ? theme.red : theme.gray,
+                        color: isDisable || isValidZipCode ? theme.green : hasErrorZipCode ? theme.red : theme.gray,
                     }}
                 />
             }

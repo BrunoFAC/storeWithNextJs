@@ -1,21 +1,21 @@
-import * as React from 'react';
 import { Box, IconButton, Typography, Avatar, Tooltip, Zoom } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useRouter } from 'next/router';
 import { SwitchMode } from '@/components';
 import { resources, Paths } from '@/global';
-import { useMarketStore, useTransactionStore } from '@/store';
+import { useMarketStore, useProfileStore, useTransactionStore } from '@/store';
 import { useSnackbar } from 'notistack';
+import { FC } from 'react';
 
-export const HeaderProfile: React.FC = () => {
+export const HeaderProfile: FC = () => {
     const cart = useTransactionStore((store) => store.cart);
     const theme = useMarketStore((store) => store.theme);
     const favorites = useTransactionStore((store) => store.favorites);
+    const profile = useProfileStore((store) => store.profile);
     const cartLength = cart.length;
     const favoritesLength = favorites.length;
     const router = useRouter();
-    const setOpenModal = useMarketStore((store) => store.setOpenModal);
     const { enqueueSnackbar } = useSnackbar();
 
     const handleClickCartOpen = () => {
@@ -81,7 +81,6 @@ export const HeaderProfile: React.FC = () => {
                             p: 0,
                             color: theme.light,
                             borderRadius: 0,
-                            mr: 0.75,
                             '&:hover': {
                                 bgcolor: theme.transparent,
                             },
@@ -107,15 +106,19 @@ export const HeaderProfile: React.FC = () => {
             <Tooltip
                 TransitionComponent={Zoom}
                 sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}
-                title={resources.settings}
+                title={resources.profile}
             >
                 <IconButton onClick={handleRedirectToProfile} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>
-                    <Avatar alt="Bruno" src="." style={{ fontSize: '1rem', width: '30px', height: '30px' }} />
+                    <Avatar
+                        alt={profile?.fullName ?? resources.guest}
+                        src={profile?.image ?? '.'}
+                        style={{ fontSize: '1rem', width: '35px', height: '35px' }}
+                    />
                 </IconButton>
             </Tooltip>
-            <Tooltip TransitionComponent={Zoom} title={resources.settings} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton onClick={handleRedirectToProfile} sx={{ p: 0, display: { xs: 'none', md: 'flex' } }}>
-                    <Avatar alt="Bruno" src="." />
+            <Tooltip TransitionComponent={Zoom} title={resources.profile} sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <IconButton onClick={handleRedirectToProfile}>
+                    <Avatar alt={profile?.fullName ?? resources.guest} src={profile?.image ?? '.'} />
                 </IconButton>
             </Tooltip>
         </Box>

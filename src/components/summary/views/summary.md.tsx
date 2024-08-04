@@ -1,6 +1,6 @@
 import { Paths, resources } from '@/global';
 import { sumFloatNumbersHelper } from '@/helpers';
-import { useBillingStore, useMarketStore, useTransactionStore } from '@/store';
+import { useBillingStore, useMarketStore, useProfileStore, useTransactionStore } from '@/store';
 import { Box, Typography, Button } from '@mui/material';
 import { FC } from 'react';
 import { AddressAccordion } from '@/components';
@@ -12,15 +12,20 @@ export interface SummaryProps {
 export const SummaryMD: FC<SummaryProps> = ({ priceProduct }) => {
     const { enqueueSnackbar } = useSnackbar();
     const router = useRouter();
+    const isSelectedAsProfile = useBillingStore((store) => store.isSelectedAsProfile);
+    const saveProfile = useProfileStore((store) => store.saveProfile);
     const theme = useMarketStore((store) => store.theme);
     const buyProducts = useBillingStore((store) => store.buyProducts);
     const billingAddress = useBillingStore((store) => store.billingAddress);
     const setBoughtProducts = useBillingStore((store) => store.setBoughtProducts);
     const setCart = useTransactionStore((store) => store.setCart);
     const cart = useTransactionStore((store) => store.cart);
+    const selected = useBillingStore((store) => store.selected);
+    const profile = useProfileStore((store) => store.profile);
 
     const isDisabled = () => {
         if (!buyProducts.length) return true;
+        if (profile && selected === 'profile') return false;
         if (billingAddress.nif.status !== 'success' || billingAddress.zipCode.status !== 'success') return true;
         if (billingAddress.address.length < 10 || billingAddress.fullName.length < 3) return true;
         return false;
@@ -36,11 +41,27 @@ export const SummaryMD: FC<SummaryProps> = ({ priceProduct }) => {
                 variant: 'success',
                 autoHideDuration: 3000,
             });
-            setTimeout(() => {
-                router.push(Paths.Home);
-                setBoughtProducts();
-                setCart(cart.filter((e) => !buyProducts.includes(e)));
-            }, 3000);
+            isSelectedAsProfile &&
+                saveProfile({
+                    image: resources.guest,
+                    address: billingAddress.address,
+                    fullName: billingAddress.fullName,
+                    nif: billingAddress.nif,
+                    zipCode: billingAddress.zipCode,
+                });
+
+            router.push(Paths.Home);
+            setBoughtProducts(
+                profile && selected === 'profile'
+                    ? {
+                          address: profile.address,
+                          fullName: profile.fullName,
+                          nif: profile.nif,
+                          zipCode: profile.zipCode,
+                      }
+                    : undefined
+            );
+            setCart(cart.filter((e) => !buyProducts.includes(e)));
         }
     };
     return (

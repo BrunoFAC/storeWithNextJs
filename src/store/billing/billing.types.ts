@@ -19,12 +19,16 @@ export interface BillingState {
     billingAddress: Address;
     buyProducts: Products[];
     boughtProducts: BoughtProducts[];
+    selected?: 'profile' | 'new';
+    isSelectedAsProfile: boolean;
 }
 export interface BillingActions {
     setBuyProducts(buyProducts: Products[]): void;
-    setBoughtProducts(): void;
+    setBoughtProducts(address?: Address): void;
     setFullName(fullName?: string): void;
     setAddress(address: string): void;
+    setIsSelectedAsProfile(value: boolean): void;
+    setSelected(selected?: 'profile' | 'new'): void;
     setZipCodeStatus(status: Status): void;
     setZipCodeValue(zipCode: string): void;
     setNifStatus(status: Status): void;

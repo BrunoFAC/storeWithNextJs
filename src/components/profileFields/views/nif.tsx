@@ -31,7 +31,7 @@ const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAd
 export const Nif: FC = () => {
     const setNifValue = useProfileStore((store) => store.setNifValue);
     const setNifStatus = useProfileStore((store) => store.setNifStatus);
-    const nif = useProfileStore((store) => store.profileAddress.nif.field);
+    const nif = useProfileStore((store) => store.nifField);
     const theme = useMarketStore((store) => store.theme);
 
     const hasErrorNIF = useMemo(() => nifHelper(nif.replaceAll(' ', '')) === 'error', [nif]);

@@ -32,7 +32,6 @@ export const FloatButton: FC = () => {
                             height: 64,
                             color: theme.primary,
                         }}
-                        aria-label="buy"
                         onClick={toggleDrawer()}
                     >
                         <ShoppingCartIcon />

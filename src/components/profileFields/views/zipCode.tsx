@@ -31,7 +31,7 @@ const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAd
 export const ZipCode: FC = () => {
     const setZipCodeValue = useProfileStore((store) => store.setZipCodeValue);
     const setZipCodeStatus = useProfileStore((store) => store.setZipCodeStatus);
-    const zipCode = useProfileStore((store) => store.profileAddress.zipCode.field);
+    const zipCode = useProfileStore((store) => store.zipCodeField);
     const theme = useMarketStore((store) => store.theme);
     const hasErrorZipCode = useMemo(() => zipCodeHelper(zipCode) === 'error', [zipCode]);
     const isValidZipCode = useMemo(() => zipCodeHelper(zipCode) === 'success', [zipCode]);

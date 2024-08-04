@@ -1,11 +1,11 @@
 import { resources } from '@/global';
-import { useBillingStore, useProfileStore } from '@/store';
+import { useProfileStore } from '@/store';
 import { Input } from '@mui/joy';
 import { FC } from 'react';
 
 export const Address: FC = () => {
     const setAddress = useProfileStore((store) => store.setAddress);
-    const address = useProfileStore((store) => store.profileAddress.address);
+    const address = useProfileStore((store) => store.address);
     return (
         <Input
             value={address}

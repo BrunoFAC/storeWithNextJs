@@ -5,13 +5,15 @@ import { FC } from 'react';
 
 export const FullName: FC = () => {
     const setFullName = useProfileStore((store) => store.setFullName);
-    const fullName = useProfileStore((store) => store.profileAddress.fullName);
+    const fullName = useProfileStore((store) => store.fullName);
+
     return (
         <Input
             value={fullName}
             onChange={(event) => setFullName(event.target.value)}
             placeholder={resources.placeholder.fullName}
             sx={{
+                width: '100%',
                 '&::before': {
                     transform: 'scaleX(0)',
                 },

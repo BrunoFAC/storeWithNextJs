@@ -25,13 +25,7 @@ export const NotDevelopedModal: React.FC = () => {
     };
 
     return (
-        <Dialog
-            open={openModal}
-            TransitionComponent={Transition}
-            keepMounted
-            onClose={handleClose}
-            aria-describedby="alert-dialog-slide-description"
-        >
+        <Dialog open={openModal} TransitionComponent={Transition} keepMounted onClose={handleClose}>
             <DialogContent
                 sx={{
                     display: 'flex',

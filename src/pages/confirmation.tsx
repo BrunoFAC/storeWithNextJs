@@ -10,6 +10,9 @@ import { useEffect } from 'react';
 const Confirmation: NextPage = () => {
     const router = useRouter();
     const buyProducts = useBillingStore((store) => store.buyProducts);
+    const setIsSelectedAsProfile = useBillingStore((store) => store.setIsSelectedAsProfile);
+
+    const setSelected = useBillingStore((store) => store.setSelected);
     const resetBillingDetails = useBillingStore((store) => store.resetBillingDetails);
     const priceProduct = (id?: number) => buyProducts.filter((c) => !id || c.id === id)?.map((cart) => cart.price);
     const quantityOfProducts = (id: number) => {
@@ -25,7 +28,11 @@ const Confirmation: NextPage = () => {
 
     useEffect(() => {
         setSection(Paths.Confirmation);
-        return () => resetBillingDetails();
+        return () => {
+            resetBillingDetails();
+            setSelected();
+            setIsSelectedAsProfile(false);
+        };
     }, []);
 
     return (
