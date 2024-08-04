@@ -47,7 +47,7 @@ export const Nif: FC = () => {
         <Input
             disabled={isDisable}
             value={isDisable ? profile?.nif.field : nif}
-            onChange={(event) => setNifValue(event.target.value)}
+            onChange={(event) => !isDisable && setNifValue(event.target.value)}
             placeholder={resources.placeholder.nif}
             startDecorator={
                 <Box style={{ display: 'flex', alignItems: 'center' }}>

@@ -46,7 +46,7 @@ export const ZipCode: FC = () => {
         <Input
             disabled={isDisable}
             value={isDisable ? profileZipCode : zipCode}
-            onChange={(event) => setZipCodeValue(event.target.value)}
+            onChange={(event) => !isDisable && setZipCodeValue(event.target.value)}
             placeholder={resources.placeholder.zipCode}
             startDecorator={
                 <Box style={{ display: 'flex', alignItems: 'center' }}>

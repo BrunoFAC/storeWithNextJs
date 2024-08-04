@@ -39,12 +39,12 @@ export const AvatarGuest: FC = () => {
         <IconButton component="label" role={undefined} tabIndex={-1}>
             <VisuallyHiddenInput type="file" onChange={handleFileChange} />
             <Avatar
-                alt={fullName ?? resources.guest}
+                alt={fullName?.toLocaleUpperCase() ?? resources.guest}
                 src={image ?? '.'}
-                sx={{ display: { xs: 'none', md: 'flex' }, fontSize: '1.3rem', width: '65px', height: '65px' }}
+                sx={{ display: { xs: 'none', md: 'flex' }, fontSize: '2rem', width: '65px', height: '65px' }}
             />
             <Avatar
-                alt={fullName ?? resources.guest}
+                alt={fullName?.toLocaleUpperCase() ?? resources.guest}
                 src={image ?? '.'}
                 sx={{ display: { xs: 'flex', md: 'none' }, fontSize: '1.3rem', width: '80px', height: '80px' }}
             />
