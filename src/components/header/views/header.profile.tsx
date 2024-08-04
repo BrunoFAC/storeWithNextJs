@@ -110,7 +110,7 @@ export const HeaderProfile: FC = () => {
             >
                 <IconButton onClick={handleRedirectToProfile} sx={{ p: 0, display: { xs: 'flex', md: 'none' } }}>
                     <Avatar
-                        alt={profile?.fullName ?? resources.guest}
+                        alt={profile?.fullName?.toLocaleUpperCase() ?? resources.guest}
                         src={profile?.image ?? '.'}
                         style={{ fontSize: '1rem', width: '35px', height: '35px' }}
                     />
@@ -118,7 +118,10 @@ export const HeaderProfile: FC = () => {
             </Tooltip>
             <Tooltip TransitionComponent={Zoom} title={resources.profile} sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <IconButton onClick={handleRedirectToProfile}>
-                    <Avatar alt={profile?.fullName ?? resources.guest} src={profile?.image ?? '.'} />
+                    <Avatar
+                        alt={profile?.fullName?.toLocaleUpperCase() ?? resources.guest}
+                        src={profile?.image ?? '.'}
+                    />
                 </IconButton>
             </Tooltip>
         </Box>
