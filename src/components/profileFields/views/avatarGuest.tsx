@@ -3,6 +3,8 @@ import { Avatar, IconButton, styled } from '@mui/material';
 import { useProfileStore } from '@/store';
 import { resources } from '@/global';
 import { useSnackbar } from 'notistack';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -40,14 +42,18 @@ export const AvatarGuest: FC = () => {
             <VisuallyHiddenInput type="file" onChange={handleFileChange} />
             <Avatar
                 alt={fullName?.toLocaleUpperCase() ?? resources.guest}
-                src={image ?? '.'}
+                src={image.length > 0 ? image : undefined}
                 sx={{ display: { xs: 'none', md: 'flex' }, fontSize: '2rem', width: '65px', height: '65px' }}
-            />
+            >
+                <AddAPhotoIcon />
+            </Avatar>
             <Avatar
                 alt={fullName?.toLocaleUpperCase() ?? resources.guest}
-                src={image ?? '.'}
+                src={image.length > 0 ? image : undefined}
                 sx={{ display: { xs: 'flex', md: 'none' }, fontSize: '1.3rem', width: '80px', height: '80px' }}
-            />
+            >
+                <AddAPhotoIcon />
+            </Avatar>
         </IconButton>
     );
 };

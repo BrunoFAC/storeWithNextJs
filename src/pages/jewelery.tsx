@@ -48,7 +48,6 @@ const Jewelery: NextPage = () => {
                     setSort(FiltersValue.RELEVANCE);
                 }
             })
-            .catch((e) => console.error(e))
             .finally(() => setIsLoading(false));
     }, []);
 

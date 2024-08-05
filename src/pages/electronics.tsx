@@ -49,7 +49,6 @@ const Electronics: NextPage = () => {
                     setSort(FiltersValue.RELEVANCE);
                 }
             })
-            .catch((e) => console.error(e))
             .finally(() => setIsLoading(false));
     }, []);
 

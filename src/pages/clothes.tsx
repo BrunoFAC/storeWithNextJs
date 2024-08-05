@@ -54,7 +54,6 @@ const Clothes: NextPage = () => {
                         setSort(FiltersValue.RELEVANCE);
                     }
                 })
-                .catch((e) => console.error(e))
                 .finally(() => setIsLoading(false));
         } else {
             const manAPI = axios.get("https://fakestoreapi.com/products/category/men's clothing");
@@ -69,7 +68,6 @@ const Clothes: NextPage = () => {
                     setProducts(successfullyResponse);
                     setSort(FiltersValue.RELEVANCE);
                 })
-                .catch((e) => console.error(e))
                 .finally(() => setIsLoading(false));
         }
     }, [gender]);
