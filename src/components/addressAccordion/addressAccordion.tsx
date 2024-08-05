@@ -37,7 +37,7 @@ export const AddressAccordion: FC = () => {
                 </AccordionSummary>
                 <Divider />
                 <AccordionDetails>
-                    <AddressAccordionViews.FormNewAddress />
+                    <AddressAccordionViews.FormProfileAddress />
                 </AccordionDetails>
             </Accordion>
             <Accordion style={{ borderRadius: '4px' }} expanded={selected === 'new'} sx={{ marginTop: '16px' }}>

@@ -1,16 +1,15 @@
 import { resources } from '@/global';
-import { useBillingStore } from '@/store';
+import { useProfileStore } from '@/store';
 import { Input } from '@mui/joy';
 import { FC } from 'react';
 
-export const FullName: FC = () => {
-    const setFullName = useBillingStore((store) => store.setFullName);
-    const fullName = useBillingStore((store) => store.billingAddress.fullName);
+export const FullNameProfile: FC = () => {
+    const profile = useProfileStore((store) => store.profile);
 
     return (
         <Input
-            value={fullName}
-            onChange={(event) => setFullName(event.target.value)}
+            disabled
+            value={profile?.fullName}
             placeholder={resources.placeholder.fullName}
             sx={{
                 '&::before': {

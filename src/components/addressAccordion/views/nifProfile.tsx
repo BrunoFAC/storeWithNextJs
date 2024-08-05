@@ -1,9 +1,8 @@
 import { IMaskInput } from 'react-imask';
 import { Input } from '@mui/joy';
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
-import { useBillingStore, useMarketStore } from '@/store';
-import { nifHelper } from '@/helpers';
-import { forwardRef, FC, useMemo, useEffect } from 'react';
+import { useMarketStore, useProfileStore } from '@/store';
+import { forwardRef, FC } from 'react';
 import { resources } from '@/global';
 import { Box } from '@mui/material';
 import { Images } from '@/images';
@@ -28,22 +27,14 @@ const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAd
     );
 });
 
-export const Nif: FC = () => {
-    const setNifValue = useBillingStore((store) => store.setNifValue);
-    const setNifStatus = useBillingStore((store) => store.setNifStatus);
-    const nif = useBillingStore((store) => store.billingAddress.nif.field);
+export const NifProfile: FC = () => {
     const theme = useMarketStore((store) => store.theme);
+    const profile = useProfileStore((store) => store.profile);
 
-    const hasErrorNIF = useMemo(() => nifHelper(nif.replaceAll(' ', '')) === 'error', [nif]);
-    const isValidNIF = useMemo(() => nifHelper(nif.replaceAll(' ', '')) === 'success', [nif]);
-
-    useEffect(() => {
-        setNifStatus(hasErrorNIF ? 'error' : isValidNIF ? 'success' : 'default');
-    }, [hasErrorNIF, isValidNIF]);
     return (
         <Input
-            value={nif}
-            onChange={(event) => setNifValue(event.target.value)}
+            disabled
+            value={profile?.nif.field}
             placeholder={resources.placeholder.nif}
             startDecorator={
                 <Box style={{ display: 'flex', alignItems: 'center' }}>
@@ -54,7 +45,7 @@ export const Nif: FC = () => {
                 <CheckCircleOutlined
                     sx={{
                         transition: '0.2s ease-in-out',
-                        color: isValidNIF ? theme.green : hasErrorNIF ? theme.red : theme.gray,
+                        color: theme.green,
                     }}
                 />
             }

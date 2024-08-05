@@ -1,16 +1,15 @@
 import { resources } from '@/global';
-import { useBillingStore } from '@/store';
+import { useProfileStore } from '@/store';
 import { Input } from '@mui/joy';
 import { FC } from 'react';
 
-export const Address: FC = () => {
-    const setAddress = useBillingStore((store) => store.setAddress);
-    const address = useBillingStore((store) => store.billingAddress.address);
+export const AddressProfile: FC = () => {
+    const profile = useProfileStore((store) => store.profile);
 
     return (
         <Input
-            value={address}
-            onChange={(event) => setAddress(event.target.value)}
+            disabled
+            value={profile?.address}
             placeholder={resources.placeholder.address}
             sx={{
                 '&::before': {

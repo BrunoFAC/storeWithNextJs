@@ -1,12 +1,11 @@
 import { IMaskInput } from 'react-imask';
 import { Input } from '@mui/joy';
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
-import { useBillingStore, useMarketStore } from '@/store';
-import { nifHelper } from '@/helpers';
-import { forwardRef, FC, useMemo, useEffect } from 'react';
-import { resources } from '@/global';
 import { Box } from '@mui/material';
 import { Images } from '@/images';
+import { FC, forwardRef } from 'react';
+import { useMarketStore, useProfileStore } from '@/store';
+import { resources } from '@/global';
 
 interface CustomProps {
     onChange: (event: { target: { name: string; value: string } }) => void;
@@ -18,7 +17,7 @@ const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAd
     return (
         <IMaskInput
             {...other}
-            mask="000 000 000"
+            mask="0000-000"
             definitions={{
                 '#': /[1-9]/,
             }}
@@ -28,23 +27,15 @@ const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAd
     );
 });
 
-export const Nif: FC = () => {
-    const setNifValue = useBillingStore((store) => store.setNifValue);
-    const setNifStatus = useBillingStore((store) => store.setNifStatus);
-    const nif = useBillingStore((store) => store.billingAddress.nif.field);
+export const ZipCodeProfile: FC = () => {
     const theme = useMarketStore((store) => store.theme);
+    const profileZipCode = useProfileStore((store) => store.profile?.zipCode.field);
 
-    const hasErrorNIF = useMemo(() => nifHelper(nif.replaceAll(' ', '')) === 'error', [nif]);
-    const isValidNIF = useMemo(() => nifHelper(nif.replaceAll(' ', '')) === 'success', [nif]);
-
-    useEffect(() => {
-        setNifStatus(hasErrorNIF ? 'error' : isValidNIF ? 'success' : 'default');
-    }, [hasErrorNIF, isValidNIF]);
     return (
         <Input
-            value={nif}
-            onChange={(event) => setNifValue(event.target.value)}
-            placeholder={resources.placeholder.nif}
+            disabled
+            value={profileZipCode}
+            placeholder={resources.placeholder.zipCode}
             startDecorator={
                 <Box style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={Images.Portugal.src} style={{ borderRadius: '8px', width: 32, height: 20 }} />
@@ -54,7 +45,7 @@ export const Nif: FC = () => {
                 <CheckCircleOutlined
                     sx={{
                         transition: '0.2s ease-in-out',
-                        color: isValidNIF ? theme.green : hasErrorNIF ? theme.red : theme.gray,
+                        color: theme.green,
                     }}
                 />
             }
