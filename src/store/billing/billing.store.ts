@@ -1,6 +1,6 @@
 import { create, StateCreator } from 'zustand';
 import { BillingState, BillingActions, BillingStore, Status, Address } from './billing.types';
-import { Products } from '../market';
+import { Products } from '@/store';
 import { devtools } from '@pavlobu/zustand/middleware';
 
 const storeIdentifier = 'billing-store';

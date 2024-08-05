@@ -4,8 +4,8 @@ import { useBillingStore, useMarketStore, useTransactionStore } from '@/store';
 import { Slide, Dialog, DialogContent, Box, Typography, Button } from '@mui/material';
 import { TransitionProps } from 'notistack';
 import * as React from 'react';
-import { BuyNow } from '../buyNow/buyNow';
 import { useRouter } from 'next/router';
+import { BuyNow } from '@/components';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
