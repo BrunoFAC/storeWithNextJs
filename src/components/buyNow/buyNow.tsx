@@ -13,7 +13,6 @@ export interface CardXSProps {
 }
 export const BuyNow: FC<CardXSProps> = ({ detail, width, fontSize, handleBuy }) => {
     const { enqueueSnackbar } = useSnackbar();
-    const showButtonBuyNow = useTransactionStore((store) => store.showButtonBuyNow);
     const setOpenBuyModal = useTransactionStore((store) => store.setOpenBuyModal);
     const theme = useMarketStore((store) => store.theme);
     const addToCart = useTransactionStore((store) => store.addCart);
@@ -36,7 +35,7 @@ export const BuyNow: FC<CardXSProps> = ({ detail, width, fontSize, handleBuy }) 
             addToCart(detail);
         }
     };
-    return showButtonBuyNow ? (
+    return (
         <>
             <Button
                 style={{
@@ -83,5 +82,5 @@ export const BuyNow: FC<CardXSProps> = ({ detail, width, fontSize, handleBuy }) 
                 </Box>
             )}
         </>
-    ) : null;
+    );
 };

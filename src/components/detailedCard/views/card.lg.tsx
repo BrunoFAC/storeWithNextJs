@@ -6,9 +6,10 @@ import { FC } from 'react';
 
 export interface CardLGProps {
     detail: Products;
+    showBuyNow?: boolean;
     handleCart: (detail: Products) => void;
 }
-export const CardLG: FC<CardLGProps> = ({ detail, handleCart }) => {
+export const CardLG: FC<CardLGProps> = ({ detail, showBuyNow, handleCart }) => {
     const theme = useMarketStore((store) => store.theme);
     const isDarkTheme = useMarketStore((store) => store.theme.type === 'dark');
 
@@ -143,7 +144,7 @@ export const CardLG: FC<CardLGProps> = ({ detail, handleCart }) => {
                                 </Box>
                                 <Box style={{ display: 'flex', flexDirection: 'row', gap: '12px' }}>
                                     <CartButton handleCart={() => detail && handleCart(detail)} id={detail?.id || 0} />
-                                    <BuyNow detail={detail} fontSize="0.875rem" width={'300px'} />
+                                    {showBuyNow && <BuyNow detail={detail} fontSize="0.875rem" width={'300px'} />}
                                 </Box>
                             </Box>
                         </Box>

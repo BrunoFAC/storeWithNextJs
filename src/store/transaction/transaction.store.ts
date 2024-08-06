@@ -11,7 +11,6 @@ const initialData: TransactionState = {
     openBuyModal: undefined,
     detail: undefined,
     openBuyDrawer: false,
-    showButtonBuyNow: false,
 };
 
 const actions = (set: any): TransactionActions => {
@@ -103,15 +102,7 @@ const actions = (set: any): TransactionActions => {
             `${storeIdentifier}/set-open-buy-drawer`
         );
     };
-    const setShowButtonBuyNow = (showButtonBuyNow: boolean) => {
-        set(
-            (state: TransactionState) => {
-                state.showButtonBuyNow = showButtonBuyNow;
-            },
-            false,
-            `${storeIdentifier}/set-show-button-buy-now`
-        );
-    };
+
     const setDetail = (detail?: Products) => {
         set(
             (state: TransactionState) => {
@@ -138,7 +129,6 @@ const actions = (set: any): TransactionActions => {
         setDetail,
         setOpenBuyDrawer,
         setOpenBuyModal,
-        setShowButtonBuyNow,
     };
 };
 

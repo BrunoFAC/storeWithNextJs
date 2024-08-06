@@ -10,7 +10,6 @@ import { useMarketStore, useTransactionStore } from '@/store';
 const Cart: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);
     const cart = useTransactionStore((store) => store.cart);
-    const setShowButtonBuyNow = useTransactionStore((store) => store.setShowButtonBuyNow);
     const setOpenBuyModal = useTransactionStore((store) => store.setOpenBuyModal);
     const setOpenBuyDrawer = useTransactionStore((store) => store.setOpenBuyDrawer);
 
@@ -24,9 +23,7 @@ const Cart: NextPage = () => {
 
     useEffect(() => {
         setSection(Paths.Cart);
-        setShowButtonBuyNow(true);
         return () => {
-            setShowButtonBuyNow(false);
             setOpenBuyModal({ open: false, detail: undefined });
             setOpenBuyDrawer(false);
         };
@@ -44,7 +41,7 @@ const Cart: NextPage = () => {
         >
             <Box style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
                 {removeDuplicates(cart).map((e, index) => (
-                    <DetailedCard key={`${e.id}-${index}`} detail={e} />
+                    <DetailedCard showBuyNow key={`${e.id}-${index}`} detail={e} />
                 ))}
             </Box>
             <BuyNowModal />

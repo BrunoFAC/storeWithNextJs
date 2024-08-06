@@ -10,7 +10,6 @@ export interface TransactionState {
     openBuyModal?: BuyModalProps;
     detail?: Products;
     openBuyDrawer: boolean;
-    showButtonBuyNow: boolean;
 }
 
 export interface TransactionActions {
@@ -24,7 +23,6 @@ export interface TransactionActions {
     setCart(cart: Products[]): void;
     setOpenBuyModal(openBuyModal: BuyModalProps): void;
     setOpenBuyDrawer(openBuyDrawer: boolean): void;
-    setShowButtonBuyNow(showButtonBuyNow: boolean): void;
     resetTransactionStore(): void;
 }
 

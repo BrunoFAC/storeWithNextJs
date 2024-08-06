@@ -6,10 +6,11 @@ import { FC } from 'react';
 
 export interface CardXSProps {
     detail: Products;
+    showBuyNow?: boolean;
     handleCart: (detail: Products) => void;
 }
 
-export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
+export const CardXS: FC<CardXSProps> = ({ detail, showBuyNow, handleCart }) => {
     const theme = useMarketStore((store) => store.theme);
     const isDarkTheme = useMarketStore((store) => store.theme.type === 'dark');
 
@@ -134,7 +135,7 @@ export const CardXS: FC<CardXSProps> = ({ detail, handleCart }) => {
                                         id={detail?.id || 0}
                                     />
                                     <Box style={{ display: 'flex', flexDirection: 'row', gap: '8px' }}>
-                                        <BuyNow detail={detail} fontSize="0.750rem" width={'100%'} />
+                                        {showBuyNow && <BuyNow detail={detail} fontSize="0.750rem" width={'100%'} />}
                                     </Box>
                                 </Box>
                             </Box>

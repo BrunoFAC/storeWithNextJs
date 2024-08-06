@@ -6,9 +6,10 @@ import { FC } from 'react';
 
 export interface CardMDProps {
     detail: Products;
+    showBuyNow?: boolean;
     handleCart: (detail: Products) => void;
 }
-export const CardMD: FC<CardMDProps> = ({ detail, handleCart }) => {
+export const CardMD: FC<CardMDProps> = ({ detail, showBuyNow, handleCart }) => {
     const theme = useMarketStore((store) => store.theme);
     const isDarkTheme = useMarketStore((store) => store.theme.type === 'dark');
 
@@ -151,7 +152,7 @@ export const CardMD: FC<CardMDProps> = ({ detail, handleCart }) => {
                                         handleCart={() => detail && handleCart(detail)}
                                         id={detail?.id || 0}
                                     />
-                                    <BuyNow detail={detail} fontSize="0.750rem" width={'170px'} />
+                                    {showBuyNow && <BuyNow detail={detail} fontSize="0.750rem" width={'170px'} />}
                                 </Box>
                             </Box>
                         </Box>
