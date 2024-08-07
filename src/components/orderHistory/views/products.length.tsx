@@ -1,17 +1,21 @@
-import { BoughtProducts } from '@/store';
+import { BoughtProducts, useMarketStore } from '@/store';
 import { FC } from 'react';
 import { resources } from '@/global';
 import { Box, Typography } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 export const ProductsLength: FC<{ product: BoughtProducts }> = ({ product }) => {
+    const theme = useMarketStore((store) => store.theme);
+    const isDark = theme.type === 'dark';
+    const color = isDark ? theme.primary : theme.secondary;
     return (
         <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <ArrowRightIcon fontSize="large" />
+            <ArrowRightIcon fontSize="large" sx={{ color: color }} />
             <Typography
                 sx={{
                     textTransform: 'capitalize',
                     fontSize: '1rem',
+                    color: color,
                     display: { lg: 'flex', md: 'none', xs: 'flex' },
                 }}
             >
@@ -22,6 +26,7 @@ export const ProductsLength: FC<{ product: BoughtProducts }> = ({ product }) => 
                 sx={{
                     textTransform: 'capitalize',
                     fontSize: '0.95rem',
+                    color: color,
                     display: { lg: 'none', md: 'flex', xs: 'none' },
                 }}
             >

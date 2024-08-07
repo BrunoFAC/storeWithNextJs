@@ -6,6 +6,8 @@ import { resources } from '@/global';
 export const ProductsButton: FC = () => {
     const theme = useMarketStore((store) => store.theme);
     const setOpenModal = useMarketStore((store) => store.setOpenModal);
+    const isDark = theme.type === 'dark';
+    const color = isDark ? theme.primary : theme.secondary;
 
     return (
         <Box
@@ -17,10 +19,10 @@ export const ProductsButton: FC = () => {
             <Button
                 sx={{
                     display: { md: 'flex', xs: 'none' },
-                    borderColor: theme.primary,
-                    color: theme.primary,
-                    '&:hover': { color: theme.primary, borderColor: theme.primary },
-                    '&:active': { color: theme.primary, borderColor: theme.primary },
+                    borderColor: color,
+                    color: color,
+                    '&:hover': { color: color, borderColor: color },
+                    '&:active': { color: color, borderColor: color },
                 }}
                 variant="text"
             >
@@ -29,11 +31,11 @@ export const ProductsButton: FC = () => {
             <Button
                 sx={{
                     display: { lg: 'none', md: 'none', xs: 'flex' },
-                    borderColor: theme.primary,
-                    color: theme.primary,
+                    borderColor: color,
+                    color: color,
                     fontSize: '0.8rem',
-                    '&:hover': { color: theme.primary, borderColor: theme.primary },
-                    '&:active': { color: theme.primary, borderColor: theme.light },
+                    '&:hover': { color: color, borderColor: color },
+                    '&:active': { color: color, borderColor: color },
                 }}
                 variant="text"
             >
