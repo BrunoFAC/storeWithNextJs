@@ -1,9 +1,7 @@
-import { Filters, RowOfCards, Skeleton } from '@/components';
+import { Filters, NoProductsFound, RowOfCards, Skeleton } from '@/components';
 import { Paths } from '@/global';
 import { sortHelper, priceHelper } from '@/helpers';
-import { Images } from '@/images';
 import { useMarketStore, Products, FiltersValue } from '@/store';
-import { Box } from '@mui/material';
 import axios from 'axios';
 import { NextPage } from 'next';
 import { useEffect } from 'react';
@@ -48,6 +46,7 @@ const Jewelery: NextPage = () => {
                     setSort(FiltersValue.RELEVANCE);
                 }
             })
+            .catch(() => setProducts([]))
             .finally(() => setIsLoading(false));
     }, []);
 
@@ -56,15 +55,7 @@ const Jewelery: NextPage = () => {
     ) : (
         <>
             <Filters products={products} />
-            {filteredProducts.length > 0 ? (
-                <RowOfCards products={filteredProducts} />
-            ) : (
-                <Box style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
-                    <Box style={{ display: 'flex', width: '500px', justifyContent: 'center' }}>
-                        <img src={Images.NoProductFound.src} />
-                    </Box>
-                </Box>
-            )}
+            {filteredProducts.length > 0 ? <RowOfCards products={filteredProducts} /> : <NoProductsFound />}
         </>
     );
 };

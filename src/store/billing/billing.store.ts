@@ -1,7 +1,8 @@
 import { create, StateCreator } from 'zustand';
-import { BillingState, BillingActions, BillingStore, Status, Address } from './billing.types';
+import { BillingState, BillingActions, BillingStore, Status, Address, BoughtProducts } from './billing.types';
 import { Products } from '@/store';
 import { devtools } from '@pavlobu/zustand/middleware';
+import dayjs from 'dayjs';
 
 const storeIdentifier = 'billing-store';
 
@@ -122,7 +123,11 @@ const actions = (set: any): BillingActions => {
     const setBoughtProducts = (address?: Address) => {
         set(
             (state: BillingState) => {
-                const boughtProducts = { boughtProducts: state.buyProducts, address: address ?? state.billingAddress };
+                const boughtProducts: BoughtProducts = {
+                    boughtProducts: state.buyProducts,
+                    address: address ?? state.billingAddress,
+                    date: dayjs().format('DD/MM/YYYY HH:mm'),
+                };
                 state.boughtProducts = [...state.boughtProducts, boughtProducts];
                 resetBillingDetails();
             },

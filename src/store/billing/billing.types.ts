@@ -14,6 +14,7 @@ export interface Address {
 export interface BoughtProducts {
     address: Address;
     boughtProducts: Products[];
+    date: string;
 }
 export interface BillingState {
     billingAddress: Address;

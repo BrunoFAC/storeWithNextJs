@@ -21,6 +21,7 @@ export interface Theme {
     red: string;
     green: string;
     fadedBackground: string;
+    divider: string;
 }
 
 export enum FiltersValue {

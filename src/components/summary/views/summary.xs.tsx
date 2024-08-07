@@ -37,6 +37,7 @@ export const SummaryXS: FC<SummaryProps> = ({ priceProduct }) => {
                 variant: 'error',
             });
         } else {
+            router.push(Paths.Home);
             enqueueSnackbar(resources.successOrder, {
                 variant: 'success',
                 autoHideDuration: 3000,
@@ -50,7 +51,6 @@ export const SummaryXS: FC<SummaryProps> = ({ priceProduct }) => {
                     zipCode: billingAddress.zipCode,
                 });
 
-            router.push(Paths.Home);
             setBoughtProducts(
                 profile && selected === 'profile'
                     ? {

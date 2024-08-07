@@ -3,7 +3,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { Paths, resources } from '@/global';
 import { removeDuplicates, sumFloatNumbersHelper } from '@/helpers';
 import { useMarketStore, Products, useTransactionStore, useBillingStore } from '@/store';
-import { Box, Typography, IconButton, Divider, Button } from '@mui/material';
+import { Box, Typography, IconButton, Button } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { FC, Fragment } from 'react';
 import { BuyMenusViews } from '../buyMenu.views';
@@ -138,9 +138,6 @@ export const BuyDrawerXS: FC<BuyDrawerXSProps> = ({ toggleDrawer }) => {
                                     </Typography>
                                 </Box>
                             </Box>
-                            {key !== removeDuplicates(cart).length - 1 && (
-                                <Divider style={{ ...(isDarkTheme && { backgroundColor: theme.light }) }} />
-                            )}
                         </Fragment>
                     ))}
                 </BuyMenusViews.Structure>

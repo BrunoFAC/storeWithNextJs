@@ -23,3 +23,6 @@ export * from './confirmationProducts';
 export * from './summary';
 export * from './disclaimer';
 export * from './profileFields';
+export * from './dividerStylized';
+export * from './orderHistory';
+export * from './noProductsFound';

@@ -15,6 +15,7 @@ export const lightTheme: Theme = {
     fadedBackground: `linear-gradient(60deg, #1876D2 0%, #114092 92%)`,
     green: 'green',
     red: 'red',
+    divider: 'linear-gradient(90deg, #bbb6b6 0%, rgba(247, 247, 247, 0) 92%)',
 };
 
 export const darkTheme: Theme = {
@@ -32,4 +33,5 @@ export const darkTheme: Theme = {
     fadedBackground: `linear-gradient(60deg, rgb(25 41 50 / 96%) 0%, rgba(255, 255, 255, 0) 92%)`,
     green: 'green',
     red: 'red',
+    divider: 'linear-gradient(90deg, rgb(255 255 255 / 96%) 0%, rgb(247 247 247 / 0%) 92%)',
 };

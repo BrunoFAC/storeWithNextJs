@@ -70,7 +70,12 @@ export const resources = {
     saveProfileAlertError: 'You need to fill every field correctly.',
     saveProfileAlertInfo: 'No changes have been done.',
     saveProfileAlertSuccess: 'Profile saved successfully.',
-
+    noOrders: `You haven't ordered anything yet...`,
     resetProfileAlertInfo: 'Profile is reseted.',
     resetProfileAlertSuccess: 'Reseted profile successfully.',
+    orderHistory: 'Order History',
+    oops: `Oops! It looks like we don't have any products here.`,
+    hereToHelp: `Don't worry, we're here to help!`,
+    checkOthers: `How about exploring the other categories? You will find great prices!`,
+    reOrder: 'Re-order',
 };

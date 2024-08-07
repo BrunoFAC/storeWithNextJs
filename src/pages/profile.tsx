@@ -3,7 +3,7 @@ import { useMarketStore, useProfileStore } from '@/store';
 import { useEffect } from 'react';
 import { Paths } from '@/global';
 import { Box } from '@mui/material';
-import { ProfileFields } from '@/components';
+import { OrderHistory, ProfileFields } from '@/components';
 
 const Profile: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);
@@ -20,9 +20,11 @@ const Profile: NextPage = () => {
         <>
             <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', gap: '12px' }}>
                 <ProfileFields />
+                <OrderHistory />
             </Box>
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'column', gap: '12px' }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row', gap: '12px' }}>
                 <ProfileFields width={'50%'} />
+                <OrderHistory width={'50%'} />
             </Box>
         </>
     );

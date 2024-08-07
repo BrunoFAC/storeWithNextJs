@@ -1,4 +1,4 @@
-import { Box, Button, Divider, IconButton, Typography } from '@mui/material';
+import { Box, Button, IconButton, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Paths, resources } from '@/global';
@@ -135,9 +135,6 @@ export const BuyDrawerMD: FC<BuyDrawerMDProps> = ({ toggleDrawer }) => {
                                     </Typography>
                                 </Box>
                             </Box>
-                            {key !== removeDuplicates(cart).length - 1 && (
-                                <Divider style={{ ...(isDarkTheme && { backgroundColor: theme.light }) }} />
-                            )}
                         </Fragment>
                     ))}
                 </BuyMenusViews.Structure>

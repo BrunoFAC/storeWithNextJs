@@ -95,6 +95,7 @@ export const ProfileFields: FC<ProfileFieldsProps> = ({ width }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 width: width,
+                height: 'min-content',
             }}
         >
             <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', flexDirection: 'row' }}>
