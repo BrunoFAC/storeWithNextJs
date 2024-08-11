@@ -1,31 +1,11 @@
-import { IMaskInput } from 'react-imask';
 import { Input } from '@mui/joy';
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
 import { Box } from '@mui/material';
 import { Images } from '@/images';
-import { FC, forwardRef } from 'react';
+import { FC } from 'react';
 import { useMarketStore, useProfileStore } from '@/store';
 import { resources } from '@/global';
-
-interface CustomProps {
-    onChange: (event: { target: { name: string; value: string } }) => void;
-    name: string;
-}
-
-const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAdapter(props, ref) {
-    const { onChange, ...other } = props;
-    return (
-        <IMaskInput
-            {...other}
-            mask="0000-000"
-            definitions={{
-                '#': /[1-9]/,
-            }}
-            onAccept={(value: string) => onChange({ target: { name: props.name, value } })}
-            overwrite
-        />
-    );
-});
+import { ZipCodeMaskAdapter } from '@/masks';
 
 export const ZipCodeProfile: FC = () => {
     const theme = useMarketStore((store) => store.theme);
@@ -56,7 +36,7 @@ export const ZipCodeProfile: FC = () => {
                     transform: 'scaleX(0)',
                 },
             }}
-            slotProps={{ input: { component: TextMaskAdapter } }}
+            slotProps={{ input: { component: ZipCodeMaskAdapter } }}
         />
     );
 };

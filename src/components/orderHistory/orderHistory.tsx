@@ -2,7 +2,7 @@ import { useBillingStore, useMarketStore } from '@/store';
 import { FC } from 'react';
 import { resources } from '@/global';
 import { Box, Typography } from '@mui/material';
-import { DividerStylized, ReOrderModal } from '@/components';
+import { DividerStylized, InvoiceModal } from '@/components';
 import { OrderHistoryViews } from './orderHistory.views';
 export interface OrderHistoryProps {
     width?: string;
@@ -35,7 +35,7 @@ export const OrderHistory: FC<OrderHistoryProps> = ({ width }) => {
                     })}
                 </Box>
             )}
-            <ReOrderModal />
+            <InvoiceModal />
         </Box>
     );
 };

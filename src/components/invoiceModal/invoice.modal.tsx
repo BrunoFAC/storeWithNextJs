@@ -2,7 +2,7 @@ import { useMarketStore, useProfileStore } from '@/store';
 import { Slide, Dialog, DialogContent, Box, Typography } from '@mui/material';
 import { TransitionProps } from 'notistack';
 import { forwardRef, ReactElement, Ref, FC } from 'react';
-import { ReOrderViews } from './reOrder.views';
+import { InvoiceViews } from './invoice.views';
 import { resources } from '@/global';
 
 const Transition = forwardRef(function Transition(
@@ -15,7 +15,7 @@ const Transition = forwardRef(function Transition(
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export const ReOrderModal: FC = () => {
+export const InvoiceModal: FC = () => {
     const openReOrderModal = useProfileStore((store) => store.openReOrderModal);
     const theme = useMarketStore((store) => store.theme);
     const setOpenReOrderModal = useProfileStore((store) => store.setOpenReOrderModal);
@@ -45,9 +45,10 @@ export const ReOrderModal: FC = () => {
                     overflow: 'auto',
                     overflowX: 'hidden',
                     height: '100%',
-                    background: isDarkTheme ? theme.primary : theme.primaryLight,
+                    background: isDarkTheme ? theme.primaryLight : theme.primaryLight,
                 }}
             >
+                <InvoiceViews.Header />
                 <Box
                     sx={{
                         display: 'flex',
@@ -56,23 +57,10 @@ export const ReOrderModal: FC = () => {
                         alignItems: 'start',
                         padding: '16px',
                         width: '-webkit-fill-available',
-                        gap: '16px',
+                        gap: '8px',
                     }}
                 >
-                    <Typography
-                        style={{
-                            color: isDarkTheme ? theme.light : theme.secondary,
-                            fontWeight: 'bold',
-                            textTransform: 'uppercase',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            width: '100%',
-                            fontSize: '30px',
-                        }}
-                    >
-                        {resources.invoice}
-                    </Typography>
-                    <ReOrderViews.Address />
+                    <InvoiceViews.Address />
                 </Box>
 
                 <Box
@@ -84,8 +72,8 @@ export const ReOrderModal: FC = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <ReOrderViews.Products />
-                    <ReOrderViews.Footer />
+                    <InvoiceViews.Products />
+                    <InvoiceViews.Footer />
                 </Box>
             </DialogContent>
         </Dialog>

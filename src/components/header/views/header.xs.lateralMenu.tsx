@@ -28,12 +28,6 @@ export const DrawerHeaderXS: FC = () => {
     const [open, setOpen] = useState<boolean>(false);
     const theme = useMarketStore((store) => store.theme);
 
-    const setOpenModal = useMarketStore((store) => store.setOpenModal);
-
-    const handleClickOpen = () => {
-        setOpenModal(true);
-        // router.push(Paths.Profile);
-    };
     const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
     };
@@ -132,7 +126,7 @@ export const DrawerHeaderXS: FC = () => {
                     ))}
                 <Box>
                     <ListItem disablePadding>
-                        <ListItemButton onClick={() => handleClickOpen()}>
+                        <ListItemButton onClick={() => handleRedirect(Paths.Profile)}>
                             <ListItemIcon>
                                 <AccountCircleIcon {...darkMode} fontSize="large" />
                             </ListItemIcon>

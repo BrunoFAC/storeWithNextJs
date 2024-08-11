@@ -1,32 +1,12 @@
-import { IMaskInput } from 'react-imask';
 import { Input } from '@mui/joy';
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
 import { useProfileStore, useMarketStore } from '@/store';
 import { nifHelper } from '@/helpers';
-import { forwardRef, FC, useMemo, useEffect } from 'react';
+import { FC, useMemo, useEffect } from 'react';
 import { resources } from '@/global';
 import { Box } from '@mui/material';
 import { Images } from '@/images';
-
-interface CustomProps {
-    onChange: (event: { target: { name: string; value: string } }) => void;
-    name: string;
-}
-
-const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAdapter(props, ref) {
-    const { onChange, ...other } = props;
-    return (
-        <IMaskInput
-            {...other}
-            mask="000 000 000"
-            definitions={{
-                '#': /[1-9]/,
-            }}
-            onAccept={(value: string) => onChange({ target: { name: props.name, value } })}
-            overwrite
-        />
-    );
-});
+import { NifMaskAdapter } from '@/masks';
 
 export const Nif: FC = () => {
     const setNifValue = useProfileStore((store) => store.setNifValue);
@@ -65,7 +45,7 @@ export const Nif: FC = () => {
                     transform: 'scaleX(0)',
                 },
             }}
-            slotProps={{ input: { component: TextMaskAdapter } }}
+            slotProps={{ input: { component: NifMaskAdapter } }}
         />
     );
 };

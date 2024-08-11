@@ -35,7 +35,7 @@ export const Footer: FC = () => {
                 display: 'flex',
                 width: '100%',
                 boxShadow: `0px 0px 10px 0px ${theme.shadow}`,
-                background: theme.fadedBackground,
+                background: theme.primary,
                 alignItems: 'center',
                 justifyContent: 'space-between',
             }}

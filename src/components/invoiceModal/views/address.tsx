@@ -20,7 +20,7 @@ export const Address: FC = () => {
                     textTransform: 'uppercase',
                     display: 'flex',
                     width: '100%',
-                    fontSize: '16px',
+                    fontSize: '20px',
                 }}
             >
                 {resources.address}

@@ -24,7 +24,7 @@ export const Products: FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'start',
-                gap: '16px',
+                gap: '8px',
                 padding: '0 16px 16px',
             }}
         >
@@ -34,10 +34,10 @@ export const Products: FC = () => {
                     fontWeight: 'bold',
                     textTransform: 'uppercase',
                     display: 'flex',
-                    justifyContent: 'space-between',
+                    justifyContent: 'start',
                     alignItems: 'end',
                     width: '100%',
-                    fontSize: '16px',
+                    fontSize: '20px',
                 }}
             >
                 {resources.multiProducts}

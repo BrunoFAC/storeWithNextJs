@@ -7,26 +7,7 @@ import { FC, forwardRef, useEffect, useMemo } from 'react';
 import { useProfileStore, useMarketStore } from '@/store';
 import { zipCodeHelper } from '@/helpers';
 import { resources } from '@/global';
-
-interface CustomProps {
-    onChange: (event: { target: { name: string; value: string } }) => void;
-    name: string;
-}
-
-const TextMaskAdapter = forwardRef<HTMLElement, CustomProps>(function TextMaskAdapter(props, ref) {
-    const { onChange, ...other } = props;
-    return (
-        <IMaskInput
-            {...other}
-            mask="0000-000"
-            definitions={{
-                '#': /[1-9]/,
-            }}
-            onAccept={(value: string) => onChange({ target: { name: props.name, value } })}
-            overwrite
-        />
-    );
-});
+import { ZipCodeMaskAdapter } from '@/masks';
 
 export const ZipCode: FC = () => {
     const setZipCodeValue = useProfileStore((store) => store.setZipCodeValue);
@@ -67,7 +48,7 @@ export const ZipCode: FC = () => {
                     transform: 'scaleX(0)',
                 },
             }}
-            slotProps={{ input: { component: TextMaskAdapter } }}
+            slotProps={{ input: { component: ZipCodeMaskAdapter } }}
         />
     );
 };
