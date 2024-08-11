@@ -3,10 +3,16 @@ import { FC } from 'react';
 import { ConfirmationProductsViews } from './confirmationProducts.views';
 export interface ConfirmationProductsProps {
     e: Products;
+    hasHigherFontSize?: boolean;
     priceProduct: (id?: number) => number[];
     quantityOfProducts: (id: number) => number;
 }
-export const ConfirmationProducts: FC<ConfirmationProductsProps> = ({ e, priceProduct, quantityOfProducts }) => {
+export const ConfirmationProducts: FC<ConfirmationProductsProps> = ({
+    hasHigherFontSize = false,
+    e,
+    priceProduct,
+    quantityOfProducts,
+}) => {
     return (
         <>
             <ConfirmationProductsViews.ConfirmationProductsLG
@@ -16,6 +22,7 @@ export const ConfirmationProducts: FC<ConfirmationProductsProps> = ({ e, pricePr
             />
             <ConfirmationProductsViews.ConfirmationProductsMD
                 e={e}
+                hasHigherFontSize={hasHigherFontSize}
                 priceProduct={priceProduct}
                 quantityOfProducts={quantityOfProducts}
             />

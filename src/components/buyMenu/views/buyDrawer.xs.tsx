@@ -81,7 +81,7 @@ export const BuyDrawerXS: FC<BuyDrawerXSProps> = ({ toggleDrawer }) => {
                                         borderRadius: '4px 0px 0px 4px',
                                         overflow: 'hidden',
                                         ...(!isDarkTheme && {
-                                            border: '1px solid rgb(160, 179, 194)',
+                                            border: `1px solid ${theme.border}`,
                                         }),
                                         padding: '4px',
                                     }}

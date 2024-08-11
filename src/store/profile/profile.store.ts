@@ -1,5 +1,5 @@
 import { create, StateCreator } from 'zustand';
-import { ProfileState, ProfileActions, ProfileStore, Status, Profile } from '@/store';
+import { ProfileState, ProfileActions, ProfileStore, Status, Profile, ReOrderModalProps } from '@/store';
 import { devtools } from '@pavlobu/zustand/middleware';
 
 const storeIdentifier = 'profile-store';
@@ -13,6 +13,10 @@ const initialData: ProfileState = {
     nifStatus: 'default',
     nifField: '',
     profile: undefined,
+    openReOrderModal: {
+        open: false,
+        order: undefined,
+    },
 };
 
 const actions = (set: any): ProfileActions => {
@@ -120,7 +124,6 @@ const actions = (set: any): ProfileActions => {
             `${storeIdentifier}/reset-changes`
         );
     };
-
     const saveProfile = (profile?: Profile) => {
         set(
             (state: ProfileState) => {
@@ -136,7 +139,15 @@ const actions = (set: any): ProfileActions => {
             `${storeIdentifier}/save-profile`
         );
     };
-
+    const setOpenReOrderModal = (openReOrderModal: ReOrderModalProps) => {
+        set(
+            (state: ProfileState) => {
+                state.openReOrderModal = openReOrderModal;
+            },
+            false,
+            `${storeIdentifier}/set-open-re-order-modal`
+        );
+    };
     return {
         setFullName,
         saveProfile,
@@ -148,6 +159,7 @@ const actions = (set: any): ProfileActions => {
         setNifValue,
         setAddress,
         setImage,
+        setOpenReOrderModal,
     };
 };
 

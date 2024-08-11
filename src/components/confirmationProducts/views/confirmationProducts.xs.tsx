@@ -18,6 +18,7 @@ export const ConfirmationProductsXS: FC<ConfirmationProductsProps> = ({ e, price
                 background: theme.fadedBackground,
                 borderRadius: '4px',
                 height: 'min-content',
+                width: '100%',
             }}
         >
             <Box
@@ -31,7 +32,7 @@ export const ConfirmationProductsXS: FC<ConfirmationProductsProps> = ({ e, price
                     borderRadius: '4px 4px 0px 0px',
                     overflow: 'hidden',
                     ...(!isDarkTheme && {
-                        border: '1px solid rgb(160, 179, 194)',
+                        border: `1px solid ${theme.border}`,
                     }),
                     padding: '4px 0px',
                 }}

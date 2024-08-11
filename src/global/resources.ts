@@ -78,4 +78,6 @@ export const resources = {
     hereToHelp: `Don't worry, we're here to help!`,
     checkOthers: `How about exploring the other categories? You will find great prices!`,
     reOrder: 'Re-order',
+    invoice: 'INVOICE',
+    date: 'Date',
 };

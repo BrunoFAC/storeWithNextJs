@@ -22,6 +22,7 @@ export interface Theme {
     green: string;
     fadedBackground: string;
     divider: string;
+    border: string;
 }
 
 export enum FiltersValue {

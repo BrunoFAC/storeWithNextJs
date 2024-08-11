@@ -1,11 +1,16 @@
-import { FieldValidator, Status } from '@/store';
+import { Address, Products, Status } from '@/store';
 
-export interface Profile {
-    fullName: string;
+export interface Profile extends Address {
     image: string;
-    address: string;
-    zipCode: FieldValidator;
-    nif: FieldValidator;
+}
+export interface ReOrderProps {
+    details: Products[];
+    address: Address;
+    date: string;
+}
+export interface ReOrderModalProps {
+    open: boolean;
+    order?: ReOrderProps;
 }
 export interface ProfileState {
     fullName: string;
@@ -16,6 +21,7 @@ export interface ProfileState {
     zipCodeField: string;
     zipCodeStatus: Status;
     profile?: Profile;
+    openReOrderModal: ReOrderModalProps;
 }
 export interface ProfileActions {
     setFullName(fullName?: string): void;
@@ -26,6 +32,7 @@ export interface ProfileActions {
     setNifStatus(status: Status): void;
     saveProfile(profile?: Profile): void;
     setNifValue(nif: string): void;
+    setOpenReOrderModal(openReOrderModal: ReOrderModalProps): void;
     resetChanges(): void;
     resetTemporaryProfileDetails(): void;
 }

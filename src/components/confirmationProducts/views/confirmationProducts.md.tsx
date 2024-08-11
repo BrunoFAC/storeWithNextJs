@@ -4,8 +4,15 @@ import { useMarketStore } from '@/store';
 import { Box, Typography } from '@mui/material';
 import { FC } from 'react';
 import { ConfirmationProductsProps } from '../confirmationProducts';
-
-export const ConfirmationProductsMD: FC<ConfirmationProductsProps> = ({ e, priceProduct, quantityOfProducts }) => {
+interface ConfirmationProductsMDProps extends ConfirmationProductsProps {
+    hasHigherFontSize: boolean;
+}
+export const ConfirmationProductsMD: FC<ConfirmationProductsMDProps> = ({
+    e,
+    hasHigherFontSize,
+    priceProduct,
+    quantityOfProducts,
+}) => {
     const theme = useMarketStore((store) => store.theme);
     const isDarkTheme = theme.type === 'dark';
     return (
@@ -31,7 +38,7 @@ export const ConfirmationProductsMD: FC<ConfirmationProductsProps> = ({ e, price
                     borderRadius: '4px 0px 0px 4px',
                     overflow: 'hidden',
                     ...(!isDarkTheme && {
-                        border: '1px solid rgb(160, 179, 194)',
+                        border: `1px solid ${theme.border}`,
                     }),
                     padding: '4px',
                 }}
@@ -59,16 +66,16 @@ export const ConfirmationProductsMD: FC<ConfirmationProductsProps> = ({ e, price
                 <Typography
                     style={{
                         color: theme.light,
-                        fontSize: '1rem',
+                        fontSize: hasHigherFontSize ? '1.35rem' : '1rem',
                     }}
                 >
                     {e.title}
                 </Typography>
 
-                <Typography style={{ color: theme.light, fontSize: '0.9rem' }}>
+                <Typography style={{ color: theme.light, fontSize: hasHigherFontSize ? '1rem' : '0.9rem' }}>
                     {resources.price + ' ' + sumFloatNumbersHelper(priceProduct(e.id)) + ' ' + resources.eurSignal}
                 </Typography>
-                <Typography style={{ color: theme.light, fontSize: '0.9rem' }}>
+                <Typography style={{ color: theme.light, fontSize: hasHigherFontSize ? '1rem' : '0.9rem' }}>
                     {resources.quantity + ' ' + quantityOfProducts(e.id)}
                 </Typography>
             </Box>

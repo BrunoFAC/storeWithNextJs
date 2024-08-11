@@ -8,11 +8,13 @@ import { OrderHistory, ProfileFields } from '@/components';
 const Profile: NextPage = () => {
     const setSection = useMarketStore((store) => store.setSection);
     const resetTemporaryProfileDetails = useProfileStore((store) => store.resetTemporaryProfileDetails);
+    const setOpenReOrderModal = useProfileStore((store) => store.setOpenReOrderModal);
     useEffect(() => {
         setSection(Paths.Profile);
         resetTemporaryProfileDetails();
         return () => {
             resetTemporaryProfileDetails();
+            setOpenReOrderModal({ open: false, order: undefined });
         };
     }, []);
 

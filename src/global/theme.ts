@@ -16,6 +16,7 @@ export const lightTheme: Theme = {
     green: 'green',
     red: 'red',
     divider: 'linear-gradient(90deg, #bbb6b6 0%, rgba(247, 247, 247, 0) 92%)',
+    border: 'rgb(160, 179, 194)',
 };
 
 export const darkTheme: Theme = {
@@ -34,4 +35,5 @@ export const darkTheme: Theme = {
     green: 'green',
     red: 'red',
     divider: 'linear-gradient(90deg, rgb(255 255 255 / 96%) 0%, rgb(247 247 247 / 0%) 92%)',
+    border: 'white',
 };

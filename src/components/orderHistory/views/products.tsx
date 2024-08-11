@@ -1,11 +1,11 @@
-import { BoughtProducts, useMarketStore } from '@/store';
+import { BoughtProducts, useMarketStore, useProfileStore } from '@/store';
 import { FC } from 'react';
 import { Box, Button } from '@mui/material';
 import { OrderHistoryViews } from '../orderHistory.views';
 
 export const Products: FC<{ product: BoughtProducts }> = ({ product }) => {
     const theme = useMarketStore((store) => store.theme);
-    const setOpenModal = useMarketStore((store) => store.setOpenModal);
+    const setOpenReOrderModal = useProfileStore((store) => store.setOpenReOrderModal);
 
     return (
         <Button
@@ -21,7 +21,12 @@ export const Products: FC<{ product: BoughtProducts }> = ({ product }) => {
                 color: theme.primary,
                 textTransform: 'lowercase',
             }}
-            onClick={() => setOpenModal(true)}
+            onClick={() =>
+                setOpenReOrderModal({
+                    open: true,
+                    order: { address: product.address, details: product.boughtProducts, date: product.date },
+                })
+            }
         >
             <OrderHistoryViews.ProductsLength product={product} />
             <Box

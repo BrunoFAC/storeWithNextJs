@@ -26,3 +26,4 @@ export * from './profileFields';
 export * from './dividerStylized';
 export * from './orderHistory';
 export * from './noProductsFound';
+export * from './reOrderModal';
