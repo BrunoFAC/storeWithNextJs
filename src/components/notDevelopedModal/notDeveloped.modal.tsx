@@ -1,18 +1,9 @@
 import * as React from 'react';
-import { DialogContent, Dialog, Typography, Slide } from '@mui/material';
+import { DialogContent, Dialog, Typography } from '@mui/material';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import { resources } from '@/global';
 import { useMarketStore } from '@/store';
-import { TransitionProps } from '@mui/material/transitions';
-
-const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-        children: React.ReactElement<any, any>;
-    },
-    ref: React.Ref<unknown>
-) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
+import { TransitionSlide } from '@/transitions';
 
 export const NotDevelopedModal: React.FC = () => {
     const setOpenModal = useMarketStore((store) => store.setOpenModal);
@@ -24,7 +15,7 @@ export const NotDevelopedModal: React.FC = () => {
     };
 
     return (
-        <Dialog open={openModal} TransitionComponent={Transition} keepMounted onClose={handleClose}>
+        <Dialog open={openModal} TransitionComponent={TransitionSlide} keepMounted onClose={handleClose}>
             <DialogContent
                 sx={{
                     display: 'flex',

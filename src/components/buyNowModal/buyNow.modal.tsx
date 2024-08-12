@@ -1,21 +1,11 @@
 import { Paths, resources } from '@/global';
 import { sumFloatNumbersHelper } from '@/helpers';
 import { useBillingStore, useMarketStore, useTransactionStore } from '@/store';
-import { Slide, Dialog, DialogContent, Box, Typography, Button } from '@mui/material';
-import { TransitionProps } from 'notistack';
+import { Dialog, DialogContent, Box, Typography, Button } from '@mui/material';
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { BuyNow } from '@/components';
-
-const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-        // @ts-nocheck
-        children: React.ReactElement<any, any>;
-    },
-    ref: React.Ref<unknown>
-) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
+import { TransitionSlide } from '@/transitions';
 
 export const BuyNowModal: React.FC = () => {
     const openBuyModal = useTransactionStore((store) => store.openBuyModal);
@@ -43,7 +33,7 @@ export const BuyNowModal: React.FC = () => {
         <Dialog
             open={openBuyModal?.open === true}
             sx={{ p: 0, m: 0 }}
-            TransitionComponent={Transition}
+            TransitionComponent={TransitionSlide}
             onClose={handleClose}
         >
             <DialogContent

@@ -1,19 +1,8 @@
 import { useMarketStore, useProfileStore } from '@/store';
-import { Slide, Dialog, DialogContent, Box, Typography } from '@mui/material';
-import { TransitionProps } from 'notistack';
-import { forwardRef, ReactElement, Ref, FC } from 'react';
+import { Dialog, DialogContent, Box } from '@mui/material';
+import { FC } from 'react';
 import { InvoiceViews } from './invoice.views';
-import { resources } from '@/global';
-
-const Transition = forwardRef(function Transition(
-    props: TransitionProps & {
-        // @ts-nocheck
-        children: ReactElement<any, any>;
-    },
-    ref: Ref<unknown>
-) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
+import { TransitionSlide } from '@/transitions';
 
 export const InvoiceModal: FC = () => {
     const openReOrderModal = useProfileStore((store) => store.openReOrderModal);
@@ -24,13 +13,11 @@ export const InvoiceModal: FC = () => {
         setOpenReOrderModal({ open: false, order: undefined });
     };
 
-    const isDarkTheme = theme.type === 'dark';
-
     return (
         <Dialog
             open={openReOrderModal?.open === true}
             sx={{ p: 0, borderRadius: '4px', m: 0 }}
-            TransitionComponent={Transition}
+            TransitionComponent={TransitionSlide}
             onClose={handleClose}
         >
             <DialogContent
@@ -45,7 +32,7 @@ export const InvoiceModal: FC = () => {
                     overflow: 'auto',
                     overflowX: 'hidden',
                     height: '100%',
-                    background: isDarkTheme ? theme.primaryLight : theme.primaryLight,
+                    background: theme.primaryLight,
                 }}
             >
                 <InvoiceViews.Header />
