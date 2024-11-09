@@ -1,4 +1,4 @@
-This project is based on a store website, which contains several functionalities, such as profile editing, order history, favorites, cart and purchase transaction.
+In my most recent project I developed a fully functional and responsive e-commerce website using React, TypeScript, and NextJs. This project contains several functionalities, such as profile editing, order history, favorites, cart and purchase transaction.
 You can check out [dummy-store-fake-api](https://dummy-store-fake-api.netlify.app/) - your feedback and contributions are welcome, is deployed!
 
 ## Getting Started
